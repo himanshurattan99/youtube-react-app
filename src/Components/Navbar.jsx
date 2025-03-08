@@ -5,11 +5,13 @@ import search_icon from '../assets/search-icon.png'
 import microphone_icon from '../assets/microphone-icon.png'
 import profile_icon from '../assets/profile-icon.png'
 
-const Navbar = () => {
+const Navbar = ({ onMenuClick }) => {
     return (
-        <nav className="py-2 px-7 bg-[#181818] flex justify-between sticky top-0">
-            <div className="flex items-center gap-6">
-                <img src={menu_icon} className="w-6" alt="" />
+        <nav className="h-[7.5vh] px-5 bg-[#181818] flex justify-between sticky top-0">
+            <div className="flex items-center gap-5">
+                <button onClick={onMenuClick} className="p-2 hover:bg-[#3c3c3c] rounded-full cursor-pointer">
+                    <img src={menu_icon} className="w-6" alt="" />
+                </button>
                 <img src={youtube_logo_text} className="w-21" alt="" />
             </div>
 

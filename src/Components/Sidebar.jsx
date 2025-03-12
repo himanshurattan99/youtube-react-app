@@ -20,16 +20,16 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
 
   return (
     <>
-      <div className={`h-[92.5vh] px-5 bg-[#181818] text-slate-100 fixed left-0 overflow-y-auto scrollbar-thin-gray transition-transform duration-250 ${(isSlidingMode) ? ((isExpanded) ? '' : '-translate-x-full') : ''}`}>
+      <div className={`h-[92.5vh] px-5 bg-[#181818] text-slate-100 overflow-y-auto scrollbar-thin-gray transition-transform duration-250 ${(isSlidingMode && !isExpanded) ? '-translate-x-full absolute z-10' : ''}`}>
         <div className="py-3 border-b border-b-[#3d3d3d]">
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={home_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <label>Home</label>}
+            {(isLabelVisible) && <span>Home</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={subscriptions_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <label>Subscriptions</label>}
+            {(isLabelVisible) && <span>Subscriptions</span>}
           </button>
         </div>
 
@@ -38,32 +38,32 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={music_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <label>Music</label>}
+            {(isLabelVisible) && <span>Music</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={movies_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <label>Movies</label>}
+            {(isLabelVisible) && <span>Movies</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={gaming_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <label>Gaming</label>}
+            {(isLabelVisible) && <span>Gaming</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={sports_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <label>Sports</label>}
+            {(isLabelVisible) && <span>Sports</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={science_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <label>Science</label>}
+            {(isLabelVisible) && <span>Science</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={tech_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <label>Technology</label>}
+            {(isLabelVisible) && <span>Technology</span>}
           </button>
         </div>
 
@@ -72,42 +72,42 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={threeBlue1Brown_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <label>3Blue1Brown</label>}
+            {(isLabelVisible) && <span>3Blue1Brown</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={Jazza_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <label>Jazza</label>}
+            {(isLabelVisible) && <span>Jazza</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={MarquesBrownlee_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <label>Marques Brownlee</label>}
+            {(isLabelVisible) && <span>Marques Brownlee</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={Mrwhosetheboss_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <label>Mrwhosetheboss</label>}
+            {(isLabelVisible) && <span>Mrwhosetheboss</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={TheOdd1sOut_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <label>TheOdd1sOut</label>}
+            {(isLabelVisible) && <span>TheOdd1sOut</span>}
           </button>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={Veritasium_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <label>Veritasium</label>}
+            {(isLabelVisible) && <span>Veritasium</span>}
           </button>
         </div>
 
         <div className="py-3">
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={settings_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <label>Settings</label>}
+            {(isLabelVisible) && <span>Settings</span>}
           </button>
         </div>
-      </div>
+      </div >
     </>
   )
 }

@@ -1,9 +1,9 @@
 import '../App.css'
-import menu_icon from '../assets/menu-icon.png'
-import youtube_logo_text from '../assets/youtube-logo-text.png'
-import search_icon from '../assets/search-icon.png'
-import microphone_icon from '../assets/microphone-icon.png'
-import profile_icon from '../assets/profile-icon.png'
+import menu_icon from '../assets/icons/menu-icon.png'
+import youtube_logo_text from '../assets/logos/youtube-logo-text.png'
+import search_icon from '../assets/icons/search-icon.png'
+import microphone_icon from '../assets/icons/microphone-icon.png'
+import profile_icon from '../assets/icons/profile-icon.png'
 
 const Navbar = ({ onMenuClick }) => {
     return (

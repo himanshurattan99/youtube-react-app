@@ -1,20 +1,31 @@
-import home_icon from '../assets/home-icon.png'
-import subscriptions_icon from '../assets/subscriptions-icon.png'
-import music_icon from '../assets/music-icon.png'
-import movies_icon from '../assets/movies-icon.png'
-import gaming_icon from '../assets/gaming-icon.png'
-import sports_icon from '../assets/sports-icon.png'
-import science_icon from '../assets/science-icon.png'
-import tech_icon from '../assets/tech-icon.png'
-import settings_icon from '../assets/settings-icon.png'
-import threeBlue1Brown_profile_image from '../assets/3Blue1Brown-profile-image.jpg'
-import Jazza_profile_image from '../assets/Jazza-profile-image.jpg'
-import MarquesBrownlee_profile_image from '../assets/MarquesBrownlee-profile-image.jpg'
-import Mrwhosetheboss_profile_image from '../assets/Mrwhosetheboss-profile-image.jpg'
-import TheOdd1sOut_profile_image from '../assets/TheOdd1sOut-profile-image.jpg'
-import Veritasium_profile_image from '../assets/Veritasium-profile-image.jpg'
+import { useState, useEffect } from 'react'
+import { db } from '../data/db.js'
+import home_icon from '../assets/icons/home-icon.png'
+import subscriptions_icon from '../assets/icons/subscriptions-icon.png'
+import music_icon from '../assets/icons/music-icon.png'
+import movies_icon from '../assets/icons/movies-icon.png'
+import gaming_icon from '../assets/icons/gaming-icon.png'
+import sports_icon from '../assets/icons/sports-icon.png'
+import science_icon from '../assets/icons/science-icon.png'
+import tech_icon from '../assets/icons/tech-icon.png'
+import settings_icon from '../assets/icons/settings-icon.png'
 
 const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
+  const [subscribedChannels, setSubscribedChannels] = useState({})
+
+  useEffect(() => {
+    const userSubscriptions = db.users["helloworld"].subscriptions
+
+    const filteredChannels = {}
+    userSubscriptions.forEach((channelId) => {
+      if (db.channels[channelId]) {
+        filteredChannels[channelId] = db.channels[channelId]
+      }
+    })
+
+    setSubscribedChannels(filteredChannels)
+  }, [])
+
   const isSlidingMode = (sidebarMode === 'slide')
   const isLabelVisible = (isExpanded || isSlidingMode)
 
@@ -70,35 +81,14 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
         <div className="py-3 border-b border-b-[#3d3d3d]">
           {(isLabelVisible) && <h2 className="p-2 text-lg font-medium">Subscriptions</h2>}
 
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={threeBlue1Brown_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <span>3Blue1Brown</span>}
-          </button>
-
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={Jazza_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <span>Jazza</span>}
-          </button>
-
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={MarquesBrownlee_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <span>Marques Brownlee</span>}
-          </button>
-
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={Mrwhosetheboss_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <span>Mrwhosetheboss</span>}
-          </button>
-
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={TheOdd1sOut_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <span>TheOdd1sOut</span>}
-          </button>
-
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={Veritasium_profile_image} className="w-6 rounded-full" alt="" />
-            {(isLabelVisible) && <span>Veritasium</span>}
-          </button>
+          {Object.entries(subscribedChannels).map(([key, value]) => {
+            return (
+              <button key={key} className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
+                <img src={value.avatar} className="w-6 rounded-full" alt="" />
+                {(isLabelVisible) && <span>{value.name}</span>}
+              </button>
+            )
+          })}
         </div>
 
         <div className="py-3">

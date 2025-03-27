@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { db } from '../data/db.js'
+import { Link } from 'react-router-dom'
 import home_icon from '../assets/icons/home-icon.png'
 import subscriptions_icon from '../assets/icons/subscriptions-icon.png'
 import music_icon from '../assets/icons/music-icon.png'
@@ -28,15 +29,25 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
 
   const isSlidingMode = (sidebarMode === 'slide')
   const isLabelVisible = (isExpanded || isSlidingMode)
+  const exploreItems = [
+    { label: 'Music', icon: music_icon },
+    { label: 'Movies', icon: movies_icon },
+    { label: 'Gaming', icon: gaming_icon },
+    { label: 'Sports', icon: sports_icon },
+    { label: 'Science', icon: science_icon },
+    { label: 'Technology', icon: tech_icon }
+  ]
 
   return (
     <>
       <div className={`h-[92.5vh] px-5 bg-[#181818] text-slate-100 overflow-y-auto scrollbar-thin-gray transition-transform duration-250 ${(isSlidingMode && !isExpanded) ? '-translate-x-full absolute z-10' : ''}`}>
         <div className="py-3 border-b border-b-[#3d3d3d]">
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={home_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <span>Home</span>}
-          </button>
+          <Link to={`/`}>
+            <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
+              <img src={home_icon} className="w-6" alt="" />
+              {(isLabelVisible) && <span>Home</span>}
+            </button>
+          </Link>
 
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={subscriptions_icon} className="w-6" alt="" />
@@ -47,35 +58,16 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
         <div className="py-3 border-b border-b-[#3d3d3d]">
           {(isLabelVisible) && <h2 className={`p-2 text-lg font-medium`}>Explore</h2>}
 
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={music_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <span>Music</span>}
-          </button>
-
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={movies_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <span>Movies</span>}
-          </button>
-
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={gaming_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <span>Gaming</span>}
-          </button>
-
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={sports_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <span>Sports</span>}
-          </button>
-
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={science_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <span>Science</span>}
-          </button>
-
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={tech_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <span>Technology</span>}
-          </button>
+          {exploreItems.map(({ label, icon }, index) => {
+            return (
+              <Link key={label.toLowerCase()} to={`/explore/${label.toLowerCase()}`}>
+                <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
+                  <img src={icon} className="w-6" alt="" />
+                  {(isLabelVisible) && <span>{label}</span>}
+                </button>
+              </Link>
+            )
+          })}
         </div>
 
         <div className="py-3 border-b border-b-[#3d3d3d]">

@@ -47,3 +47,11 @@ export const getRelativeUploadTime = (uploadDate) => {
 
     return "just now"
 }
+
+export const getRandomVideos = (videos, count = 12) => {
+    const videoEntries = Object.entries(videos)
+    const shuffledVideos = videoEntries.sort(() => (0.5 - Math.random()))
+    const randomVideos = Object.fromEntries(shuffledVideos.slice(0, count))
+
+    return randomVideos
+}

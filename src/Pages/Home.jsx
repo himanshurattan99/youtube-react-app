@@ -1,15 +1,30 @@
 import { useState, useEffect } from 'react'
 import { db } from '../data/db.js'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { formatDuration, formatViews, getRelativeUploadTime, getRandomVideos } from '../utils/utils.js'
 
 const Home = () => {
     const [videos, setVideos] = useState({})
     const [channels, setChannels] = useState({})
     const { category } = useParams()
+    const location = useLocation()
 
     useEffect(() => {
-        if (!(category)) {
+        if (location.pathname === '/subscriptions') {
+            const userSubscriptions = db.users["helloworld"].subscriptions
+
+            const videoIds = userSubscriptions.flatMap((element) => {
+                return db.channels[element].videos
+            })
+
+            const sortedSubscriptionVideos = Object.fromEntries(
+                videoIds.map((videoId) => [videoId, db.videos[videoId]])
+                    .sort(([, valueA], [, valueB]) =>
+                        new Date(valueB.uploadDate) - new Date(valueA.uploadDate)
+                    )
+            )
+            setVideos(sortedSubscriptionVideos)
+        } else if (!(category)) {
             setVideos(getRandomVideos(db.videos))
         } else {
             const filteredVideos = Object.fromEntries(
@@ -21,7 +36,7 @@ const Home = () => {
         }
 
         setChannels(db.channels)
-    }, [category])
+    }, [location])
 
     return (
         <div className={`h-[92.5vh] p-6 bg-[#181818] text-slate-100 flex-1 overflow-y-auto scrollbar-thin-gray`}>

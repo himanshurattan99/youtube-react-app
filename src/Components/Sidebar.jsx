@@ -49,10 +49,12 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
             </button>
           </Link>
 
-          <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={subscriptions_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <span>Subscriptions</span>}
-          </button>
+          <Link to={`/subscriptions`}>
+            <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
+              <img src={subscriptions_icon} className="w-6" alt="" />
+              {(isLabelVisible) && <span>Subscriptions</span>}
+            </button>
+          </Link>
         </div>
 
         <div className="py-3 border-b border-b-[#3d3d3d]">

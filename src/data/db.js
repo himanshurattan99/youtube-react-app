@@ -1502,420 +1502,655 @@ export const db = {
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mxpQ2hfudhflswgM8pZg22Jn_bgaQV0gIpUqYQW4z9Av8=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 20462999,
-            "link": ""
+            "link": "",
+            "videos": [
+                "_dWhz02Z70U",
+                "oZlFJNinK9c"
+            ]
         },
         "ProkoTV": {
             "name": "Proko",
             "avatar": "https://yt3.googleusercontent.com/xZLK7rDETLEwI1Q6lNOikFzvea03yi6TxVEsaQS4hmE7uZzZwducX8hikxMANmgFMWdyOa2-fQ=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 3953925,
-            "link": ""
+            "link": "",
+            "videos": [
+                "6T_-DiAzYBc"
+            ]
         },
         "Jazza": {
             "name": "Jazza",
             "avatar": "https://yt3.googleusercontent.com/NxkGR-9Go3siyXFGk45g7ny7H3yvwm8hkaN6iY4xeekvTCJ_4MvwV-J59Yx1VgfMGACY_Kxx=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 6652852,
-            "link": ""
+            "link": "",
+            "videos": [
+                "8SjgaZQwM7U",
+                "66_YPg01ZWA"
+            ]
         },
         "BradsArtSchool": {
             "name": "Brad's Art School",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_l974tjSe09zV26n1LNrhN8fO096w6jYDm1Xl3JLtCMbg=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 587162,
-            "link": ""
+            "link": "",
+            "videos": [
+                "Wz6DrQeQ5rI"
+            ]
         },
         "CuttingEdgeSchool": {
             "name": "The Cutting Edge School",
             "avatar": "https://yt3.googleusercontent.com/zxP0vXmSCANoV6WzSfy73D2FK05wtquXeYIjjP5I4TxaKxi20-tn5Ig8ZoBswzhQfH06dRULE94=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 563576,
-            "link": ""
+            "link": "",
+            "videos": [
+                "ZhitFh6Hn0w"
+            ]
         },
         "conangray": {
             "name": "Conan Gray",
             "avatar": "https://yt3.googleusercontent.com/vVz8_YXuBw750y5VC-22zqHmPMMPMyodcyFdyVpP0y6Q5KkJGxdfTFpOdymN32GGl_6_Swxxxw=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 5412332,
-            "link": ""
+            "link": "",
+            "videos": [
+                "hEDBZtmKPmg",
+                "24u3NoPvgMw"
+            ]
         },
         "sabrinacarpenter": {
             "name": "Sabrina Carpenter",
             "avatar": "https://yt3.googleusercontent.com/7v0UejmMIg7hy4kWWAl7v4qAoBXXxop1BrRlG9M2E4Oiwbq3rHwUuzVGjz4cvOSAauQo_L_sHg=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 11080239,
-            "link": ""
+            "link": "",
+            "videos": [
+                "eVli-tstM5E",
+                "KEG7b851Ric"
+            ]
         },
         "HarryStyles": {
             "name": "Harry Styles",
             "avatar": "https://yt3.googleusercontent.com/B99ZyM53qUvJaiKIRZ0y0zCt9zvbAs56tAjw4DriS9dXNDltpaxtTOIeqikOrdJ9iLtdkoEZ=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 14969284,
-            "link": ""
+            "link": "",
+            "videos": [
+                "E07s5ZYygMg",
+                "qbcmsEIHWeE"
+            ]
         },
         "sia": {
             "name": "Sia",
             "avatar": "https://yt3.googleusercontent.com/ZwshEKb8c3oRXCix0nGGEukLBEgXaOj0E6LMp0QZ-lu7hm9rC3onNLFQAg_ihyDqdWcvqcC7uQ=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 24135346,
-            "link": ""
+            "link": "",
+            "videos": [
+                "YaEG2aWJnZ8"
+            ]
         },
         "charlieputh": {
             "name": "Charlie Puth",
             "avatar": "https://yt3.googleusercontent.com/zFf6r-KyziIJlb9mkzObYO-7Z27bQu4yytFq2zGaixYcgo4Jjm0bbm3PyCZJHJ4T4MDaICcJ=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 22789912,
-            "link": ""
+            "link": "",
+            "videos": [
+                "asYfhMHAgqs",
+                "9mzSgnOxXtw"
+            ]
         },
         "ArianaGrande": {
             "name": "Ariana Grande",
             "avatar": "https://yt3.googleusercontent.com/vLWO1tajYHyFJ3lGkcMxKMayA-ZNUqCUYj5bOO8TWhNVL7EV-bjxmguUkZ3B2dMsAtZYir8r=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 55767553,
-            "link": ""
+            "link": "",
+            "videos": [
+                "dS_HLHozs1E",
+                "KNtJGQkC-WI"
+            ]
         },
         "LanaDelRey": {
             "name": "Lana Del Rey",
             "avatar": "https://yt3.googleusercontent.com/v7FFBCqWHtvh-_wLtWV2vOrgBI7p7puXjiZgZJ1bOcwdGUkP8DjHVdt6U-QvSDjEMtYa0aSw=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 17037394,
-            "link": ""
+            "link": "",
+            "videos": [
+                "o7e4IfE0ScI"
+            ]
         },
         "OliviaRodrigo": {
             "name": "Olivia Rodrigo",
             "avatar": "https://yt3.googleusercontent.com/YL30SaedQQiVi-nWAGndaX-4F0S0Ix0E-7Engqj_0WANAP976X3z7Mif1Wr1H2J10DZ0iG-k=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 15108473,
-            "link": ""
+            "link": "",
+            "videos": [
+                "ZsJ-BHohXRI"
+            ]
         },
         "BillieEilish": {
             "name": "Billie Eilish",
             "avatar": "https://yt3.googleusercontent.com/dirvtoDAmx-u0UR76-pxfhYL6Wxj2vfL2geUcxDwk62tTWWhGG6QDGc63RG3NdOz38-yBwRHDQ=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 55155299,
-            "link": ""
+            "link": "",
+            "videos": [
+                "V9PVRfjEBTI"
+            ]
         },
         "MileyCyrus": {
             "name": "Miley Cyrus",
             "avatar": "https://yt3.googleusercontent.com/z3AOStrEznwieoK8HCfHi9nNQiPUiycJMEDYwZ5ufnaIS8YQRMj-X8lZpwtMnBsv89kcVUwewA=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 19595175,
-            "link": ""
+            "link": "",
+            "videos": [
+                "G7KNmW9a75Y",
+                "v_4fljfr2r4"
+            ]
         },
         "EdSheeran": {
             "name": "Ed Sheeran",
             "avatar": "https://yt3.googleusercontent.com/pZQ5JMD4EOI8TcNYAPTzMexe_fC0CKnb_hYlV4rPfIzmDidF239fH1XKmzkeT30XSg7fxNwc_w=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 56079137,
-            "link": ""
+            "link": "",
+            "videos": [
+                "orJSJGHjBLI"
+            ]
         },
         "embeihold": {
             "name": "Em Beihold",
             "avatar": "https://yt3.googleusercontent.com/ZR1p390r6s_W7m9yvoxQcQxT8TVMto20SfDpCsuhfAbRf0sFJgofqmaUDfGDkc67WaTuJKppNg=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 701728,
-            "link": ""
+            "link": "",
+            "videos": [
+                "1fwJ8H5wWCU"
+            ]
         },
         "pixar": {
             "name": "Pixar",
             "avatar": "https://yt3.googleusercontent.com/4lBlgctuLWYB0ZAAJEzaVSIjdn9knjoph7PDczzIuLR6VwFgrlVwz5tD4ALFjSlDvSlUzH36=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 8836851,
-            "link": ""
+            "link": "",
+            "videos": [
+                "xOsLIiBStEs",
+                "hXzcyx9V0xw",
+                "LEjhY15eCx0"
+            ]
         },
         "sonypictures": {
             "name": "Sony Pictures Entertainment",
             "avatar": "https://yt3.googleusercontent.com/xjnenDsZ-6TiNsE13A2Vggxfg0Np7IOtvA5_AaH26QrVelAkRqkWfKVPjemuuq9JN25ppTk-mA=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 7583710,
-            "link": ""
+            "link": "",
+            "videos": [
+                "AST2-4db4ic",
+                "cqGjhVJWtEg"
+            ]
         },
         "Netflix": {
             "name": "Netflix",
             "avatar": "https://yt3.googleusercontent.com/CvgBA1ypUZNxOjiCX0l1V2FbAm7oSDPZE4YkMvkpT_4iLXQ3IXWVtBgWnznHxgtcUoj50TXqZA=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 30133690,
-            "link": ""
+            "link": "",
+            "videos": [
+                "YJserno8tyU"
+            ]
         },
         "IGNMovieTrailers": {
             "name": "IGN Movie Trailers",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_njqvHRCrQjF3VtvoDmnx1eagG7H36o8eWVMUwP1aAKIQ=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 295642,
-            "link": ""
+            "link": "",
+            "videos": [
+                "AXEK7y1BuNQ"
+            ]
         },
         "LionsgateMovies": {
             "name": "Lionsgate Movies",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_kGOHZMzqkOegAXqycAPUEBORRZEX4y1x-LZ6vm-_vnavDJ=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 2553280,
-            "link": ""
+            "link": "",
+            "videos": [
+                "qGqiHJTsRkQ"
+            ]
         },
         "WarnerBros": {
             "name": "Warner Bros.",
             "avatar": "https://yt3.googleusercontent.com/yVXKYrUI8hckCQdyUuOWf5ZJk2keT8WO3TV2b8RYk3RKgjz5Rh8v1UsH7Yz2j_hbDQRk32rZ_rM=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 12220498,
-            "link": ""
+            "link": "",
+            "videos": [
+                "cSp1dM2Vj48",
+                "pBk4NYhWNMM"
+            ]
         },
         "searchlightpictures": {
             "name": "SearchlightPictures",
             "avatar": "https://yt3.googleusercontent.com/NJLifmPzxlxslQCFAGS0qnp8knDuBDvOa1xkULJzWkOYcZmzZJUpT1WVDSharUIGhNKx3KXWpw=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 629071,
-            "link": ""
+            "link": "",
+            "videos": [
+                "x7CAjpdRaXU"
+            ]
         },
         "disneyanimation": {
             "name": "Walt Disney Animation Studios",
             "avatar": "https://yt3.googleusercontent.com/DPT6BPRXWYZuI-6l7-09vedIU_G-TfpTAz2uAEK5fv6f7Iea3sLCC6JazgfcIH3MCQ15BSAsWw=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 6084349,
-            "link": ""
+            "link": "",
+            "videos": [
+                "CaimKeDcudo",
+                "hDZ7y8RP5HE"
+            ]
         },
         "AvatarOfficial": {
             "name": "Avatar",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_nbuqFu8kmSKHLQIeGidbz41oJ4DOP5_SlgThmBfej3SlE=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 449901,
-            "link": ""
+            "link": "",
+            "videos": [
+                "d9MyW72ELq0"
+            ]
         },
         "UniversalPictures": {
             "name": "Universal Pictures",
             "avatar": "https://yt3.googleusercontent.com/PzIajPyy9_HJ-LR5S6q86JV9o2GjabXF54QJnr3PeHpOiGOXtroatGM3mB2QxQa_vkF5yuyu9hs=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 9936451,
-            "link": ""
+            "link": "",
+            "videos": [
+                "uYPbbksJxIg",
+                "j7jPnwVGdZ8"
+            ]
         },
         "20thCenturyStudios": {
             "name": "20th Century Studios",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_k1TJF0hhPG6pPrOH-xAeLMGXMpkBtVmES06mkXUfoZcWI=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 4912649,
-            "link": ""
+            "link": "",
+            "videos": [
+                "OzY2r2JXsDM"
+            ]
         },
         "illumination": {
             "name": "Illumination",
             "avatar": "https://yt3.googleusercontent.com/jVkTxjd53v2skyBGzf9mnifiV29VLY_7DZeVSRbUaGXDswKAD5v1Ziquj_uuF5p_xplqbVL5mCw=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 4333635,
-            "link": ""
+            "link": "",
+            "videos": [
+                "TnGl01FkMMo"
+            ]
         },
         "gamespot": {
             "name": "GameSpot",
             "avatar": "https://yt3.googleusercontent.com/2q8-YlqtAs3pWHamRcooAOvt_M88afnTwo7DYwqvHV9OSGlf2pBa5h3QJGeHrBkBidUjaL0mpA=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 5617896,
-            "link": ""
+            "link": "",
+            "videos": [
+                "kJawWyRUOBM",
+                "1T22wNvoNiU"
+            ]
         },
         "Ubisoft": {
             "name": "Ubisoft",
             "avatar": "https://yt3.googleusercontent.com/fZdgfIbgIyuEU7NY_w622VaiXj9VeuwBEbbsLHMVR8cgLgxIKxMPjF5OGG4FJMkxHC-2m3KuaA=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 3892651,
-            "link": ""
+            "link": "",
+            "videos": [
+                "x55lAlFtXmw"
+            ]
         },
         "MKIceAndFire": {
             "name": "MKIceAndFire",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_nOHhsMB_jQbBn05JJM9rfUJtWlhTQG5fN0H5NDmmG5RGE=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 4206969,
-            "link": ""
+            "link": "",
+            "videos": [
+                "_4oNKgyxtBI",
+                "T4DFKOlrXCQ",
+                "LpZ3tNMWDqY"
+            ]
         },
         "GameTrailers": {
             "name": "GameTrailers",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mACNHzO2hXRkyYsbaZtmgKOxnHfIdnHSg3D_aWRK3mcoAU=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 1144108,
-            "link": ""
+            "link": "",
+            "videos": [
+                "NN-9SQXoi50"
+            ]
         },
         "theRadBrad": {
             "name": "theRadBrad",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mT4HHtSX-gR2mdZMq-YW7dyIc7lxY1utemKl2ahomnsW8=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 13800702,
-            "link": ""
+            "link": "",
+            "videos": [
+                "GFcOQ9Nc1HE",
+                "0xy4NNqX_ZU",
+                "c0cbQdrxIXk"
+            ]
         },
         "PlayStation": {
             "name": "PlayStation",
             "avatar": "https://yt3.googleusercontent.com/uiQh9JC7wAmCl63jhNilJvAcqNbwnMmUf5FUCQBecipe6yGmUWpPvAMVixALEt6xpPOVbsouzw=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 16202699,
-            "link": ""
+            "link": "",
+            "videos": [
+                "vhII1qlcZ4E",
+                "1O6Qstncpnc",
+                "q0vNoRhuV_I",
+                "DCl5zKHy7ak"
+            ]
         },
         "TelltaleGames": {
             "name": "Telltale Games",
             "avatar": "https://yt3.googleusercontent.com/IR5oEgQ7U7nqsYADjOuyIj07r6DCkZ9acDVwi8nKew4Aa5mFt0JP4zG-8RLkZxjSK1cEhoMN9Ks=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 359055,
-            "link": ""
+            "link": "",
+            "videos": [
+                "UkXwW5H28m0"
+            ]
         },
         "CyberpunkGame": {
             "name": "Cyberpunk 2077",
             "avatar": "https://yt3.googleusercontent.com/LNNs3oKwnUBT2UzjHhnfjVjwpIk85jv3bya5u80biOS5Wst24PhTR9Upb_3avEBet6dYU5KdNw=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 1722610,
-            "link": ""
+            "link": "",
+            "videos": [
+                "8X2kIfS6fb8"
+            ]
         },
         "xbox": {
             "name": "Xbox",
             "avatar": "https://yt3.googleusercontent.com/JSDmkRJk62Ov0MS2kMU3hegGdT9JVfpQ-O1_XEiXYllEmylImIsCKlXU297-JHVGFm2J_fHGMw=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 5569066,
-            "link": ""
+            "link": "",
+            "videos": [
+                "JSfuFlhsxZY"
+            ]
         },
         "RockstarGames": {
             "name": "Rockstar Games",
             "avatar": "https://yt3.googleusercontent.com/-jCZaDR8AoEgC6CBPWFubF2PMSOTGU3nJ4VOSo7aq3W6mR8tcRCgygd8fS-4Ra41oHPo3F3P=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 11368552,
-            "link": ""
+            "link": "",
+            "videos": [
+                "QdBZY2fkU-0"
+            ]
         },
         "Olympics": {
             "name": "Olympics",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mgqNPYKqnE7FG3Pk1zbi0hpKihVPbWSk-Rfsbr0ki0bFPK=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 14896888,
-            "link": ""
+            "link": "",
+            "videos": [
+                "wOEKdWrtz6U",
+                "6bNOnXTe4Ok",
+                "23EfsN7vEOA",
+                "FuiJHJz4f5Q",
+                "rW_fwcmyIfk",
+                "eKlH8jjBL3g"
+            ]
         },
         "espn": {
             "name": "ESPN",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_mjPkMeFcQxySKuGOn-eSPaOaTK55KKtjF7LTkkwidfCP1D=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 13528564,
-            "link": ""
+            "link": "",
+            "videos": [
+                "sbXy2vkJxSk",
+                "zh76f7oHjYE"
+            ]
         },
         "NBA": {
             "name": "NBA",
             "avatar": "https://yt3.googleusercontent.com/qtn_u6ISz-HvZphchyOE6qFFfA_iu9-8dC8yABZ2E4uAbYbtZci0rki5tQNLdCrfijZkOClRRw=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 22880297,
-            "link": ""
+            "link": "",
+            "videos": [
+                "cuLprHh_BRg",
+                "2hIrbnVx4k4"
+            ]
         },
         "Formula1": {
             "name": "FORMULA 1",
             "avatar": "https://yt3.googleusercontent.com/OjIDFlHinRLmfN75Zunw4e4NpdQKdcpEjRBMBILifgIAya9FLW68C6VPgNGLlk4GJ5z97sR2kQ=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 12053672,
-            "link": ""
+            "link": "",
+            "videos": [
+                "COpGcEiyo-A",
+                "FExS3lFEwqc"
+            ]
         },
         "redbull": {
             "name": "Red Bull",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_k94J7kkxpmlJe3c2iDFJpHk8SAADPpf49cN7XjomXSzEE=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 22446075,
-            "link": ""
+            "link": "",
+            "videos": [
+                "FHtvDA0W34I",
+                "Sv3xVOs7_No",
+                "Hv_DRJZZ2qI"
+            ]
         },
         "fifa": {
             "name": "FIFA",
             "avatar": "https://yt3.googleusercontent.com/8btjbwmMijz7TARR4uRFDFaZOFbyfcrxiUe3VOTaMdf656D5aTdyosLKcU7-RpCBSfX-cHiK=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 23077264,
-            "link": ""
+            "link": "",
+            "videos": [
+                "4rp2aLQl7vg",
+                "auqyXFLZ_zw",
+                "6C6oOcDFmLY"
+            ]
         },
         "3blue1brown": {
             "name": "3Blue1Brown",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_nFzZFPLxPZRHcE3SSwzdrbuWqfoWYwLAu0_2iO6blQYAU=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 7143345,
-            "link": ""
+            "link": "",
+            "videos": [
+                "LPZh9BOjkQs",
+                "6dTyOl1fmDo"
+            ]
         },
         "kurzgesagt": {
             "name": "Kurzgesagt - In a Nutshell",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_n1Ribd7LwdP_qKtqWL3ZDfIgv9M1d6g78VwpHGXVR2Ir4=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 23804698,
-            "link": ""
+            "link": "",
+            "videos": [
+                "xaQJbozY_Is",
+                "c1nYtX-NUsc"
+            ]
         },
         "TEDEd": {
             "name": "TED-Ed",
             "avatar": "https://yt3.googleusercontent.com/PKUi-Lc3VFjUfsIhjK3n-FJDNBf-XQLdg4G4bv4fPFF96D3MVnkbub9ePpLoWdmdFgl5I1Zd=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 21297491,
-            "link": ""
+            "link": "",
+            "videos": [
+                "WcLlpWmEpQ8",
+                "Amkg1cdDCpM"
+            ]
         },
         "TwoMinutePapers": {
             "name": "Two Minute Papers",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_ljAkSpv16cJNUsE_rI1X-Kz9s78w1WNojUga-aZ1uVzEQ=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 1627766,
-            "link": ""
+            "link": "",
+            "videos": [
+                "ni6P5KU3SDU",
+                "V2_Xf24FpBU"
+            ]
         },
         "tibees": {
             "name": "Tibees",
             "avatar": "https://yt3.googleusercontent.com/O6L-TLhDogT9E3ZqZ1JLL26KpD4nMnc5_uhBlAIAIQX3A1ZdDZk-p_5IoFJ5BbNDxI_l5_Wt=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 1292734,
-            "link": ""
+            "link": "",
+            "videos": [
+                "jiczBAqku1I",
+                "yQOFzsRXG1Y"
+            ]
         },
         "ScienceAsylum": {
             "name": "The Science Asylum",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_kGIZjwlTCK-gcz2AdA1f_wkDu0y0GiAfi8tFBSj9grSi4=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 709341,
-            "link": ""
+            "link": "",
+            "videos": [
+                "lInXZ6I3u_I",
+                "JkPpArU5RPQ"
+            ]
         },
         "lifenoggin": {
             "name": "Life Noggin",
             "avatar": "https://yt3.googleusercontent.com/56TZ3zvoVxmSs8udEwXDQ4tQN5HjvYYwm103b5SZ03F3Is7jI2rvkNA_Iq_ZW0Q3v0b9CvoeKkY=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 3175207,
-            "link": ""
+            "link": "",
+            "videos": [
+                "_dQ1pL49EOI",
+                "_21IAHgkerU"
+            ]
         },
         "veritasium": {
             "name": "Veritasium",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_nSatGjGLZG1_O1ztYxuKvRazCbk9A0kPhtt2NxEH4ZKfA=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 17589328,
-            "link": ""
+            "link": "",
+            "videos": [
+                "LKPwKFigF8U",
+                "lGJEihgN4OU"
+            ]
         },
         "bbcearth": {
             "name": "BBC Earth",
             "avatar": "https://yt3.googleusercontent.com/EsHioubXC-qfNdbHyThN7rDTF7rfTzhl5A5u4hHuUAzslx9jgwtxl_2TN4RFqt3hA1jEwAGVgg=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 13542553,
-            "link": ""
+            "link": "",
+            "videos": [
+                "oaJIkGhAf7U",
+                "yelEaTDOO2Q"
+            ]
         },
         "Apple": {
             "name": "Apple",
             "avatar": "https://yt3.googleusercontent.com/s5hlNKKDDQWjFGzYNnh8UeOW2j2w6id-cZGx7GdAA3d5Fu7zEi7ZMXEyslysuQUKigXNxtAB=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 19923138,
-            "link": ""
+            "link": "",
+            "videos": [
+                "UjmaxCyJBc4",
+                "GDlkCkcIqTs",
+                "JjpGvjy0Gxk",
+                "IHTT_7AjoU8",
+                "I-j_SMn8RRc"
+            ]
         },
         "mkbhd": {
             "name": "Marques Brownlee",
             "avatar": "https://yt3.googleusercontent.com/PEwQfVuhh5jO7_NDDufCq349q0W6MgZeYlgeMyW3OSRMxMx9W5yre5Fgbi4Bql56L1cPwoteOA=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 19902880,
-            "link": ""
+            "link": "",
+            "videos": [
+                "z19HM7ANZlo",
+                "SAb4zRyxrD4",
+                "az5QL_NLBvg"
+            ]
         },
         "Mrwhosetheboss": {
             "name": "Mrwhosetheboss",
             "avatar": "https://yt3.googleusercontent.com/a_1U9tYmozHPhZhsLiqqQ_XcYbhlmG_X1fsTdBWAHBjLmRN0haiv1xa_owiit7p8xyKDlMF1LXw=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 20769660,
-            "link": ""
+            "link": "",
+            "videos": [
+                "mk1h-ku4GhY",
+                "xVEtLb8Wx5M",
+                "WL4RWNptU_Y"
+            ]
         },
         "TechBurner": {
             "name": "Tech Burner",
             "avatar": "https://yt3.googleusercontent.com/4l8EVYasVxYT2gjYKzp2ls2_t7jvyEMhraMC-OVZuz0Cu_KrA0l678sCfY1vxGSL7SHE3zZYCA=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 12482256,
-            "link": ""
+            "link": "",
+            "videos": [
+                "XG39r3kqPAM",
+                "TjCrI0XogDs",
+                "-a6uTasFGAI"
+            ]
         },
         "NothingTechnology": {
             "name": "Nothing",
             "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_nRr4G2hGChYeLGYVoJTAk3hxH8cZK8e9TqKWo2C42a-g=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 976478,
-            "link": ""
+            "link": "",
+            "videos": [
+                "ZizbGaSnIUE"
+            ]
         },
         "techquickie": {
             "name": "Techquickie",
             "avatar": "https://yt3.googleusercontent.com/30V7wHZKDbpwfXQ5u_Cbx1rNN0nzKkQa19HRdr1bualQerA8CW3GCjEKgqYQQnlDaA2zpcjOFg=s160-c-k-c0x00ffffff-no-rj",
             "banner": "",
             "subscribers": 4338336,
-            "link": ""
+            "link": "",
+            "videos": [
+                "9zCt0Iuo_1c",
+                "864HSWFIBY4",
+                "y73SPpeDz2E"
+            ]
         }
     },
     "users": {

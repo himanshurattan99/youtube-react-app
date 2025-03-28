@@ -20,8 +20,9 @@ function App() {
       <main className="flex bg-[#181818] relative">
         <Sidebar isExpanded={sidebarExpanded} sidebarMode={sidebarMode} />
         <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/explore/:category' element={<Home />}></Route>
+          <Route path='/' element={<Home />} />
+          <Route path='/explore/:category' element={<Home />} />
+          <Route path='/subscriptions' element={<Home />} />
         </Routes>
       </main>
     </>

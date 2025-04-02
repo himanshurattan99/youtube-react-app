@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Sidebar from './Components/Sidebar'
 import Home from './Pages/Home.jsx'
+import Channel from './Pages/Channel.jsx'
 
 function App() {
   const [sidebarExpanded, setSidebarExpanded] = useState(true)
@@ -23,6 +24,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/explore/:category' element={<Home />} />
           <Route path='/subscriptions' element={<Home />} />
+          <Route path='/:channelId' element={<Channel />} />
         </Routes>
       </main>
     </>

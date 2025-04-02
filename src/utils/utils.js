@@ -1,3 +1,8 @@
+const truncateDecimal = (value, decimalPlaces) => {
+    const factor = Math.pow(10, decimalPlaces)
+    return (Math.floor(value * factor) / factor).toString()
+}
+
 export const formatDuration = (duration) => {
     const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/)
     const hours = match[1] ? match[1].replace("H", "") : "0"
@@ -11,17 +16,51 @@ export const formatDuration = (duration) => {
     return formattedDuration.trim()
 }
 
-export const formatViews = (views) => {
-    if (views >= 1000000000) {
-        return Math.floor(views / 100000000) / 10 + "B"
+export const formatViewsCount = (viewsCount) => {
+    let formattedValue = viewsCount
+
+    if (viewsCount >= 1000000000) {
+        const value = viewsCount / 1000000000
+        formattedValue = (viewsCount < 10000000000) ?
+            `${truncateDecimal(value, 1).replace(/\.0$/, '')}B` : `${Math.floor(value)}B`
     }
-    if (views >= 1000000) {
-        return Math.floor(views / 100000) / 10 + "M"
+    else if (viewsCount >= 1000000) {
+        const value = viewsCount / 1000000
+        formattedValue = (viewsCount < 10000000) ?
+            `${truncateDecimal(value, 1).replace(/\.0$/, '')}M` : `${Math.floor(value)}M`
     }
-    if (views >= 1000) {
-        return Math.floor(views / 1000) + "K"
+    else if (viewsCount >= 1000) {
+        const value = viewsCount / 1000
+        formattedValue = (viewsCount < 10000) ?
+            `${truncateDecimal(value, 1).replace(/\.0$/, '')}K` : `${Math.floor(value)}K`
     }
-    return views
+
+    return formattedValue
+}
+
+export const formatSubscribersCount = (subscribersCount) => {
+    let formattedValue = subscribersCount
+
+    if (subscribersCount >= 1000000000) {
+        const value = subscribersCount / 1000000000
+        formattedValue = `${truncateDecimal(value, 1).replace(/\.0$/, '')}B`
+    }
+    else if (subscribersCount >= 1000000) {
+        const value = subscribersCount / 1000000
+        formattedValue = (subscribersCount < 10000000) ?
+            `${truncateDecimal(value, 2).replace(/\.0+$/, '')}M`
+            : ((subscribersCount < 100000000) ?
+                `${truncateDecimal(value, 1).replace(/\.0$/, '')}M` : `${Math.floor(value)}M`)
+    }
+    else if (subscribersCount >= 1000) {
+        const value = subscribersCount / 1000
+        formattedValue = (subscribersCount < 10000) ?
+            `${truncateDecimal(value, 2).replace(/\.0+$/, '')}K`
+            : ((subscribersCount < 100000) ?
+                `${truncateDecimal(value, 1).replace(/\.0+$/, '')}K` : `${Math.floor(value)}K`)
+    }
+
+    return formattedValue
 }
 
 export const getRelativeUploadTime = (uploadDate) => {

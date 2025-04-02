@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { db } from '../data/db.js'
-import { useParams, useLocation } from 'react-router-dom'
-import { formatDuration, formatViews, getRelativeUploadTime, getRandomVideos } from '../utils/utils.js'
+import { useParams, useLocation, Link } from 'react-router-dom'
+import { formatDuration, formatViewsCount, getRelativeUploadTime, getRandomVideos } from '../utils/utils.js'
 
 const Home = () => {
     const [videos, setVideos] = useState({})
@@ -54,14 +54,18 @@ const Home = () => {
                             </div>
 
                             <div className="py-3 flex">
-                                <div className="w-7 shrink-0">
-                                    <img src={channels[value.channelId].avatar} className="rounded-full" alt="" />
-                                </div>
+                                <Link to={`/${value.channelId}`}>
+                                    <div className="w-7 shrink-0 transition-transform duration-300 ease-in-out hover:rotate-360">
+                                        <img src={channels[value.channelId].avatar} className="rounded-full" alt="" />
+                                    </div>
+                                </Link>
 
-                                <div className="px-3 overflow-hidden">
-                                    <h3 className="font-medium truncate">{value.title}</h3>
-                                    <div className="mt-1 text-sm text-[#aaa]">{value.channelName}</div>
-                                    <div className="mt-1 text-xs text-[#aaa]">{formatViews(value.views)} views • {getRelativeUploadTime(value.uploadDate)}</div>
+                                <div className="px-3 text-[#aaa] overflow-hidden">
+                                    <h3 className="text-slate-100 font-medium leading-5 line-clamp-2">{value.title}</h3>
+                                    <Link to={`/${value.channelId}`}>
+                                        <div className="mt-1 text-sm hover:text-slate-100">{value.channelName}</div>
+                                    </Link>
+                                    <div className="mt-1 text-xs">{formatViewsCount(value.views)} views • {getRelativeUploadTime(value.uploadDate)}</div>
                                 </div>
                             </div>
                         </div>

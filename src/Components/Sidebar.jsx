@@ -40,7 +40,7 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
 
   return (
     <>
-      <div className={`h-[92.5vh] px-5 bg-[#181818] text-slate-100 overflow-y-auto scrollbar-thin-gray transition-transform duration-250 ${(isSlidingMode && !isExpanded) ? '-translate-x-full absolute z-10' : ''}`}>
+      <div className={`h-[92.5vh] px-5 bg-[#181818] text-slate-100 shrink-0 overflow-y-auto scrollbar-thin-gray transition-transform duration-250 ${(isSlidingMode && !isExpanded) ? '-translate-x-full absolute z-10' : ''}`}>
         <div className="py-3 border-b border-b-[#3d3d3d]">
           <Link to={`/`}>
             <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
@@ -77,10 +77,12 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
 
           {Object.entries(subscribedChannels).map(([key, value]) => {
             return (
-              <button key={key} className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-                <img src={value.avatar} className="w-6 rounded-full" alt="" />
-                {(isLabelVisible) && <span>{value.name}</span>}
-              </button>
+              <Link key={key} to={`/${key}`}>
+                <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
+                  <img src={value.avatar} className="w-6 rounded-full" alt="" />
+                  {(isLabelVisible) && <span>{value.name}</span>}
+                </button>
+              </Link>
             )
           })}
         </div>

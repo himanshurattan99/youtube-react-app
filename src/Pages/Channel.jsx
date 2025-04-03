@@ -1,23 +1,46 @@
 import { useState, useEffect } from 'react'
 import { db } from '../data/db.js'
 import { useParams } from 'react-router-dom'
-import { formatDuration, formatViewsCount, formatSubscribersCount, getRelativeUploadTime } from '../utils/utils.js'
+import * as videoUtils from '../utils/utils.js'
 
 const Channel = () => {
     const [videos, setVideos] = useState({})
     const [channel, setChannel] = useState("")
+    const [videoSort, setVideoSort] = useState("")
     const { channelId } = useParams()
+    const userSubscriptions = db.users["helloworld"].subscriptions
 
     useEffect(() => {
         setChannel(db.channels[channelId])
+        setVideoSort("latest")
 
         const videoIds = db.channels[channelId].videos
 
-        const channelVideos = videoIds.map((videoId) => {
-            return db.videos[videoId]
-        })
+        const channelVideos = Object.fromEntries(
+            videoIds.map((videoId) => {
+                return [videoId, db.videos[videoId]]
+            })
+        )
         setVideos(channelVideos)
     }, [channelId])
+
+    useEffect(() => {
+        if (!videoSort || Object.keys(videos).length === 0) return
+
+        const sortFunctions = {
+            "latest": ([, a], [, b]) => new Date(b.uploadDate) - new Date(a.uploadDate),
+            "popular": ([, a], [, b]) => b.views - a.views,
+            "oldest": ([, a], [, b]) => new Date(a.uploadDate) - new Date(b.uploadDate)
+        }
+
+        const sortFunction = sortFunctions[videoSort]
+        if (!sortFunction) return
+
+        const sortedVideos = Object.fromEntries(
+            Object.entries(videos).sort(sortFunction)
+        )
+        setVideos(sortedVideos)
+    }, [videoSort])
 
     return (
         <>
@@ -38,13 +61,15 @@ const Channel = () => {
                             <div className="text-[#aaa] flex items-center">
                                 <h2 className="text-slate-100 font-medium">@{channelId}</h2>
                                 <span className="mx-2">•</span>
-                                <div>{formatSubscribersCount(channel.subscribers)} subscribers</div>
+                                <div>{videoUtils.formatSubscribersCount(channel.subscribers)} subscribers</div>
                                 <span className="mx-2">•</span>
                                 <div>{(channel) ? channel.videos.length : ''} videos</div>
                             </div>
 
-                            <button type="button" className="py-2 px-4 bg-[#2e2e2e] hover:bg-[#3c3c3c] rounded-3xl font-medium self-start cursor-pointer">
-                                Subscribe
+                            <button type="button" className={`py-2 px-4 ${userSubscriptions.includes(channelId) ? 'bg-[#2e2e2e] hover:bg-[#3c3c3c]' : 'bg-slate-100 text-[#181818]'} rounded-3xl font-medium self-start cursor-pointer`}>
+                                {userSubscriptions.includes(channelId) ?
+                                    'Subscribed' : 'Subscribe'
+                                }
                             </button>
                         </div>
                     </div>
@@ -52,15 +77,15 @@ const Channel = () => {
 
                 <div className="py-2 px-24">
                     <div className="flex gap-3">
-                        <button type="button" className="py-1 px-3 bg-slate-100 rounded-md text-[#181818] font-medium cursor-pointer">
+                        <button onClick={() => setVideoSort("latest")} type="button" className={`py-1 px-3 ${(videoSort === "latest") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
                             Latest
                         </button>
 
-                        <button type="button" className="py-1 px-3 bg-[#2e2e2e] hover:bg-[#3c3c3c] rounded-md font-medium cursor-pointer">
+                        <button onClick={() => setVideoSort("popular")} type="button" className={`py-1 px-3 ${(videoSort === "popular") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
                             Popular
                         </button>
 
-                        <button type="button" className="py-1 px-3 bg-[#2e2e2e] hover:bg-[#3c3c3c] rounded-md font-medium cursor-pointer">
+                        <button onClick={() => setVideoSort("oldest")} type="button" className={`py-1 px-3 ${(videoSort === "oldest") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
                             Oldest
                         </button>
                     </div>
@@ -72,14 +97,14 @@ const Channel = () => {
                                     <div className="relative">
                                         <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
                                         <span className="px-1 bg-black opacity-75 rounded text-xs text-white absolute bottom-1 right-1">
-                                            {formatDuration(value.duration)}
+                                            {videoUtils.formatDuration(value.duration)}
                                         </span>
                                     </div>
 
                                     <div className="py-3 flex">
                                         <div className="px-3 text-[#aaa] overflow-hidden">
                                             <h3 className="text-slate-100 font-medium leading-5 line-clamp-2">{value.title}</h3>
-                                            <div className="mt-1 text-xs">{formatViewsCount(value.views)} views • {getRelativeUploadTime(value.uploadDate)}</div>
+                                            <div className="mt-1 text-xs">{videoUtils.formatViewsCount(value.views)} views • {videoUtils.getRelativeUploadTime(value.uploadDate)}</div>
                                         </div>
                                     </div>
                                 </div>

@@ -94,3 +94,7 @@ export const getRandomVideos = (videos, count = 12) => {
 
     return randomVideos
 }
+
+export const capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+}

@@ -4,19 +4,25 @@ import { useParams, useLocation, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 
 const Home = () => {
+    // State for videos and channels data
     const [videos, setVideos] = useState({})
     const [channels, setChannels] = useState({})
+
+    // Extract category from URL params and current location from router state
     const { category } = useParams()
     const location = useLocation()
 
+    // Load videos based on current route
     useEffect(() => {
+        // Subscription feed: Get videos from user's subscribed channels
         if (location.pathname === '/subscriptions') {
+            // Get array of channel IDs that the user is subscribed to
             const userSubscriptions = db.users["helloworld"].subscriptions
 
+            // Get video IDs from all subscribed channels, then create and sort a videos object by upload date
             const videoIds = userSubscriptions.flatMap((element) => {
                 return db.channels[element].videos
             })
-
             const sortedSubscriptionVideos = Object.fromEntries(
                 videoIds.map((videoId) => [videoId, db.videos[videoId]])
                     .sort(([, valueA], [, valueB]) =>
@@ -24,9 +30,13 @@ const Home = () => {
                     )
             )
             setVideos(sortedSubscriptionVideos)
-        } else if (!(category)) {
+        }
+        // Home page: Display random video recommendations
+        else if (!(category)) {
             setVideos(videoUtils.getRandomVideos(db.videos))
-        } else {
+        }
+        // Category page: Filter videos by selected category
+        else {
             const filteredVideos = Object.fromEntries(
                 Object.entries(db.videos).filter(([_, video]) => {
                     return video.category.toLowerCase() === category
@@ -35,11 +45,13 @@ const Home = () => {
             setVideos(videoUtils.getRandomVideos(filteredVideos))
         }
 
+        // Load all channel data for displaying channel information with videos
         setChannels(db.channels)
     }, [location])
 
     return (
         <div className="h-[92.5vh] p-6 bg-[#181818] text-slate-100 flex-1 overflow-y-auto scrollbar-thin-gray">
+            {/* Dynamic page title based on current route */}
             <h2 className="mb-6 text-xl font-bold">
                 {(!(category) && location.pathname !== '/subscriptions') ?
                     'Recommended'
@@ -48,10 +60,12 @@ const Home = () => {
                 }
             </h2>
 
+            {/* Responsive video grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-5 gap-x-3">
                 {Object.entries(videos).map(([key, value]) => {
                     return (
                         <div key={key} className="hover:bg-[#1e1e1e] rounded-lg cursor-pointer overflow-hidden transition-all hover:scale-105">
+                            {/* Video thumbnail with duration overlay */}
                             <div className="relative">
                                 <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
                                 <span className="px-1 bg-black opacity-75 rounded text-xs text-white absolute bottom-1 right-1">
@@ -60,12 +74,14 @@ const Home = () => {
                             </div>
 
                             <div className="py-3 flex">
+                                {/* Channel avatar with link to channel page */}
                                 <Link to={`/${value.channelId}`}>
                                     <div className="w-7 shrink-0 transition-transform duration-300 ease-in-out hover:rotate-360">
                                         <img src={channels[value.channelId].avatar} className="rounded-full" alt="" />
                                     </div>
                                 </Link>
 
+                                {/* Video metadata with channel name link */}
                                 <div className="px-3 text-[#aaa] overflow-hidden">
                                     <h3 className="text-slate-100 font-medium leading-5 line-clamp-2">{value.title}</h3>
                                     <Link to={`/${value.channelId}`}>

@@ -1,8 +1,10 @@
+// Helper function to format decimal numbers with specified precision
 const truncateDecimal = (value, decimalPlaces) => {
     const factor = Math.pow(10, decimalPlaces)
     return (Math.floor(value * factor) / factor).toString()
 }
 
+// Convert ISO duration format to HH:MM:SS format
 export const formatDuration = (duration) => {
     const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/)
     const hours = match[1] ? match[1].replace("H", "") : "0"
@@ -16,20 +18,24 @@ export const formatDuration = (duration) => {
     return formattedDuration.trim()
 }
 
+// Format views count with K, M, B suffixes
 export const formatViewsCount = (viewsCount) => {
     let formattedValue = viewsCount
 
     if (viewsCount >= 1000000000) {
+        // Format billions
         const value = viewsCount / 1000000000
         formattedValue = (viewsCount < 10000000000) ?
             `${truncateDecimal(value, 1).replace(/\.0$/, '')}B` : `${Math.floor(value)}B`
     }
     else if (viewsCount >= 1000000) {
+        // Format millions
         const value = viewsCount / 1000000
         formattedValue = (viewsCount < 10000000) ?
             `${truncateDecimal(value, 1).replace(/\.0$/, '')}M` : `${Math.floor(value)}M`
     }
     else if (viewsCount >= 1000) {
+        // Format thousands
         const value = viewsCount / 1000
         formattedValue = (viewsCount < 10000) ?
             `${truncateDecimal(value, 1).replace(/\.0$/, '')}K` : `${Math.floor(value)}K`
@@ -38,14 +44,17 @@ export const formatViewsCount = (viewsCount) => {
     return formattedValue
 }
 
+// Format subscribers count with more precision than views count
 export const formatSubscribersCount = (subscribersCount) => {
     let formattedValue = subscribersCount
 
     if (subscribersCount >= 1000000000) {
+        // Format billions
         const value = subscribersCount / 1000000000
         formattedValue = `${truncateDecimal(value, 1).replace(/\.0$/, '')}B`
     }
     else if (subscribersCount >= 1000000) {
+        // Format millions with precision based on size
         const value = subscribersCount / 1000000
         formattedValue = (subscribersCount < 10000000) ?
             `${truncateDecimal(value, 2).replace(/\.0+$/, '')}M`
@@ -53,6 +62,7 @@ export const formatSubscribersCount = (subscribersCount) => {
                 `${truncateDecimal(value, 1).replace(/\.0$/, '')}M` : `${Math.floor(value)}M`)
     }
     else if (subscribersCount >= 1000) {
+        // Format thousands with precision based on size
         const value = subscribersCount / 1000
         formattedValue = (subscribersCount < 10000) ?
             `${truncateDecimal(value, 2).replace(/\.0+$/, '')}K`
@@ -63,11 +73,13 @@ export const formatSubscribersCount = (subscribersCount) => {
     return formattedValue
 }
 
+// Calculate relative time (e.g., "2 days ago")
 export const getRelativeUploadTime = (uploadDate) => {
     const now = new Date()
     const past = new Date(uploadDate)
     const seconds = Math.floor((now - past) / 1000)
 
+    // Time intervals in seconds
     const intervals = [
         { label: "year", seconds: 31536000 },
         { label: "month", seconds: 2592000 },
@@ -87,14 +99,18 @@ export const getRelativeUploadTime = (uploadDate) => {
     return "just now"
 }
 
+// Get random videos from the video collection
 export const getRandomVideos = (videos, count = 12) => {
     const videoEntries = Object.entries(videos)
+
+    // Shuffle videos using random sorting and take the first 'count' videos
     const shuffledVideos = videoEntries.sort(() => (0.5 - Math.random()))
     const randomVideos = Object.fromEntries(shuffledVideos.slice(0, count))
 
     return randomVideos
 }
 
+// Capitalize the first letter of a given string
 export const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
 }

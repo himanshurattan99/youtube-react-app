@@ -4,18 +4,26 @@ import { useParams } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 
 const Channel = () => {
+    // State for channel videos, channel info, and sorting option
     const [videos, setVideos] = useState({})
     const [channel, setChannel] = useState("")
     const [videoSort, setVideoSort] = useState("")
+
+    // Get channel ID from URL params
     const { channelId } = useParams()
+    // Get array of channel IDs that the user is subscribed to
     const userSubscriptions = db.users["helloworld"].subscriptions
 
+    // Load channel data and videos on component mount or when 'channelId' changes
     useEffect(() => {
+        // Set initial channel data from database and default sort order to 'latest'
         setChannel(db.channels[channelId])
         setVideoSort("latest")
 
+        // Get all video ids for this channel
         const videoIds = db.channels[channelId].videos
 
+        // Create object of videos data for this channel
         const channelVideos = Object.fromEntries(
             videoIds.map((videoId) => {
                 return [videoId, db.videos[videoId]]
@@ -24,9 +32,11 @@ const Channel = () => {
         setVideos(channelVideos)
     }, [channelId])
 
+    // Re-sort videos when sort option changes
     useEffect(() => {
         if (!videoSort || Object.keys(videos).length === 0) return
 
+        // Define different sorting functions
         const sortFunctions = {
             "latest": ([, a], [, b]) => new Date(b.uploadDate) - new Date(a.uploadDate),
             "popular": ([, a], [, b]) => b.views - a.views,
@@ -36,6 +46,7 @@ const Channel = () => {
         const sortFunction = sortFunctions[videoSort]
         if (!sortFunction) return
 
+        // Sort 'videos' based on selected option
         const sortedVideos = Object.fromEntries(
             Object.entries(videos).sort(sortFunction)
         )
@@ -45,19 +56,24 @@ const Channel = () => {
     return (
         <>
             <div className="h-[92.5vh] px-2 text-slate-100 overflow-y-auto scrollbar-thin-gray">
+                {/* Channel header with banner and info */}
                 <div className="py-1 px-24 border-b border-b-[#3d3d3d]">
+                    {/* Channel banner image */}
                     <div>
                         <img className="rounded-2xl" src={channel.banner} alt="" />
                     </div>
 
+                    {/* Channel profile section with avatar and details */}
                     <div className="mt-7 mb-3 flex">
                         <div className="shrink-0">
                             <img className="rounded-full" src={channel.avatar} alt="" />
                         </div>
 
+                        {/* Channel details */}
                         <div className="px-3 flex flex-col justify-center gap-3">
                             <h1 className="text-4xl font-medium">{channel.name}</h1>
 
+                            {/* Channel metadata: handle, subscribers count, video count */}
                             <div className="text-[#aaa] flex items-center">
                                 <h2 className="text-slate-100 font-medium">@{channelId}</h2>
                                 <span className="mx-2">•</span>
@@ -66,6 +82,7 @@ const Channel = () => {
                                 <div>{(channel) ? channel.videos.length : ''} videos</div>
                             </div>
 
+                            {/* Subscribe button - shows different states based on subscription status */}
                             <button type="button" className={`py-2 px-4 ${userSubscriptions.includes(channelId) ? 'bg-[#2e2e2e] hover:bg-[#3c3c3c]' : 'bg-slate-100 text-[#181818]'} rounded-3xl font-medium self-start cursor-pointer`}>
                                 {userSubscriptions.includes(channelId) ?
                                     'Subscribed' : 'Subscribe'
@@ -76,6 +93,7 @@ const Channel = () => {
                 </div>
 
                 <div className="py-2 px-24">
+                    {/* Videos sorting controls */}
                     <div className="flex gap-3">
                         <button onClick={() => setVideoSort("latest")} type="button" className={`py-1 px-3 ${(videoSort === "latest") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
                             Latest
@@ -90,10 +108,12 @@ const Channel = () => {
                         </button>
                     </div>
 
+                    {/* Responsive video grid - displays channel videos */}
                     <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-5 gap-x-3">
                         {Object.entries(videos).map(([key, value]) => {
                             return (
                                 <div key={key} className="hover:bg-[#1e1e1e] rounded-lg cursor-pointer overflow-hidden transition-all hover:scale-105">
+                                    {/* Video thumbnail with duration overlay */}
                                     <div className="relative">
                                         <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
                                         <span className="px-1 bg-black opacity-75 rounded text-xs text-white absolute bottom-1 right-1">
@@ -101,6 +121,7 @@ const Channel = () => {
                                         </span>
                                     </div>
 
+                                    {/* Video metadata: title, views count, relative upload time */}
                                     <div className="py-3 flex">
                                         <div className="px-3 text-[#aaa] overflow-hidden">
                                             <h3 className="text-slate-100 font-medium leading-5 line-clamp-2">{value.title}</h3>

@@ -7,9 +7,11 @@ import Home from './Pages/Home.jsx'
 import Channel from './Pages/Channel.jsx'
 
 function App() {
+  // State for sidebar expansion (expanded/collapsed) and display mode (contract or slide)
   const [sidebarExpanded, setSidebarExpanded] = useState(true)
   const [sidebarMode, setSidebarMode] = useState('contract')
 
+  // Toggle sidebar expanded/collapsed state
   const toggleSidebar = () => {
     setSidebarExpanded(!sidebarExpanded)
   }
@@ -20,6 +22,7 @@ function App() {
 
       <main className="flex bg-[#181818] relative">
         <Sidebar isExpanded={sidebarExpanded} sidebarMode={sidebarMode} />
+
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/explore/:category' element={<Home />} />

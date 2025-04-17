@@ -27,7 +27,6 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
         filteredChannels[channelId] = db.channels[channelId]
       }
     })
-
     setSubscribedChannels(filteredChannels)
   }, [])
 
@@ -48,20 +47,20 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
 
   return (
     <>
-      <div className={`h-[92.5vh] px-5 bg-[#181818] text-slate-100 shrink-0 overflow-y-auto scrollbar-thin-gray transition-transform duration-250 ${(isSlidingMode && !isExpanded) ? '-translate-x-full absolute z-10' : ''}`}>
+      <div className={`h-[92.5vh] ${(isLabelVisible) ? 'md:w-[27%] lg:w-[16%]' : ''} px-5 bg-[#181818] text-slate-100 shrink-0 overflow-y-auto scrollbar-thin-gray transition-transform duration-250 ${(isSlidingMode && !isExpanded) ? '-translate-x-full absolute z-10' : ''}`}>
         {/* Home and Subscriptions section */}
         <div className="py-3 border-b border-b-[#3d3d3d]">
           <Link to={`/`}>
             <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
               <img src={home_icon} className="w-6" alt="" />
-              {(isLabelVisible) && <span>Home</span>}
+              {(isLabelVisible) && <span className="truncate">Home</span>}
             </button>
           </Link>
 
           <Link to={`/subscriptions`}>
             <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
               <img src={subscriptions_icon} className="w-6" alt="" />
-              {(isLabelVisible) && <span>Subscriptions</span>}
+              {(isLabelVisible) && <span className="truncate">Subscriptions</span>}
             </button>
           </Link>
         </div>
@@ -75,7 +74,7 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
               <Link key={label.toLowerCase()} to={`/explore/${label.toLowerCase()}`}>
                 <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
                   <img src={icon} className="w-6" alt="" />
-                  {(isLabelVisible) && <span>{label}</span>}
+                  {(isLabelVisible) && <span className="truncate">{label}</span>}
                 </button>
               </Link>
             )
@@ -91,7 +90,7 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
               <Link key={key} to={`/${key}`}>
                 <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
                   <img src={value.avatar} className="w-6 rounded-full" alt="" />
-                  {(isLabelVisible) && <span>{value.name}</span>}
+                  {(isLabelVisible) && <span className="truncate">{value.name}</span>}
                 </button>
               </Link>
             )
@@ -102,7 +101,7 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
         <div className="py-3">
           <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
             <img src={settings_icon} className="w-6" alt="" />
-            {(isLabelVisible) && <span>Settings</span>}
+            {(isLabelVisible) && <span className="truncate">Settings</span>}
           </button>
         </div>
       </div >

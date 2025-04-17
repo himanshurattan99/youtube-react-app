@@ -16,4 +16,10 @@
             border-radius: var(--radius-md);
         }
     }
+
+    .scrollbar-hidden {
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 }

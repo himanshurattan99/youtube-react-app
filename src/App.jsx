@@ -65,12 +65,12 @@ function App() {
       <Navbar onMenuClick={toggleSidebar} />
 
       <main className="flex bg-[#181818] relative">
-        <Sidebar isExpanded={sidebarExpanded} sidebarMode={sidebarMode} />
+        <Sidebar isExpanded={sidebarExpanded} sidebarMode={sidebarMode} deviceType={deviceType} />
 
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/explore/:category' element={<Home />} />
-          <Route path='/subscriptions' element={<Home />} />
+          <Route path='/' element={<Home sidebarExpanded={sidebarExpanded} />} />
+          <Route path='/explore/:category' element={<Home sidebarExpanded={sidebarExpanded} />} />
+          <Route path='/subscriptions' element={<Home sidebarExpanded={sidebarExpanded} />} />
           <Route path='/:channelId' element={<Channel />} />
         </Routes>
       </main>

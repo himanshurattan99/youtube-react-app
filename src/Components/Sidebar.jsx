@@ -11,7 +11,7 @@ import science_icon from '../assets/icons/science-icon.png'
 import tech_icon from '../assets/icons/tech-icon.png'
 import settings_icon from '../assets/icons/settings-icon.png'
 
-const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
+const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'desktop' }) => {
   // State to store user's subscribed channels date
   const [subscribedChannels, setSubscribedChannels] = useState({})
 
@@ -34,6 +34,8 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
   const isSlidingMode = (sidebarMode === 'slide')
   // Show labels when sidebar is expanded or in sliding mode
   const isLabelVisible = (isExpanded || isSlidingMode)
+  // Check if current device is mobile
+  const isMobileDevice = (deviceType === 'mobile')
 
   // Define 'Explore' section items
   const exploreItems = [
@@ -47,7 +49,7 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract' }) => {
 
   return (
     <>
-      <div className={`h-[92.5vh] ${(isLabelVisible) ? 'md:w-[27%] lg:w-[16%]' : ''} px-5 bg-[#181818] text-slate-100 shrink-0 overflow-y-auto scrollbar-thin-gray transition-transform duration-250 ${(isSlidingMode && !isExpanded) ? '-translate-x-full absolute z-10' : ''}`}>
+      <div className={`h-[92.5vh] ${(isLabelVisible) ? 'md:w-[27%] lg:w-[16%]' : ''} ${(isMobileDevice) ? 'px-3' : 'px-5'} bg-[#181818] text-slate-100 shrink-0 overflow-y-auto scrollbar-thin-gray transition-transform duration-250 ${(isSlidingMode && !isExpanded) ? '-translate-x-full' : ''} ${(isSlidingMode) ? 'absolute z-10' : ''}`}>
         {/* Home and Subscriptions section */}
         <div className="py-3 border-b border-b-[#3d3d3d]">
           <Link to={`/`}>

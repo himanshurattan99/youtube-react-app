@@ -3,7 +3,7 @@ import { db } from '../data/db.js'
 import { useParams, useLocation, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 
-const Home = () => {
+const Home = ({ sidebarExpanded = true }) => {
     // State for videos and channels data
     const [videos, setVideos] = useState({})
     const [channels, setChannels] = useState({})
@@ -50,7 +50,7 @@ const Home = () => {
     }, [location])
 
     return (
-        <div className="h-[92.5vh] p-6 bg-[#181818] text-slate-100 flex-1 overflow-y-auto scrollbar-thin-gray">
+        <div className="h-[92.5vh] p-3 lg:p-6 bg-[#181818] text-slate-100 flex-1 overflow-y-auto scrollbar-thin-gray">
             {/* Dynamic page title based on current route */}
             <h2 className="mb-6 text-xl font-bold">
                 {(!(category) && location.pathname !== '/subscriptions') ?
@@ -61,7 +61,7 @@ const Home = () => {
             </h2>
 
             {/* Responsive video grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-5 gap-x-3">
+            <div className={`grid grid-cols-1 sm:grid-cols-2 ${(sidebarExpanded) ? 'md:grid-cols-2' : 'md:grid-cols-3'} lg:grid-cols-4 gap-y-2 lg:gap-y-5 md:gap-x-3`}>
                 {Object.entries(videos).map(([key, value]) => {
                     return (
                         <div key={key} className="hover:bg-[#1e1e1e] rounded-lg cursor-pointer overflow-hidden transition-all hover:scale-105">

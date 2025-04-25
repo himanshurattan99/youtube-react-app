@@ -32,26 +32,29 @@ function App() {
     }
   }
 
+  // Update sidebar configuration when window size changes
+  const handleResize = () => {
+    const newDeviceType = getDeviceType()
+    setDeviceType(newDeviceType)
+
+    if (newDeviceType === 'desktop') {
+      setSidebarExpanded(true)
+      setSidebarMode('contract')
+    }
+    else if (newDeviceType === 'tablet') {
+      setSidebarExpanded(false)
+      setSidebarMode('contract')
+    }
+    else {
+      setSidebarExpanded(false)
+      setSidebarMode('slide')
+    }
+  }
+
   // Handle responsive layout changes based on device type
   useEffect(() => {
-    // Update sidebar configuration when window size changes
-    const handleResize = () => {
-      const newDeviceType = getDeviceType()
-      setDeviceType(newDeviceType)
-
-      if (newDeviceType === 'desktop') {
-        setSidebarExpanded(true)
-        setSidebarMode('contract')
-      }
-      else if (newDeviceType === 'tablet') {
-        setSidebarExpanded(false)
-        setSidebarMode('contract')
-      }
-      else {
-        setSidebarExpanded(false)
-        setSidebarMode('slide')
-      }
-    }
+    // Set initial sidebar states based on current screen size
+    handleResize()
 
     // Add event listener for window resize
     window.addEventListener('resize', handleResize)
@@ -71,7 +74,7 @@ function App() {
           <Route path='/' element={<Home sidebarExpanded={sidebarExpanded} />} />
           <Route path='/explore/:category' element={<Home sidebarExpanded={sidebarExpanded} />} />
           <Route path='/subscriptions' element={<Home sidebarExpanded={sidebarExpanded} />} />
-          <Route path='/:channelId' element={<Channel />} />
+          <Route path='/:channelId' element={<Channel sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
         </Routes>
       </main>
     </>

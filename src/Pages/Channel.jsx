@@ -3,7 +3,7 @@ import { db } from '../data/db.js'
 import { useParams } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 
-const Channel = () => {
+const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // State for channel videos, channel info, and sorting option
     const [videos, setVideos] = useState({})
     const [channel, setChannel] = useState("")
@@ -13,6 +13,8 @@ const Channel = () => {
     const { channelId } = useParams()
     // Get array of channel IDs that the user is subscribed to
     const userSubscriptions = db.users["helloworld"].subscriptions
+    // Check if current device is mobile
+    const isMobileDevice = (deviceType === 'mobile')
 
     // Load channel data and videos on component mount or when 'channelId' changes
     useEffect(() => {
@@ -55,35 +57,35 @@ const Channel = () => {
 
     return (
         <>
-            <div className="h-[92.5vh] px-2 text-slate-100 overflow-y-auto scrollbar-thin-gray">
+            <div className="h-[92.5vh] text-slate-100 overflow-y-auto scrollbar-thin-gray">
                 {/* Channel header with banner and info */}
-                <div className="py-1 px-24 border-b border-b-[#3d3d3d]">
+                <div className="py-1 px-3 lg:px-27 border-b border-b-[#3d3d3d]">
                     {/* Channel banner image */}
                     <div>
-                        <img className="rounded-2xl" src={channel.banner} alt="" />
+                        <img className={`${(isMobileDevice) ? 'h-24 object-cover' : ''} rounded-2xl`} src={channel.banner} alt="" />
                     </div>
 
                     {/* Channel profile section with avatar and details */}
-                    <div className="mt-7 mb-3 flex">
-                        <div className="shrink-0">
+                    <div className="mt-3 md:mt-7 mb-3 flex">
+                        <div className="w-21 sm:w-28 lg:w-[12vw] shrink-0">
                             <img className="rounded-full" src={channel.avatar} alt="" />
                         </div>
 
                         {/* Channel details */}
-                        <div className="px-3 flex flex-col justify-center gap-3">
-                            <h1 className="text-4xl font-medium">{channel.name}</h1>
+                        <div className="pl-3 flex flex-col justify-center gap-2 md:gap-3">
+                            <h1 className="text-3xl md:text-4xl font-medium">{channel.name}</h1>
 
                             {/* Channel metadata: handle, subscribers count, video count */}
-                            <div className="text-[#aaa] flex items-center">
+                            <div className="text-sm md:text-base text-[#aaa] flex items-center">
                                 <h2 className="text-slate-100 font-medium">@{channelId}</h2>
-                                <span className="mx-2">•</span>
+                                <span className="mx-1 md:mx-2">•</span>
                                 <div>{videoUtils.formatSubscribersCount(channel.subscribers)} subscribers</div>
-                                <span className="mx-2">•</span>
+                                <span className="mx-1 md:mx-2">•</span>
                                 <div>{(channel) ? channel.videos.length : ''} videos</div>
                             </div>
 
                             {/* Subscribe button - shows different states based on subscription status */}
-                            <button type="button" className={`py-2 px-4 ${userSubscriptions.includes(channelId) ? 'bg-[#2e2e2e] hover:bg-[#3c3c3c]' : 'bg-slate-100 text-[#181818]'} rounded-3xl font-medium self-start cursor-pointer`}>
+                            <button type="button" className={`py-1 md:py-2 px-3 md:px-4 ${userSubscriptions.includes(channelId) ? 'bg-[#2e2e2e] hover:bg-[#3c3c3c]' : 'bg-slate-100 text-[#181818]'} rounded-3xl font-medium self-start cursor-pointer`}>
                                 {userSubscriptions.includes(channelId) ?
                                     'Subscribed' : 'Subscribe'
                                 }
@@ -92,7 +94,7 @@ const Channel = () => {
                     </div>
                 </div>
 
-                <div className="py-2 px-24">
+                <div className="py-2 px-3 lg:px-27">
                     {/* Videos sorting controls */}
                     <div className="flex gap-3">
                         <button onClick={() => setVideoSort("latest")} type="button" className={`py-1 px-3 ${(videoSort === "latest") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
@@ -109,7 +111,7 @@ const Channel = () => {
                     </div>
 
                     {/* Responsive video grid - displays channel videos */}
-                    <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-5 gap-x-3">
+                    <div className={`mt-3 grid grid-cols-1 sm:grid-cols-2 ${(sidebarExpanded) ? 'md:grid-cols-2' : 'md:grid-cols-3'} lg:grid-cols-4 gap-y-2 lg:gap-y-5 md:gap-x-3`}>
                         {Object.entries(videos).map(([key, value]) => {
                             return (
                                 <div key={key} className="hover:bg-[#1e1e1e] rounded-lg cursor-pointer overflow-hidden transition-all hover:scale-105">

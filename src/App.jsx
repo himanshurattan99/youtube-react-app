@@ -5,6 +5,7 @@ import Navbar from './Components/Navbar'
 import Sidebar from './Components/Sidebar'
 import Home from './Pages/Home.jsx'
 import Channel from './Pages/Channel.jsx'
+import Search from './Pages/Search.jsx'
 
 function App() {
   // State for sidebar expansion (expanded/collapsed), display mode (contract or slide) and tracking current device type
@@ -75,7 +76,13 @@ function App() {
           <Route path='/explore/:category' element={<Home sidebarExpanded={sidebarExpanded} />} />
           <Route path='/subscriptions' element={<Home sidebarExpanded={sidebarExpanded} />} />
           <Route path='/:channelId' element={<Channel sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
+          <Route path='/search/:searchInput' element={<Search sidebarExpanded={sidebarExpanded} />} />
         </Routes>
+
+        {/* Semi-transparent overlay when sidebar is expanded in slide mode */}
+        {((sidebarExpanded) && (sidebarMode === 'slide')) &&
+          <div className="bg-black opacity-30 absolute inset-0"></div>
+        }
       </main>
     </>
   )

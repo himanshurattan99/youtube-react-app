@@ -9,8 +9,9 @@ import create_icon from '../assets/icons/create-icon.png'
 import profile_icon from '../assets/icons/profile-icon.png'
 
 const Navbar = ({ onMenuClick }) => {
-    // State to track search bar expansion on mobile screens
+    // State to track search bar expansion on mobile screens and search input value
     const [searchBarExpanded, setSearchBarExpanded] = useState(false)
+    const [searchInput, setSearchInput] = useState("")
 
     // Toggle search bar visibility on mobile screens
     const toggleSearchBar = () => {
@@ -32,8 +33,10 @@ const Navbar = ({ onMenuClick }) => {
             {/* Middle section: Search bar (hidden on mobile screens) */}
             <div className="hidden sm:w-1/2 lg:w-2/5 sm:flex sm:items-center sm:gap-3 lg:gap-5">
                 <div className="w-full py-2 px-4 border border-[#3d3d3d] focus-within:border-[#065fd4] rounded-3xl flex items-center gap-2">
-                    <input placeholder="Search" type="text" className="w-full outline-none text-slate-100" />
-                    <img src={search_icon} className="size-5" alt="" />
+                    <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} placeholder="Search" type="text" className="w-full outline-none text-slate-100" />
+                    <Link to={`/search/${searchInput}`}>
+                        <img src={search_icon} className="size-5" alt="" />
+                    </Link>
                 </div>
 
                 <img src={microphone_icon} className="size-5" alt="" />
@@ -52,8 +55,10 @@ const Navbar = ({ onMenuClick }) => {
 
                             {/* Expanded search input field */}
                             <div className="py-2 px-4 border border-[#3d3d3d] focus-within:border-[#065fd4] rounded-3xl flex-1 flex items-center gap-2">
-                                <input autoFocus placeholder="Search" type="text" className="w-full outline-none text-slate-100" />
-                                <img src={search_icon} className="size-5" alt="" />
+                                <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} autoFocus placeholder="Search" type="text" className="w-full outline-none text-slate-100" />
+                                <Link to={`/search/${searchInput}`}>
+                                    <img src={search_icon} className="size-5" alt="" />
+                                </Link>
                             </div>
 
                             <img src={microphone_icon} className="size-5" alt="" />

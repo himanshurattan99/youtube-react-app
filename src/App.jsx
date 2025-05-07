@@ -76,7 +76,7 @@ function App() {
           <Route path='/explore/:category' element={<Home sidebarExpanded={sidebarExpanded} />} />
           <Route path='/subscriptions' element={<Home sidebarExpanded={sidebarExpanded} />} />
           <Route path='/:channelId' element={<Channel sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
-          <Route path='/search/:searchInput' element={<Search sidebarExpanded={sidebarExpanded} />} />
+          <Route path='/search/:searchInput' element={<Search sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
         </Routes>
 
         {/* Semi-transparent overlay when sidebar is expanded in slide mode */}

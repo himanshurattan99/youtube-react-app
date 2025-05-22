@@ -4,14 +4,21 @@ import { useParams, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 
 const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
-    // State for search results videos and channel data
+    // State for search results videos, channel data, sorting option and sort direction
     const [videos, setVideos] = useState({})
     const [channels, setChannels] = useState("")
+    const [videoSort, setVideoSort] = useState("")
+    const [sortDirection, setSortDirection] = useState("desc")
 
     // Extract search input from URL params
     const { searchInput } = useParams()
     // Check if current device is mobile
     const isMobileDevice = (deviceType === 'mobile')
+
+    // Toggle sort direction
+    const toggleSortDirection = () => {
+        setSortDirection((sortDirection === 'desc') ? 'asc' : 'desc')
+    }
 
     // Filter videos based on search input when component mounts or search input changes
     useEffect(() => {
@@ -19,20 +26,63 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         const filteredVideos = Object.fromEntries(
             Object.entries(db.videos)
                 .filter(([_, value]) => {
-                    const lowerCaseSearchInput = searchInput.toLowerCase()
-                    const { title, description, category, channelName } = value
+                    // Split search input into individual words
+                    const searchInputWords = searchInput.trim().toLowerCase().split(/\s+/)
 
-                    return (
-                        title.toLowerCase().includes(lowerCaseSearchInput) ||
-                        description.toLowerCase().includes(lowerCaseSearchInput) ||
-                        category.toLowerCase().includes(lowerCaseSearchInput) ||
-                        channelName.toLowerCase().includes(lowerCaseSearchInput)
+                    const { title, description, category, channelName } = value
+                    // Convert all searchable fields to lowercase
+                    const videoFields = [
+                        title.toLowerCase(),
+                        description.toLowerCase(),
+                        category.toLowerCase(),
+                        channelName.toLowerCase()
+                    ]
+
+                    // Check if any search word is found in at least one of the fields
+                    return searchInputWords.some((word) =>
+                        videoFields.some((field) => field.includes(word))
                     )
                 })
         )
         setVideos(filteredVideos)
         setChannels(db.channels)
     }, [searchInput])
+
+    // Re-sort videos when sort option or sort direction changes
+    useEffect(() => {
+        if (!videoSort || Object.keys(videos).length === 0) return
+
+        // Create a multiplier based on sort direction
+        const sortFactor = (sortDirection === "desc") ? 1 : -1
+
+        // Define different sorting functions
+        const sortFunctions = {
+            "relevance": ([, a], [, b]) => {
+                return sortFactor * (videoUtils.getRelevanceScore(b, searchInput) - videoUtils.getRelevanceScore(a, searchInput))
+            },
+            "views": ([, a], [, b]) => {
+                return sortFactor * (b.views - a.views)
+            },
+            "duration": ([, a], [, b]) => {
+                return sortFactor * (videoUtils.formatDurationToSeconds(b.duration) - videoUtils.formatDurationToSeconds(a.duration))
+            },
+            "likes": ([, a], [, b]) => {
+                return sortFactor * (b.likes - a.likes)
+            },
+            "uploadDate": ([, a], [, b]) => {
+                return sortFactor * (new Date(b.uploadDate) - new Date(a.uploadDate))
+            }
+        }
+
+        const sortFunction = sortFunctions[videoSort]
+        if (!sortFunction) return
+
+        // Sort 'videos' based on selected option
+        const sortedVideos = Object.fromEntries(
+            Object.entries(videos).sort(sortFunction)
+        )
+        setVideos(sortedVideos)
+    }, [videoSort, sortDirection])
 
     return (
         <>
@@ -42,6 +92,33 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                     {(Object.entries(videos).length === 0) &&
                         <div className="text-lg font-medium">No videos found !!!</div>
                     }
+
+                    {/* Videos sorting controls */}
+                    <div className="flex gap-3">
+                        <button onClick={() => setVideoSort("relevance")} type="button" className={`py-1 px-3 ${(videoSort === "relevance") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                            Relevance
+                        </button>
+
+                        <button onClick={() => setVideoSort("views")} type="button" className={`py-1 px-3 ${(videoSort === "views") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                            Views
+                        </button>
+
+                        <button onClick={() => setVideoSort("duration")} type="button" className={`py-1 px-3 ${(videoSort === "duration") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                            Duration
+                        </button>
+
+                        <button onClick={() => setVideoSort("likes")} type="button" className={`py-1 px-3 ${(videoSort === "likes") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                            Likes
+                        </button>
+
+                        <button onClick={() => setVideoSort("uploadDate")} type="button" className={`py-1 px-3 ${(videoSort === "uploadDate") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                            Upload Date
+                        </button>
+
+                        <button onClick={() => toggleSortDirection()} type="button" className="py-1 px-3 bg-slate-100 hover:bg-[#2e2e2e] text-[#181818] hover:text-white rounded-md font-medium cursor-pointer">
+                            {sortDirection === "desc" ? 'Descending' : 'Ascending'}
+                        </button>
+                    </div>
 
                     {/* Display each video that matches the search criteria */}
                     {Object.entries(videos).map(([key, value]) => {
@@ -65,7 +142,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                                     </div>
                                     <Link className="flex" to={`/${value.channelId}`}>
                                         <div className="group flex items-center gap-2">
-                                            <img src={channels[value.channelId].avatar} className="w-10 sm:w-7 rounded-full transition-transform duration-300 ease-in-out group-hover:rotate-360" alt="" />
+                                            <img src={channels[value.channelId].avatar} className="max-w-10 sm:w-7 rounded-full transition-transform duration-300 ease-in-out group-hover:rotate-360" alt="" />
                                             {(!isMobileDevice) &&
                                                 <div className="text-xs text-[#aaa] group-hover:text-slate-100">{value.channelName}</div>
                                             }

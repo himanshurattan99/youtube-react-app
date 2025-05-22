@@ -4,6 +4,11 @@ const truncateDecimal = (value, decimalPlaces) => {
     return (Math.floor(value * factor) / factor).toString()
 }
 
+// Check if a word exists in the given text (returns 1 if found, else 0)
+const containsWord = (text, word) => {
+    return (text.includes(word)) ? 1 : 0
+}
+
 // Convert ISO duration format to HH:MM:SS format
 export const formatDuration = (duration) => {
     const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/)
@@ -16,6 +21,17 @@ export const formatDuration = (duration) => {
 
     const formattedDuration = (hours === "0") ? `${formattedMinutes}:${formattedSeconds}` : `${hours.padStart(2, "0")}:${formattedMinutes}:${formattedSeconds}`
     return formattedDuration.trim()
+}
+
+// Convert ISO duration format to total seconds
+export const formatDurationToSeconds = (duration) => {
+    const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/)
+    const hours = match[1] ? parseInt(match[1]) : 0
+    const minutes = match[2] ? parseInt(match[2]) : 0
+    const seconds = match[3] ? parseInt(match[3]) : 0
+
+    const totalSeconds = hours * 3600 + minutes * 60 + seconds
+    return totalSeconds
 }
 
 // Format views count with K, M, B suffixes
@@ -108,6 +124,37 @@ export const getRandomVideos = (videos, count = 12) => {
     const randomVideos = Object.fromEntries(shuffledVideos.slice(0, count))
 
     return randomVideos
+}
+
+// Calculate relevance score for a video based on search input
+export const getRelevanceScore = (video, searchInput) => {
+    // Split search input into individual words
+    const searchInputWords = searchInput.trim().toLowerCase().split(/\s+/)
+
+    const { title, channelName, description, category } = video
+    // Weights for different match types
+    const relevanceWeights = {
+        titleMatch: 5,
+        channelNameMatch: 3,
+        categoryMatch: 2,
+        descriptionMatch: 1,
+        exactQueryInTitle: 12,
+    }
+
+    let score = 0
+    // Add score for each word found in video properties
+    searchInputWords.forEach((word) => {
+        score += containsWord(title.toLowerCase(), word) * relevanceWeights.titleMatch +
+            containsWord(channelName.toLowerCase(), word) * relevanceWeights.channelNameMatch +
+            containsWord(category.toLowerCase(), word) * relevanceWeights.categoryMatch +
+            containsWord(description.toLowerCase(), word) * relevanceWeights.descriptionMatch
+    })
+    // Bonus score if the entire search input is found in the title
+    if (title.toLowerCase().includes(lowerCaseSearchInput)) {
+        score += relevanceWeights.exactQueryInTitle
+    }
+
+    return score
 }
 
 // Capitalize the first letter of a given string

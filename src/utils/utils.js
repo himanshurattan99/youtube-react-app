@@ -150,11 +150,50 @@ export const getRelevanceScore = (video, searchInput) => {
             containsWord(description.toLowerCase(), word) * relevanceWeights.descriptionMatch
     })
     // Bonus score if the entire search input is found in the title
-    if (title.toLowerCase().includes(lowerCaseSearchInput)) {
+    if (title.toLowerCase().includes(searchInput.trim().toLowerCase())) {
         score += relevanceWeights.exactQueryInTitle
     }
 
     return score
+}
+
+// Sort videos by specified criteria in ascending or descending order
+export const sortVideos = (videos, videoSort, sortDirection = 'desc', searchInput = '') => {
+    if (!videoSort || Object.keys(videos).length === 0) {
+        return videos
+    }
+
+    // Create a multiplier based on sort direction
+    const sortFactor = (sortDirection === "desc") ? 1 : -1
+
+    // Define different sorting functions
+    const sortFunctions = {
+        "relevance": ([, a], [, b]) => {
+            return sortFactor * (getRelevanceScore(b, searchInput) - getRelevanceScore(a, searchInput))
+        },
+        "views": ([, a], [, b]) => {
+            return sortFactor * (b.views - a.views)
+        },
+        "duration": ([, a], [, b]) => {
+            return sortFactor * (formatDurationToSeconds(b.duration) - formatDurationToSeconds(a.duration))
+        },
+        "likes": ([, a], [, b]) => {
+            return sortFactor * (b.likes - a.likes)
+        },
+        "uploadDate": ([, a], [, b]) => {
+            return sortFactor * (new Date(b.uploadDate) - new Date(a.uploadDate))
+        }
+    }
+
+    const sortFunction = sortFunctions[videoSort]
+    if (!sortFunction) return videos
+
+    // Sort 'videos' based on selected option
+    const sortedVideos = Object.fromEntries(
+        Object.entries(videos).sort(sortFunction)
+    )
+
+    return sortedVideos
 }
 
 // Capitalize the first letter of a given string

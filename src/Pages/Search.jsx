@@ -7,7 +7,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // State for search results videos, channel data, sorting option and sort direction
     const [videos, setVideos] = useState({})
     const [channels, setChannels] = useState("")
-    const [videoSort, setVideoSort] = useState("")
+    const [videoSort, setVideoSort] = useState("relevance")
     const [sortDirection, setSortDirection] = useState("desc")
 
     // Extract search input from URL params
@@ -44,43 +44,18 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                     )
                 })
         )
-        setVideos(filteredVideos)
+        // Sort 'videos' based on selected option
+        const sortedVideos = videoUtils.sortVideos(filteredVideos, videoSort, sortDirection, searchInput)
+        setVideos(sortedVideos)
         setChannels(db.channels)
     }, [searchInput])
 
     // Re-sort videos when sort option or sort direction changes
     useEffect(() => {
-        if (!videoSort || Object.keys(videos).length === 0) return
-
-        // Create a multiplier based on sort direction
-        const sortFactor = (sortDirection === "desc") ? 1 : -1
-
-        // Define different sorting functions
-        const sortFunctions = {
-            "relevance": ([, a], [, b]) => {
-                return sortFactor * (videoUtils.getRelevanceScore(b, searchInput) - videoUtils.getRelevanceScore(a, searchInput))
-            },
-            "views": ([, a], [, b]) => {
-                return sortFactor * (b.views - a.views)
-            },
-            "duration": ([, a], [, b]) => {
-                return sortFactor * (videoUtils.formatDurationToSeconds(b.duration) - videoUtils.formatDurationToSeconds(a.duration))
-            },
-            "likes": ([, a], [, b]) => {
-                return sortFactor * (b.likes - a.likes)
-            },
-            "uploadDate": ([, a], [, b]) => {
-                return sortFactor * (new Date(b.uploadDate) - new Date(a.uploadDate))
-            }
-        }
-
-        const sortFunction = sortFunctions[videoSort]
-        if (!sortFunction) return
+        if (Object.keys(videos).length === 0) return
 
         // Sort 'videos' based on selected option
-        const sortedVideos = Object.fromEntries(
-            Object.entries(videos).sort(sortFunction)
-        )
+        const sortedVideos = videoUtils.sortVideos(videos, videoSort, sortDirection, searchInput)
         setVideos(sortedVideos)
     }, [videoSort, sortDirection])
 

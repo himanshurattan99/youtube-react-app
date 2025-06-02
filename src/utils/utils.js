@@ -9,6 +9,57 @@ const containsWord = (text, word) => {
     return (text.includes(word)) ? 1 : 0
 }
 
+// Capitalize the first letter of a given string
+export const capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+// Removes stop words from the input text
+const removeStopWords = (text) => {
+    const stopWords = [
+        "a", "about", "above", "after", "again", "against", "all", "am", "an", "and",
+        "any", "are", "as", "at", "be", "because", "been", "before", "being", "below",
+        "between", "both", "but", "by", "could", "did", "do", "does", "doing", "down",
+        "during", "each", "few", "for", "from", "further", "had", "has", "have", "having",
+        "he", "he'd", "he'll", "he's", "her", "here", "here's", "hers", "herself", "him",
+        "himself", "his", "how", "how's", "i", "i'd", "i'll", "i'm", "i've", "if", "in",
+        "into", "is", "it", "it's", "its", "itself", "let's", "me", "more", "most", "my",
+        "myself", "no", "nor", "of", "off", "on", "once", "only", "or", "other", "ought",
+        "our", "ours", "ourselves", "out", "over", "own", "same", "she", "she'd", "she'll",
+        "she's", "should", "so", "some", "such", "than", "that", "that's", "the", "their",
+        "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd",
+        "they'll", "they're", "they've", "this", "those", "through", "to", "too", "under",
+        "until", "up", "very", "was", "we", "we'd", "we'll", "we're", "we've", "were",
+        "what", "what's", "when", "when's", "where", "where's", "which", "while", "who",
+        "who's", "whom", "why", "why's", "with", "would", "you", "you'd", "you'll", "you're",
+        "you've", "your", "yours", "yourself", "yourselves"
+    ]
+
+    // Split text into words, filter out stop words, then rejoin
+    return text.trim().toLowerCase().split(/\s+/).filter((word) => !stopWords.includes(word)).join(' ')
+}
+
+// Removes duplicate words from the input text while preserving order
+const removeDuplicateWords = (text) => {
+    const words = text.trim().toLowerCase().split(/\s+/)
+    const uniqueWordsSet = new Set()
+    const uniqueWords = []
+
+    for (const word of words) {
+        if (!uniqueWordsSet.has(word)) {
+            uniqueWordsSet.add(word)
+            uniqueWords.push(word)
+        }
+    }
+
+    return uniqueWords.join(' ')
+}
+
+// Clean search input by removing duplicates and stop words, returns lowercase string
+export const normalizeQuery = (searchInput) => {
+    return removeStopWords(removeDuplicateWords(searchInput))
+}
+
 // Convert ISO duration format to HH:MM:SS format
 export const formatDuration = (duration) => {
     const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/)
@@ -128,8 +179,9 @@ export const getRandomVideos = (videos, count = 12) => {
 
 // Calculate relevance score for a video based on search input
 export const getRelevanceScore = (video, searchInput) => {
-    // Split search input into individual words
-    const searchInputWords = searchInput.trim().toLowerCase().split(/\s+/)
+    // Normalize search input and split it into individual words
+    const normalizedQuery = normalizeQuery(searchInput)
+    const normalizedQueryWords = normalizedQuery.split(/\s+/)
 
     const { title, channelName, description, category } = video
     // Weights for different match types
@@ -143,7 +195,7 @@ export const getRelevanceScore = (video, searchInput) => {
 
     let score = 0
     // Add score for each word found in video properties
-    searchInputWords.forEach((word) => {
+    normalizedQueryWords.forEach((word) => {
         score += containsWord(title.toLowerCase(), word) * relevanceWeights.titleMatch +
             containsWord(channelName.toLowerCase(), word) * relevanceWeights.channelNameMatch +
             containsWord(category.toLowerCase(), word) * relevanceWeights.categoryMatch +
@@ -155,6 +207,34 @@ export const getRelevanceScore = (video, searchInput) => {
     }
 
     return score
+}
+
+// Filter videos that match the normalized search query in title, description, category or channel name
+export const filterVideos = (videos, searchInput) => {
+    // Normalize search input and split it into individual words
+    const normalizedQuery = normalizeQuery(searchInput)
+    const normalizedQueryWords = normalizedQuery.split(/\s+/)
+
+    const filteredVideos = Object.fromEntries(
+        Object.entries(videos)
+            .filter(([_, videoData]) => {
+                const { title, description, category, channelName } = videoData
+                // Convert all searchable fields to lowercase
+                const videoFields = [
+                    title.toLowerCase(),
+                    description.toLowerCase(),
+                    category.toLowerCase(),
+                    channelName.toLowerCase()
+                ]
+
+                // Check if any normalized query word is found in at least one of the fields
+                return normalizedQueryWords.some((word) =>
+                    videoFields.some((field) => field.includes(word))
+                )
+            })
+    )
+
+    return filteredVideos
 }
 
 // Sort videos by specified criteria in ascending or descending order
@@ -194,9 +274,4 @@ export const sortVideos = (videos, videoSort, sortDirection = 'desc', searchInpu
     )
 
     return sortedVideos
-}
-
-// Capitalize the first letter of a given string
-export const capitalize = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1)
 }

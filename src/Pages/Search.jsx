@@ -23,27 +23,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // Filter videos based on search input when component mounts or search input changes
     useEffect(() => {
         // Filter videos that match the search input in title, description, category or channel name
-        const filteredVideos = Object.fromEntries(
-            Object.entries(db.videos)
-                .filter(([_, value]) => {
-                    // Split search input into individual words
-                    const searchInputWords = searchInput.trim().toLowerCase().split(/\s+/)
-
-                    const { title, description, category, channelName } = value
-                    // Convert all searchable fields to lowercase
-                    const videoFields = [
-                        title.toLowerCase(),
-                        description.toLowerCase(),
-                        category.toLowerCase(),
-                        channelName.toLowerCase()
-                    ]
-
-                    // Check if any search word is found in at least one of the fields
-                    return searchInputWords.some((word) =>
-                        videoFields.some((field) => field.includes(word))
-                    )
-                })
-        )
+        const filteredVideos = videoUtils.filterVideos(db.videos, searchInput)
         // Sort 'videos' based on selected option
         const sortedVideos = videoUtils.sortVideos(filteredVideos, videoSort, sortDirection, searchInput)
         setVideos(sortedVideos)

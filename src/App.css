@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
-@layer components {
+@layer utilities {
     .scrollbar-thin-gray {
-        &::-webkit-scrollbar {
-            width: 0.5rem;
-        }
+        scrollbar-width: thin;
+        scrollbar-color: #181818 #181818;
+        transition: scrollbar-color 0.25s ease;
+    }
 
-        &::-webkit-scrollbar-track {
-            background: #181818;
-            border-radius: var(--radius-md);
-        }
+    .scrollbar-thin-gray:hover {
+        scrollbar-color: #5c5c5c #181818;
+    }
 
-        &::-webkit-scrollbar-thumb {
-            background: #5c5c5c;
-            border-radius: var(--radius-md);
+    @media (max-width: 768px) {
+        .scrollbar-thin-gray {
+            scrollbar-width: none;
         }
     }
 }

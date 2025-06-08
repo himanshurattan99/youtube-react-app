@@ -49,7 +49,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                     }
 
                     {/* Videos sorting controls */}
-                    <div className="flex gap-3">
+                    <div className="flex gap-3 overflow-x-auto scrollbar-hidden">
                         <button onClick={() => setVideoSort("relevance")} type="button" className={`py-1 px-3 ${(videoSort === "relevance") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
                             Relevance
                         </button>
@@ -66,7 +66,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                             Likes
                         </button>
 
-                        <button onClick={() => setVideoSort("uploadDate")} type="button" className={`py-1 px-3 ${(videoSort === "uploadDate") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                        <button onClick={() => setVideoSort("uploadDate")} type="button" className={`py-1 px-3 ${(videoSort === "uploadDate") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium whitespace-nowrap cursor-pointer`}>
                             Upload Date
                         </button>
 

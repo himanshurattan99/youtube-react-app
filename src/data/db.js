@@ -2,7 +2,6 @@ export const db = {
     "videos": {
         "_dWhz02Z70U": {
             "title": "My First 100 Games of Fortnite",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/_dWhz02Z70U/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -15,7 +14,6 @@ export const db = {
         },
         "6T_-DiAzYBc": {
             "title": "6 Steps to Draw Anything",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/6T_-DiAzYBc/maxresdefault.jpg",
             "channelId": "ProkoTV",
             "channelName": "Proko",
@@ -28,7 +26,6 @@ export const db = {
         },
         "8SjgaZQwM7U": {
             "title": "I made a GIANT Ship in a Bottle!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/8SjgaZQwM7U/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -41,7 +38,6 @@ export const db = {
         },
         "Wz6DrQeQ5rI": {
             "title": "Learn How to Draw for Beginners - Episode 1",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Wz6DrQeQ5rI/maxresdefault.jpg",
             "channelId": "BradsArtSchool",
             "channelName": "Brad's Art School",
@@ -54,7 +50,6 @@ export const db = {
         },
         "oZlFJNinK9c": {
             "title": "Every Form of Animation",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/oZlFJNinK9c/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -67,7 +62,6 @@ export const db = {
         },
         "66_YPg01ZWA": {
             "title": "I Made Trosky Castle - (from Kingdom Come Deliverance II)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/66_YPg01ZWA/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -80,7 +74,6 @@ export const db = {
         },
         "ZhitFh6Hn0w": {
             "title": "How to Write & Document on Notion #notion",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/ZhitFh6Hn0w/maxresdefault.jpg",
             "channelId": "CuttingEdgeSchool",
             "channelName": "The Cutting Edge School",
@@ -93,7 +86,6 @@ export const db = {
         },
         "hEDBZtmKPmg": {
             "title": "Conan Gray - Wish You Were Sober (Official Video)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/hEDBZtmKPmg/maxresdefault.jpg",
             "channelId": "conangray",
             "channelName": "Conan Gray",
@@ -106,7 +98,6 @@ export const db = {
         },
         "KEG7b851Ric": {
             "title": "Sabrina Carpenter - Taste (Official Video)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/KEG7b851Ric/maxresdefault.jpg",
             "channelId": "sabrinacarpenter",
             "channelName": "Sabrina Carpenter",
@@ -119,7 +110,6 @@ export const db = {
         },
         "qbcmsEIHWeE": {
             "title": "Harry Styles - Keep Driving (Audio)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/qbcmsEIHWeE/maxresdefault.jpg",
             "channelId": "HarryStyles",
             "channelName": "Harry Styles",
@@ -132,7 +122,6 @@ export const db = {
         },
         "YaEG2aWJnZ8": {
             "title": "Sia - Unstoppable (Official Video - Live from the Nostalgic For The Present Tour)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/YaEG2aWJnZ8/maxresdefault.jpg",
             "channelId": "sia",
             "channelName": "Sia",
@@ -145,7 +134,6 @@ export const db = {
         },
         "asYfhMHAgqs": {
             "title": "Charlie Puth - Girlfriend [Official Video]",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/asYfhMHAgqs/maxresdefault.jpg",
             "channelId": "charlieputh",
             "channelName": "Charlie Puth",
@@ -158,7 +146,6 @@ export const db = {
         },
         "dS_HLHozs1E": {
             "title": "Ariana Grande - eternal sunshine (lyric visualizer)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/dS_HLHozs1E/maxresdefault.jpg",
             "channelId": "ArianaGrande",
             "channelName": "Ariana Grande",
@@ -171,7 +158,6 @@ export const db = {
         },
         "o7e4IfE0ScI": {
             "title": "Radio",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/o7e4IfE0ScI/maxresdefault.jpg",
             "channelId": "LanaDelRey",
             "channelName": "Lana Del Rey",
@@ -184,7 +170,6 @@ export const db = {
         },
         "ZsJ-BHohXRI": {
             "title": "Olivia Rodrigo - get him back! (Official Video)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/ZsJ-BHohXRI/maxresdefault.jpg",
             "channelId": "OliviaRodrigo",
             "channelName": "Olivia Rodrigo",
@@ -197,7 +182,6 @@ export const db = {
         },
         "V9PVRfjEBTI": {
             "title": "Billie Eilish - BIRDS OF A FEATHER (Official Music Video)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/V9PVRfjEBTI/maxresdefault.jpg",
             "channelId": "BillieEilish",
             "channelName": "Billie Eilish",
@@ -210,7 +194,6 @@ export const db = {
         },
         "v_4fljfr2r4": {
             "title": "Miley Cyrus - River (Official Video)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/v_4fljfr2r4/maxresdefault.jpg",
             "channelId": "MileyCyrus",
             "channelName": "Miley Cyrus",
@@ -223,7 +206,6 @@ export const db = {
         },
         "orJSJGHjBLI": {
             "title": "Ed Sheeran - Bad Habits [Official Video]",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/orJSJGHjBLI/maxresdefault.jpg",
             "channelId": "EdSheeran",
             "channelName": "Ed Sheeran",
@@ -236,7 +218,6 @@ export const db = {
         },
         "1fwJ8H5wWCU": {
             "title": "Em Beihold - Numb Little Bug",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/1fwJ8H5wWCU/maxresdefault.jpg",
             "channelId": "embeihold",
             "channelName": "Em Beihold",
@@ -249,7 +230,6 @@ export const db = {
         },
         "24u3NoPvgMw": {
             "title": "Conan Gray - Heather",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/24u3NoPvgMw/maxresdefault.jpg",
             "channelId": "conangray",
             "channelName": "Conan Gray",
@@ -262,7 +242,6 @@ export const db = {
         },
         "eVli-tstM5E": {
             "title": "Sabrina Carpenter - Espresso (Official Video)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/eVli-tstM5E/maxresdefault.jpg",
             "channelId": "sabrinacarpenter",
             "channelName": "Sabrina Carpenter",
@@ -275,7 +254,6 @@ export const db = {
         },
         "E07s5ZYygMg": {
             "title": "Harry Styles - Watermelon Sugar (Official Video)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/E07s5ZYygMg/maxresdefault.jpg",
             "channelId": "HarryStyles",
             "channelName": "Harry Styles",
@@ -288,7 +266,6 @@ export const db = {
         },
         "9mzSgnOxXtw": {
             "title": "Charlie Puth - There's A First Time For Everything (Official Audio)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/9mzSgnOxXtw/maxresdefault.jpg",
             "channelId": "charlieputh",
             "channelName": "Charlie Puth",
@@ -301,7 +278,6 @@ export const db = {
         },
         "KNtJGQkC-WI": {
             "title": "Ariana Grande - we can't be friends (wait for your love) (official music video)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/KNtJGQkC-WI/maxresdefault.jpg",
             "channelId": "ArianaGrande",
             "channelName": "Ariana Grande",
@@ -314,7 +290,6 @@ export const db = {
         },
         "G7KNmW9a75Y": {
             "title": "Miley Cyrus - Flowers (Official Video)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/G7KNmW9a75Y/maxresdefault.jpg",
             "channelId": "MileyCyrus",
             "channelName": "Miley Cyrus",
@@ -327,7 +302,6 @@ export const db = {
         },
         "LEjhY15eCx0": {
             "title": "Inside Out 2 | Official Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/LEjhY15eCx0/maxresdefault.jpg",
             "channelId": "pixar",
             "channelName": "Pixar",
@@ -340,7 +314,6 @@ export const db = {
         },
         "cqGjhVJWtEg": {
             "title": "SPIDER-MAN: ACROSS THE SPIDER-VERSE - Official Trailer (HD)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/cqGjhVJWtEg/maxresdefault.jpg",
             "channelId": "sonypictures",
             "channelName": "Sony Pictures Entertainment",
@@ -353,7 +326,6 @@ export const db = {
         },
         "YJserno8tyU": {
             "title": "tick, tick...BOOM! | Official Trailer | Netflix",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/YJserno8tyU/maxresdefault.jpg",
             "channelId": "Netflix",
             "channelName": "Netflix",
@@ -366,7 +338,6 @@ export const db = {
         },
         "AXEK7y1BuNQ": {
             "title": "Challengers - Official Trailer (2023) Zendaya, Josh O'Connor, Mike Faist",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/AXEK7y1BuNQ/maxresdefault.jpg",
             "channelId": "IGNMovieTrailers",
             "channelName": "IGN Movie Trailers",
@@ -379,7 +350,6 @@ export const db = {
         },
         "qGqiHJTsRkQ": {
             "title": "Knives Out (2019 Movie) Official Trailer \u2014 Daniel Craig, Chris Evans, Jamie Lee Curtis",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/qGqiHJTsRkQ/maxresdefault.jpg",
             "channelId": "LionsgateMovies",
             "channelName": "Lionsgate Movies",
@@ -392,7 +362,6 @@ export const db = {
         },
         "AST2-4db4ic": {
             "title": "LITTLE WOMEN - Official Trailer (HD)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/AST2-4db4ic/maxresdefault.jpg",
             "channelId": "sonypictures",
             "channelName": "Sony Pictures Entertainment",
@@ -405,7 +374,6 @@ export const db = {
         },
         "hXzcyx9V0xw": {
             "title": "Elemental | Official Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/hXzcyx9V0xw/maxresdefault.jpg",
             "channelId": "pixar",
             "channelName": "Pixar",
@@ -418,7 +386,6 @@ export const db = {
         },
         "cSp1dM2Vj48": {
             "title": "READY PLAYER ONE - Official Trailer 1 [HD]",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/cSp1dM2Vj48/maxresdefault.jpg",
             "channelId": "WarnerBros",
             "channelName": "Warner Bros.",
@@ -431,7 +398,6 @@ export const db = {
         },
         "x7CAjpdRaXU": {
             "title": "GIFTED | Official Trailer | FOX Searchlight",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/x7CAjpdRaXU/maxresdefault.jpg",
             "channelId": "searchlightpictures",
             "channelName": "SearchlightPictures",
@@ -444,7 +410,6 @@ export const db = {
         },
         "hDZ7y8RP5HE": {
             "title": "Moana 2 | Official Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/hDZ7y8RP5HE/maxresdefault.jpg",
             "channelId": "disneyanimation",
             "channelName": "Walt Disney Animation Studios",
@@ -457,7 +422,6 @@ export const db = {
         },
         "d9MyW72ELq0": {
             "title": "Avatar: The Way of Water | Official Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/d9MyW72ELq0/maxresdefault.jpg",
             "channelId": "AvatarOfficial",
             "channelName": "Avatar",
@@ -470,7 +434,6 @@ export const db = {
         },
         "j7jPnwVGdZ8": {
             "title": "The Fall Guy | Official Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/j7jPnwVGdZ8/maxresdefault.jpg",
             "channelId": "UniversalPictures",
             "channelName": "Universal Pictures",
@@ -483,7 +446,6 @@ export const db = {
         },
         "OzY2r2JXsDM": {
             "title": "Alien: Romulus | Official Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/OzY2r2JXsDM/maxresdefault.jpg",
             "channelId": "20thCenturyStudios",
             "channelName": "20th Century Studios",
@@ -496,7 +458,6 @@ export const db = {
         },
         "pBk4NYhWNMM": {
             "title": "Barbie | Main Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/pBk4NYhWNMM/maxresdefault.jpg",
             "channelId": "WarnerBros",
             "channelName": "Warner Bros.",
@@ -509,7 +470,6 @@ export const db = {
         },
         "uYPbbksJxIg": {
             "title": "Oppenheimer | New Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/uYPbbksJxIg/maxresdefault.jpg",
             "channelId": "UniversalPictures",
             "channelName": "Universal Pictures",
@@ -522,7 +482,6 @@ export const db = {
         },
         "TnGl01FkMMo": {
             "title": "The Super Mario Bros. Movie | Official Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/TnGl01FkMMo/maxresdefault.jpg",
             "channelId": "illumination",
             "channelName": "Illumination",
@@ -535,7 +494,6 @@ export const db = {
         },
         "CaimKeDcudo": {
             "title": "Disney's Encanto | Official Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/CaimKeDcudo/maxresdefault.jpg",
             "channelId": "disneyanimation",
             "channelName": "Walt Disney Animation Studios",
@@ -548,7 +506,6 @@ export const db = {
         },
         "xOsLIiBStEs": {
             "title": "Disney and Pixar\u2019s Soul | Official Trailer | Disney+",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/xOsLIiBStEs/maxresdefault.jpg",
             "channelId": "pixar",
             "channelName": "Pixar",
@@ -561,7 +518,6 @@ export const db = {
         },
         "1T22wNvoNiU": {
             "title": "Baldur's Gate 3 Official Launch Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/1T22wNvoNiU/maxresdefault.jpg",
             "channelId": "gamespot",
             "channelName": "GameSpot",
@@ -574,7 +530,6 @@ export const db = {
         },
         "x55lAlFtXmw": {
             "title": "Assassin's Creed Mirage: Cinematic World Premiere | #UbiForward",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/x55lAlFtXmw/maxresdefault.jpg",
             "channelId": "Ubisoft",
             "channelName": "Ubisoft",
@@ -587,7 +542,6 @@ export const db = {
         },
         "_4oNKgyxtBI": {
             "title": "A PLAGUE TALE REQUIEM Gameplay Walkthrough Part 1 FULL GAME [4K 60FPS PC ULTRA] - No Commentary",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/_4oNKgyxtBI/maxresdefault.jpg",
             "channelId": "MKIceAndFire",
             "channelName": "MKIceAndFire",
@@ -600,7 +554,6 @@ export const db = {
         },
         "NN-9SQXoi50": {
             "title": "Cuphead Launch Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/NN-9SQXoi50/maxresdefault.jpg",
             "channelId": "GameTrailers",
             "channelName": "GameTrailers",
@@ -613,7 +566,6 @@ export const db = {
         },
         "GFcOQ9Nc1HE": {
             "title": "VAMPYR Walkthrough Gameplay Part 1 - INTRO",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/GFcOQ9Nc1HE/maxresdefault.jpg",
             "channelId": "theRadBrad",
             "channelName": "theRadBrad",
@@ -626,7 +578,6 @@ export const db = {
         },
         "q0vNoRhuV_I": {
             "title": "Alan Wake 2 - Gameplay Reveal Trailer | PS5 Games",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/q0vNoRhuV_I/maxresdefault.jpg",
             "channelId": "PlayStation",
             "channelName": "PlayStation",
@@ -639,7 +590,6 @@ export const db = {
         },
         "UkXwW5H28m0": {
             "title": "The Wolf Among Us 2 - OFFICIAL Full Trailer (2022)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/UkXwW5H28m0/maxresdefault.jpg",
             "channelId": "TelltaleGames",
             "channelName": "Telltale Games",
@@ -652,7 +602,6 @@ export const db = {
         },
         "DCl5zKHy7ak": {
             "title": "Astro Bot - Speedrun and Special Bots Add-On Trailer | PS5 Games",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/DCl5zKHy7ak/maxresdefault.jpg",
             "channelId": "PlayStation",
             "channelName": "PlayStation",
@@ -665,7 +614,6 @@ export const db = {
         },
         "vhII1qlcZ4E": {
             "title": "The Last of Us Part II - Official Story Trailer | PS4",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/vhII1qlcZ4E/maxresdefault.jpg",
             "channelId": "PlayStation",
             "channelName": "PlayStation",
@@ -678,7 +626,6 @@ export const db = {
         },
         "LpZ3tNMWDqY": {
             "title": "HORIZON ZERO DAWN REMASTERED Gameplay Walkthrough FULL GAME [4K 60FPS PS5] - No Commentary",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/LpZ3tNMWDqY/maxresdefault.jpg",
             "channelId": "MKIceAndFire",
             "channelName": "MKIceAndFire",
@@ -691,7 +638,6 @@ export const db = {
         },
         "1O6Qstncpnc": {
             "title": "Hogwarts Legacy - Official Reveal Trailer | PS5",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/1O6Qstncpnc/maxresdefault.jpg",
             "channelId": "PlayStation",
             "channelName": "PlayStation",
@@ -704,7 +650,6 @@ export const db = {
         },
         "8X2kIfS6fb8": {
             "title": "Cyberpunk 2077 \u2014 Official E3 2018 Trailer",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/8X2kIfS6fb8/maxresdefault.jpg",
             "channelId": "CyberpunkGame",
             "channelName": "Cyberpunk 2077",
@@ -717,7 +662,6 @@ export const db = {
         },
         "T4DFKOlrXCQ": {
             "title": "BLACK MYTH WUKONG Gameplay Walkthrough FULL GAME [4K 60FPS] - No Commentary",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/T4DFKOlrXCQ/maxresdefault.jpg",
             "channelId": "MKIceAndFire",
             "channelName": "MKIceAndFire",
@@ -730,7 +674,6 @@ export const db = {
         },
         "0xy4NNqX_ZU": {
             "title": "GOD OF WAR RAGNAROK PS5 Walkthrough Gameplay Part 1 - INTRO (FULL GAME)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/0xy4NNqX_ZU/maxresdefault.jpg",
             "channelId": "theRadBrad",
             "channelName": "theRadBrad",
@@ -743,7 +686,6 @@ export const db = {
         },
         "JSfuFlhsxZY": {
             "title": "Hollow Knight: Silksong - Xbox Game Pass Reveal Trailer - Xbox & Bethesda Games Showcase 2022",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/JSfuFlhsxZY/maxresdefault.jpg",
             "channelId": "xbox",
             "channelName": "Xbox",
@@ -756,7 +698,6 @@ export const db = {
         },
         "kJawWyRUOBM": {
             "title": "Stray Gameplay Trailer | Sony State of Play June 2022",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/kJawWyRUOBM/maxresdefault.jpg",
             "channelId": "gamespot",
             "channelName": "GameSpot",
@@ -769,7 +710,6 @@ export const db = {
         },
         "c0cbQdrxIXk": {
             "title": "KINGDOM COME DELIVERANCE 2 Walkthrough Gameplay Part 1 - INTRO (FULL GAME)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/c0cbQdrxIXk/maxresdefault.jpg",
             "channelId": "theRadBrad",
             "channelName": "theRadBrad",
@@ -782,7 +722,6 @@ export const db = {
         },
         "QdBZY2fkU-0": {
             "title": "Grand Theft Auto VI Trailer 1",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/QdBZY2fkU-0/maxresdefault.jpg",
             "channelId": "RockstarGames",
             "channelName": "Rockstar Games",
@@ -795,7 +734,6 @@ export const db = {
         },
         "6bNOnXTe4Ok": {
             "title": "Aljona Savchenko and Bruno Massot (GER) - Gold Medal | Pairs Free Skating | PyeongChang 2018",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/6bNOnXTe4Ok/maxresdefault.jpg",
             "channelId": "Olympics",
             "channelName": "Olympics",
@@ -808,7 +746,6 @@ export const db = {
         },
         "23EfsN7vEOA": {
             "title": "Yuzuru Hanyu (JPN) - Gold Medal | Men's Figure Skating | Free Programme | PyeongChang 2018",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/23EfsN7vEOA/maxresdefault.jpg",
             "channelId": "Olympics",
             "channelName": "Olympics",
@@ -821,7 +758,6 @@ export const db = {
         },
         "eKlH8jjBL3g": {
             "title": "\ud83e\udd47\ud83e\udd4c 1st Curling Gold Medal for Italy! | Mixed Doubles Final Highlights",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/eKlH8jjBL3g/maxresdefault.jpg",
             "channelId": "Olympics",
             "channelName": "Olympics",
@@ -834,7 +770,6 @@ export const db = {
         },
         "rW_fwcmyIfk": {
             "title": "\ud83c\uddee\ud83c\uddf3\ud83e\udd47 Neeraj Chopra wins historic gold for India | #Tokyo2020 Highlights",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/rW_fwcmyIfk/maxresdefault.jpg",
             "channelId": "Olympics",
             "channelName": "Olympics",
@@ -847,7 +782,6 @@ export const db = {
         },
         "FuiJHJz4f5Q": {
             "title": "Usain Bolt | ALL Olympic finals + Bonus round | Top Moments",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/FuiJHJz4f5Q/maxresdefault.jpg",
             "channelId": "Olympics",
             "channelName": "Olympics",
@@ -860,7 +794,6 @@ export const db = {
         },
         "wOEKdWrtz6U": {
             "title": "Tessa Virtue and Scott Moir's Moulin Rouge at PyeongChang 2018 | Music Mondays",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/wOEKdWrtz6U/maxresdefault.jpg",
             "channelId": "Olympics",
             "channelName": "Olympics",
@@ -873,7 +806,6 @@ export const db = {
         },
         "sbXy2vkJxSk": {
             "title": "Marathoner heroically finishes Dallas Marathon with help of fellow runner | ESPN",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/sbXy2vkJxSk/maxresdefault.jpg",
             "channelId": "espn",
             "channelName": "ESPN",
@@ -886,7 +818,6 @@ export const db = {
         },
         "zh76f7oHjYE": {
             "title": "E:60 \u2013 Meet Spitfire, \u2018the Michael Jordan of Dogs\u2019",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/zh76f7oHjYE/maxresdefault.jpg",
             "channelId": "espn",
             "channelName": "ESPN",
@@ -899,7 +830,6 @@ export const db = {
         },
         "2hIrbnVx4k4": {
             "title": "Stephen Curry's AMAZING Top 30 Plays!!!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/2hIrbnVx4k4/maxresdefault.jpg",
             "channelId": "NBA",
             "channelName": "NBA",
@@ -912,7 +842,6 @@ export const db = {
         },
         "cuLprHh_BRg": {
             "title": "Best of Michael Jordan\u2019s Playoff Games | The Jordan Vault",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/cuLprHh_BRg/maxresdefault.jpg",
             "channelId": "NBA",
             "channelName": "NBA",
@@ -925,7 +854,6 @@ export const db = {
         },
         "COpGcEiyo-A": {
             "title": "Lewis Hamilton and Valentino Rossi Swap Rides!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/COpGcEiyo-A/maxresdefault.jpg",
             "channelId": "Formula1",
             "channelName": "FORMULA 1",
@@ -938,7 +866,6 @@ export const db = {
         },
         "FExS3lFEwqc": {
             "title": "Race Highlights | 2023 Australian Grand Prix",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/FExS3lFEwqc/maxresdefault.jpg",
             "channelId": "Formula1",
             "channelName": "FORMULA 1",
@@ -951,7 +878,6 @@ export const db = {
         },
         "FHtvDA0W34I": {
             "title": "Felix Baumgartner's supersonic freefall from 128k' - Mission Highlights",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/FHtvDA0W34I/maxresdefault.jpg",
             "channelId": "redbull",
             "channelName": "Red Bull",
@@ -964,7 +890,6 @@ export const db = {
         },
         "Sv3xVOs7_No": {
             "title": "Danny MacAskill's Imaginate",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Sv3xVOs7_No/maxresdefault.jpg",
             "channelId": "redbull",
             "channelName": "Red Bull",
@@ -977,7 +902,6 @@ export const db = {
         },
         "Hv_DRJZZ2qI": {
             "title": "Red Bull Rampage From Start to Finish",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Hv_DRJZZ2qI/maxresdefault.jpg",
             "channelId": "redbull",
             "channelName": "Red Bull",
@@ -990,7 +914,6 @@ export const db = {
         },
         "auqyXFLZ_zw": {
             "title": "Uruguay v Portugal | 2018 FIFA World Cup | Match Highlights",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/auqyXFLZ_zw/maxresdefault.jpg",
             "channelId": "fifa",
             "channelName": "FIFA",
@@ -1003,7 +926,6 @@ export const db = {
         },
         "4rp2aLQl7vg": {
             "title": "Portugal v Spain | 2018 FIFA World Cup | Match Highlights",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/4rp2aLQl7vg/maxresdefault.jpg",
             "channelId": "fifa",
             "channelName": "FIFA",
@@ -1016,7 +938,6 @@ export const db = {
         },
         "6C6oOcDFmLY": {
             "title": "France v Argentina | 2018 FIFA World Cup | Match Highlights",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/6C6oOcDFmLY/maxresdefault.jpg",
             "channelId": "fifa",
             "channelName": "FIFA",
@@ -1029,7 +950,6 @@ export const db = {
         },
         "LPZh9BOjkQs": {
             "title": "Large Language Models explained briefly",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/LPZh9BOjkQs/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1042,7 +962,6 @@ export const db = {
         },
         "6dTyOl1fmDo": {
             "title": "There's more to those colliding blocks that compute pi",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/6dTyOl1fmDo/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1055,7 +974,6 @@ export const db = {
         },
         "c1nYtX-NUsc": {
             "title": "Tired of Doomscrolling?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/c1nYtX-NUsc/maxresdefault.jpg",
             "channelId": "kurzgesagt",
             "channelName": "Kurzgesagt \u2013 In a Nutshell",
@@ -1068,7 +986,6 @@ export const db = {
         },
         "xaQJbozY_Is": {
             "title": "What Dinosaurs ACTUALLY Looked Like?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/xaQJbozY_Is/maxresdefault.jpg",
             "channelId": "kurzgesagt",
             "channelName": "Kurzgesagt \u2013 In a Nutshell",
@@ -1081,7 +998,6 @@ export const db = {
         },
         "WcLlpWmEpQ8": {
             "title": "Why don\u2019t we cover the desert with solar panels? - Dan Kwartler",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/WcLlpWmEpQ8/maxresdefault.jpg",
             "channelId": "TEDEd",
             "channelName": "TED-Ed",
@@ -1094,7 +1010,6 @@ export const db = {
         },
         "Amkg1cdDCpM": {
             "title": "Can you change your sleep schedule?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Amkg1cdDCpM/maxresdefault.jpg",
             "channelId": "TEDEd",
             "channelName": "TED-Ed",
@@ -1107,7 +1022,6 @@ export const db = {
         },
         "ni6P5KU3SDU": {
             "title": "Evolving Generative Adversarial Networks | Two Minute Papers #242",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/ni6P5KU3SDU/maxresdefault.jpg",
             "channelId": "TwoMinutePapers",
             "channelName": "Two Minute Papers",
@@ -1120,7 +1034,6 @@ export const db = {
         },
         "V2_Xf24FpBU": {
             "title": "This Is Ray Tracing Supercharged!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/V2_Xf24FpBU/maxresdefault.jpg",
             "channelId": "TwoMinutePapers",
             "channelName": "Two Minute Papers",
@@ -1133,7 +1046,6 @@ export const db = {
         },
         "jiczBAqku1I": {
             "title": "I programmed a real quantum computer for the first time",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/jiczBAqku1I/maxresdefault.jpg",
             "channelId": "tibees",
             "channelName": "Tibees",
@@ -1146,7 +1058,6 @@ export const db = {
         },
         "yQOFzsRXG1Y": {
             "title": "4-dimensional golf is on another level \ud83e\udd2f",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/yQOFzsRXG1Y/maxresdefault.jpg",
             "channelId": "tibees",
             "channelName": "Tibees",
@@ -1159,7 +1070,6 @@ export const db = {
         },
         "lInXZ6I3u_I": {
             "title": "Not all your Atoms are Stardust",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/lInXZ6I3u_I/maxresdefault.jpg",
             "channelId": "ScienceAsylum",
             "channelName": "The Science Asylum",
@@ -1172,7 +1082,6 @@ export const db = {
         },
         "JkPpArU5RPQ": {
             "title": "This Christian Physicist Changed Biology Forever",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/JkPpArU5RPQ/maxresdefault.jpg",
             "channelId": "ScienceAsylum",
             "channelName": "The Science Asylum",
@@ -1185,7 +1094,6 @@ export const db = {
         },
         "_dQ1pL49EOI": {
             "title": "The Actual Reason Your New Year's Resolutions FAIL",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/_dQ1pL49EOI/maxresdefault.jpg",
             "channelId": "lifenoggin",
             "channelName": "Life Noggin",
@@ -1198,7 +1106,6 @@ export const db = {
         },
         "_21IAHgkerU": {
             "title": "Are You Having Too Much Caffeine? \u2615\u26a0\ufe0f",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/_21IAHgkerU/maxresdefault.jpg",
             "channelId": "lifenoggin",
             "channelName": "Life Noggin",
@@ -1211,7 +1118,6 @@ export const db = {
         },
         "LKPwKFigF8U": {
             "title": "Why Boredom is Good For You",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/LKPwKFigF8U/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -1224,7 +1130,6 @@ export const db = {
         },
         "lGJEihgN4OU": {
             "title": "The Rainiest Place On Earth",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/lGJEihgN4OU/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -1237,7 +1142,6 @@ export const db = {
         },
         "yelEaTDOO2Q": {
             "title": "Intense Bighorn Sheep Battle | Mountains: Life Above The Clouds | BBC Earth",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/yelEaTDOO2Q/maxresdefault.jpg",
             "channelId": "bbcearth",
             "channelName": "BBC Earth",
@@ -1250,7 +1154,6 @@ export const db = {
         },
         "oaJIkGhAf7U": {
             "title": "Discovering the Strange and Unusual Creatures of the Deep Ocean | BBC Earth",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/oaJIkGhAf7U/maxresdefault.jpg",
             "channelId": "bbcearth",
             "channelName": "BBC Earth",
@@ -1263,7 +1166,6 @@ export const db = {
         },
         "GDlkCkcIqTs": {
             "title": "Introducing iPhone 16 | Apple",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/GDlkCkcIqTs/maxresdefault.jpg",
             "channelId": "Apple",
             "channelName": "Apple",
@@ -1276,7 +1178,6 @@ export const db = {
         },
         "IHTT_7AjoU8": {
             "title": "The new MacBook Pro | Built for Apple Intelligence | Apple",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/IHTT_7AjoU8/maxresdefault.jpg",
             "channelId": "Apple",
             "channelName": "Apple",
@@ -1289,7 +1190,6 @@ export const db = {
         },
         "SAb4zRyxrD4": {
             "title": "Samsung Galaxy S25/Ultra Impressions: What Happened?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/SAb4zRyxrD4/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -1302,7 +1202,6 @@ export const db = {
         },
         "az5QL_NLBvg": {
             "title": "I Tried Samsung's Secret Android XR Headset!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/az5QL_NLBvg/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -1315,7 +1214,6 @@ export const db = {
         },
         "WL4RWNptU_Y": {
             "title": "I tested the FIRST EVER limited Edition iPhone!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/WL4RWNptU_Y/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -1328,7 +1226,6 @@ export const db = {
         },
         "mk1h-ku4GhY": {
             "title": "I built the DREAM Gaming Setup!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/mk1h-ku4GhY/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -1341,7 +1238,6 @@ export const db = {
         },
         "xVEtLb8Wx5M": {
             "title": "I tested the $2000 RTX 5090 Graphics Card",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/xVEtLb8Wx5M/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -1354,7 +1250,6 @@ export const db = {
         },
         "-a6uTasFGAI": {
             "title": "Nothing Phone 3a Pro Unboxing ! *Best Phone Under \u20b930K ?*",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/-a6uTasFGAI/maxresdefault.jpg",
             "channelId": "TechBurner",
             "channelName": "Tech Burner",
@@ -1367,7 +1262,6 @@ export const db = {
         },
         "XG39r3kqPAM": {
             "title": "Samsung Galaxy S25 Series is Here - CRAZIEST AI Yet !",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/XG39r3kqPAM/maxresdefault.jpg",
             "channelId": "TechBurner",
             "channelName": "Tech Burner",
@@ -1380,7 +1274,6 @@ export const db = {
         },
         "ZizbGaSnIUE": {
             "title": "Introducing Phone (3a) Series | Nothing TV",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/ZizbGaSnIUE/maxresdefault.jpg",
             "channelId": "NothingTechnology",
             "channelName": "Nothing",
@@ -1393,7 +1286,6 @@ export const db = {
         },
         "TjCrI0XogDs": {
             "title": "I Tried \u20b92,00,000 Gaming PC ! *Legion Tower 5i Gen 8*",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/TjCrI0XogDs/maxresdefault.jpg",
             "channelId": "TechBurner",
             "channelName": "Tech Burner",
@@ -1406,7 +1298,6 @@ export const db = {
         },
         "I-j_SMn8RRc": {
             "title": "Meet iPhone 16e | Apple",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/I-j_SMn8RRc/maxresdefault.jpg",
             "channelId": "Apple",
             "channelName": "Apple",
@@ -1419,7 +1310,6 @@ export const db = {
         },
         "UjmaxCyJBc4": {
             "title": "Introducing the all-new iPad Pro | Apple",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/UjmaxCyJBc4/maxresdefault.jpg",
             "channelId": "Apple",
             "channelName": "Apple",
@@ -1432,7 +1322,6 @@ export const db = {
         },
         "864HSWFIBY4": {
             "title": "What\u2019s The Difference Between A Server and a PC?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/864HSWFIBY4/maxresdefault.jpg",
             "channelId": "techquickie",
             "channelName": "Techquickie",
@@ -1445,7 +1334,6 @@ export const db = {
         },
         "y73SPpeDz2E": {
             "title": "What is YouTube 1080p Premium?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/y73SPpeDz2E/maxresdefault.jpg",
             "channelId": "techquickie",
             "channelName": "Techquickie",
@@ -1458,7 +1346,6 @@ export const db = {
         },
         "9zCt0Iuo_1c": {
             "title": "When To Game Beyond 4K - And When Not To",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/9zCt0Iuo_1c/maxresdefault.jpg",
             "channelId": "techquickie",
             "channelName": "Techquickie",
@@ -1471,7 +1358,6 @@ export const db = {
         },
         "JjpGvjy0Gxk": {
             "title": "Introducing the all-new Mac mini | Apple",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/JjpGvjy0Gxk/maxresdefault.jpg",
             "channelId": "Apple",
             "channelName": "Apple",
@@ -1484,7 +1370,6 @@ export const db = {
         },
         "z19HM7ANZlo": {
             "title": "The M4 Mac Mini is Incredible!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/z19HM7ANZlo/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -1497,7 +1382,6 @@ export const db = {
         },
         "hFMaT9oRbs4": {
             "title": "How to measure the universe | The Cosmic Distance Ladder Part 2",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/hFMaT9oRbs4/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1510,7 +1394,6 @@ export const db = {
         },
         "YdOXS_9_P4U": {
             "title": "Terence Tao on how we measure the cosmos | The Distance Ladder Part 1",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/YdOXS_9_P4U/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1523,7 +1406,6 @@ export const db = {
         },
         "IQqtsm-bBRU": {
             "title": "This open problem taught me what topology is",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/IQqtsm-bBRU/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1536,7 +1418,6 @@ export const db = {
         },
         "piJkuavhV50": {
             "title": "Five puzzles for thinking outside the box",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/piJkuavhV50/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1549,7 +1430,6 @@ export const db = {
         },
         "rbu7Zu5X1zI": {
             "title": "How I animate 3Blue1Brown | A Manim demo with Ben Sparks",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/rbu7Zu5X1zI/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1562,7 +1442,6 @@ export const db = {
         },
         "EmKQsSDlaa4": {
             "title": "How are holograms possible?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/EmKQsSDlaa4/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1575,7 +1454,6 @@ export const db = {
         },
         "9-Jl0dxWQs8": {
             "title": "How might LLMs store facts | DL7",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/9-Jl0dxWQs8/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1588,7 +1466,6 @@ export const db = {
         },
         "W3I3kAg2J7w": {
             "title": "What \"Follow Your Dreams\" Misses | Harvey Mudd Commencement Speech 2024",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/W3I3kAg2J7w/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1601,7 +1478,6 @@ export const db = {
         },
         "eMlx5fFNoYc": {
             "title": "Attention in transformers, step-by-step | DL6",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/eMlx5fFNoYc/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1614,7 +1490,6 @@ export const db = {
         },
         "wjZofJX0v4M": {
             "title": "Transformers (how LLMs work) explained visually | DL5",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/wjZofJX0v4M/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1627,7 +1502,6 @@ export const db = {
         },
         "Cz4Q4QOuoo8": {
             "title": "Answering viewer questions about refraction",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Cz4Q4QOuoo8/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1640,7 +1514,6 @@ export const db = {
         },
         "KTzGBJPuJwM": {
             "title": "But why would light \"slow down\"? | Visualizing Feynman's lecture on the refractive index",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/KTzGBJPuJwM/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1653,7 +1526,6 @@ export const db = {
         },
         "6a1fLEToyvU": {
             "title": "25 Math explainers you may enjoy | SoME3 results",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/6a1fLEToyvU/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1666,7 +1538,6 @@ export const db = {
         },
         "aXRTczANuIs": {
             "title": "How wiggling charges give rise to light",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/aXRTczANuIs/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1679,7 +1550,6 @@ export const db = {
         },
         "QCX62YJCmGk": {
             "title": "This tests your understanding of light | The barber pole effect",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/QCX62YJCmGk/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1692,7 +1562,6 @@ export const db = {
         },
         "d_qvLDhkg00": {
             "title": "A pretty reason why Gaussian + Gaussian = Gaussian",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/d_qvLDhkg00/maxresdefault.jpg",
             "channelId": "3blue1brown",
             "channelName": "3Blue1Brown",
@@ -1705,7 +1574,6 @@ export const db = {
         },
         "VXG_ky8GUGQ": {
             "title": "I Made a GIANT Mario Kart Circuit!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/VXG_ky8GUGQ/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1718,7 +1586,6 @@ export const db = {
         },
         "XVcX8I1oiww": {
             "title": "Can I Draw VILLAINS from Memory?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/XVcX8I1oiww/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1731,7 +1598,6 @@ export const db = {
         },
         "t7BqYd2WuQg": {
             "title": "I tried to D&D CLASS-SWAP Characters!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/t7BqYd2WuQg/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1744,7 +1610,6 @@ export const db = {
         },
         "YdAsH-4RDME": {
             "title": "I INVENTED Creepypastas from RANDOM Prompts?!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/YdAsH-4RDME/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1757,7 +1622,6 @@ export const db = {
         },
         "hVmRWCgeu90": {
             "title": "Can I Guess Characters based ONLY on their COLORS?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/hVmRWCgeu90/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1770,7 +1634,6 @@ export const db = {
         },
         "xbvYl0gsZ18": {
             "title": "THIS thing is supposed to improve my ART?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/xbvYl0gsZ18/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1783,7 +1646,6 @@ export const db = {
         },
         "Kf7aYk9sY3o": {
             "title": "I made a 3D PORTAL to a Bob Ross World!!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Kf7aYk9sY3o/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1796,7 +1658,6 @@ export const db = {
         },
         "rPq4Op0iRmQ": {
             "title": "I Remade CANCELLED Pok\u00e9mon!! - (Why were they DELETED?!)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/rPq4Op0iRmQ/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1809,7 +1670,6 @@ export const db = {
         },
         "ln7vtFnspV4": {
             "title": "Can I Draw Animals from Memory? - REALISM Challenge!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/ln7vtFnspV4/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1822,7 +1682,6 @@ export const db = {
         },
         "E_cCb6b2YS4": {
             "title": "I used EVERY VR ART app so you don't have to...",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/E_cCb6b2YS4/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1835,7 +1694,6 @@ export const db = {
         },
         "oeOpgi6YOUY": {
             "title": "I Drew CREEPYPASTAS (based on their descriptions...)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/oeOpgi6YOUY/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1848,7 +1706,6 @@ export const db = {
         },
         "wCDHu-VJT8o": {
             "title": "I Remade Harry Potter Monsters EXACTLY as Described in the Books...",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/wCDHu-VJT8o/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1861,7 +1718,6 @@ export const db = {
         },
         "F8-AV5RhPyo": {
             "title": "Unlocking the Secrets to PERFECT Resin Art...",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/F8-AV5RhPyo/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1874,7 +1730,6 @@ export const db = {
         },
         "MYHZi-M6G-Y": {
             "title": "I Draw Superheroes (but they're BROKE)",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/MYHZi-M6G-Y/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1887,7 +1742,6 @@ export const db = {
         },
         "MMGgAx06X5M": {
             "title": "I Turned Cheap Waterguns into DEVASTATING WEAPONS!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/MMGgAx06X5M/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1900,7 +1754,6 @@ export const db = {
         },
         "SbWeNN1-PJE": {
             "title": "I Painted POKEMON inside of Thrift Shop Art!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/SbWeNN1-PJE/maxresdefault.jpg",
             "channelId": "Jazza",
             "channelName": "Jazza",
@@ -1913,7 +1766,6 @@ export const db = {
         },
         "88yQTzlmsiA": {
             "title": "The Truth about Drone Deliveries!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/88yQTzlmsiA/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -1926,7 +1778,6 @@ export const db = {
         },
         "SUeQvl7IOV4": {
             "title": "Google Pixel 9A Impressions: One Great Spec!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/SUeQvl7IOV4/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -1939,7 +1790,6 @@ export const db = {
         },
         "Uwmp16aSgdk": {
             "title": "M4 Macbook Air Review: Too Easy!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Uwmp16aSgdk/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -1952,7 +1802,6 @@ export const db = {
         },
         "eRdMxQ1zVPo": {
             "title": "Nothing Phone 3a/Pro: Now Do a Flagship!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/eRdMxQ1zVPo/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -1965,7 +1814,6 @@ export const db = {
         },
         "NECBCxEFMCo": {
             "title": "Are Foldables Cooked?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/NECBCxEFMCo/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -1978,7 +1826,6 @@ export const db = {
         },
         "FmmUAhE6MxU": {
             "title": "Every Phone Should Copy This!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/FmmUAhE6MxU/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -1991,7 +1838,6 @@ export const db = {
         },
         "6zHFNjK-QiQ": {
             "title": "PowerBeats Pro 2 Review: Still Better than AirPods!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/6zHFNjK-QiQ/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -2004,7 +1850,6 @@ export const db = {
         },
         "a4NJNdHqs_I": {
             "title": "Samsung Galaxy S25 Ultra Review: The Tables Have Turned!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/a4NJNdHqs_I/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -2017,7 +1862,6 @@ export const db = {
         },
         "-kuG6RgL32c": {
             "title": "OnePlus 13 Review: The Bar Has Been Set!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/-kuG6RgL32c/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -2030,7 +1874,6 @@ export const db = {
         },
         "LCpm7cNQ5Vo": {
             "title": "WTF Happened in 2024?!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/LCpm7cNQ5Vo/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -2043,7 +1886,6 @@ export const db = {
         },
         "E76CUtSHMrU": {
             "title": "Smartphone Awards 2024!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/E76CUtSHMrU/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -2056,7 +1898,6 @@ export const db = {
         },
         "OY2x0TyKzIQ": {
             "title": "This Video is AI Generated! SORA Review",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/OY2x0TyKzIQ/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -2069,7 +1910,6 @@ export const db = {
         },
         "EFiHm6WjhNA": {
             "title": "I Tried the Weirdest \u201cOpen\u201d Headphones",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/EFiHm6WjhNA/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -2082,7 +1922,6 @@ export const db = {
         },
         "haDjmBT9tu4": {
             "title": "An Honest Review of Apple Intelligence... So Far",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/haDjmBT9tu4/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -2095,7 +1934,6 @@ export const db = {
         },
         "9HQx5pgUoiY": {
             "title": "M4 Max MacBook Pro: I'm Convinced!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/9HQx5pgUoiY/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -2108,7 +1946,6 @@ export const db = {
         },
         "S6qznDLlHRQ": {
             "title": "How My Video Gear is Changing!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/S6qznDLlHRQ/maxresdefault.jpg",
             "channelId": "mkbhd",
             "channelName": "Marques Brownlee",
@@ -2121,7 +1958,6 @@ export const db = {
         },
         "HvnY2IWoAGI": {
             "title": "The 2 Best Phone Cameras in the World.",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/HvnY2IWoAGI/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2134,7 +1970,6 @@ export const db = {
         },
         "78cX0yLJPMw": {
             "title": "I bought the Ultimate Survival Tech",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/78cX0yLJPMw/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2147,7 +1982,6 @@ export const db = {
         },
         "DnY6J7YAsGg": {
             "title": "Oppo Find N5 Review - Samsung just got Demolished!?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/DnY6J7YAsGg/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2160,7 +1994,6 @@ export const db = {
         },
         "5VMckmQneCk": {
             "title": "Samsung S25 Ultra Review - Things just got Messy.",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/5VMckmQneCk/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2173,7 +2006,6 @@ export const db = {
         },
         "undwfOwhVsw": {
             "title": "Samsung S25 Ultra vs iPhone 16 Pro Max Camera Battle",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/undwfOwhVsw/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2186,7 +2018,6 @@ export const db = {
         },
         "ShJw2I8cgBE": {
             "title": "Samsung S25 Ultra Hands On - The New Era",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/ShJw2I8cgBE/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2199,7 +2030,6 @@ export const db = {
         },
         "V8e_Ocuc5gw": {
             "title": "I built the Dream Studio",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/V8e_Ocuc5gw/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2212,7 +2042,6 @@ export const db = {
         },
         "epWcUV1F9CM": {
             "title": "I built the Dream Smart Garden",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/epWcUV1F9CM/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2225,7 +2054,6 @@ export const db = {
         },
         "L190UWL934c": {
             "title": "I built the Dream Smart Home Gym",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/L190UWL934c/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2238,7 +2066,6 @@ export const db = {
         },
         "LWEDJ_YgEaA": {
             "title": "I built the Dream Smart Kitchen",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/LWEDJ_YgEaA/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2251,7 +2078,6 @@ export const db = {
         },
         "-hlwlML6pEg": {
             "title": "The INSANE Tech behind Beast Games",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/-hlwlML6pEg/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2264,7 +2090,6 @@ export const db = {
         },
         "rj-db6BAEg8": {
             "title": "I tested the 14 most OVERKILL Smartphone Gadgets",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/rj-db6BAEg8/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2277,7 +2102,6 @@ export const db = {
         },
         "b40BxyZGW2I": {
             "title": "I built the Dream Smart Bedroom!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/b40BxyZGW2I/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2290,7 +2114,6 @@ export const db = {
         },
         "16w6qzwN_3Q": {
             "title": "I built the Dream Office Setup!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/16w6qzwN_3Q/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2303,7 +2126,6 @@ export const db = {
         },
         "6jVUSsByq9Y": {
             "title": "The BEST Smartphones of 2024!",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/6jVUSsByq9Y/maxresdefault.jpg",
             "channelId": "Mrwhosetheboss",
             "channelName": "Mrwhosetheboss",
@@ -2316,7 +2138,6 @@ export const db = {
         },
         "BLCOufzhaMY": {
             "title": "We Made It This Far",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/BLCOufzhaMY/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2329,7 +2150,6 @@ export const db = {
         },
         "8H6eLTcIWEU": {
             "title": "My Thoughts on Tattoos",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/8H6eLTcIWEU/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2342,7 +2162,6 @@ export const db = {
         },
         "G4iwifB0bKg": {
             "title": "I Miss YouTube Rewinds",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/G4iwifB0bKg/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2355,7 +2174,6 @@ export const db = {
         },
         "6ecTO22ulRM": {
             "title": "Animation Before Computers",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/6ecTO22ulRM/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2368,7 +2186,6 @@ export const db = {
         },
         "sKcrsdvlBzE": {
             "title": "The Comment Section",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/sKcrsdvlBzE/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2381,7 +2198,6 @@ export const db = {
         },
         "p2tPWRZcJmw": {
             "title": "Boys Night",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/p2tPWRZcJmw/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2394,7 +2210,6 @@ export const db = {
         },
         "nEQHiJVH79o": {
             "title": "My Thoughts on Bluey",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/nEQHiJVH79o/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2407,7 +2222,6 @@ export const db = {
         },
         "KCHT6a53OqY": {
             "title": "Why I Love Comics",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/KCHT6a53OqY/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2420,7 +2234,6 @@ export const db = {
         },
         "WhaTru5czpA": {
             "title": "My Thoughts on Gambling",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/WhaTru5czpA/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2433,7 +2246,6 @@ export const db = {
         },
         "Xm-yXsm23_c": {
             "title": "The Internet Changed Me",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Xm-yXsm23_c/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2446,7 +2258,6 @@ export const db = {
         },
         "iYJr9pZxSPM": {
             "title": "Welcome to the Harvest",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/iYJr9pZxSPM/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2459,7 +2270,6 @@ export const db = {
         },
         "InAi4kLKtGw": {
             "title": "Oddballs \u2502 FULL EPISODE \u2502 Raising Toasty",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/InAi4kLKtGw/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2472,7 +2282,6 @@ export const db = {
         },
         "lW_-zpKU-cU": {
             "title": "Pitching a Show",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/lW_-zpKU-cU/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2485,7 +2294,6 @@ export const db = {
         },
         "aeMDgX9jga4": {
             "title": "Oddballs \u2502 Official Trailer \u2502 My Netflix Show",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/aeMDgX9jga4/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2498,7 +2306,6 @@ export const db = {
         },
         "-t8DRaf6l7A": {
             "title": "Getting Punched for Free",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/-t8DRaf6l7A/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2511,7 +2318,6 @@ export const db = {
         },
         "M07vdxm262M": {
             "title": "WE MADE A NETFLIX SHOW",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/M07vdxm262M/maxresdefault.jpg",
             "channelId": "theodd1sout",
             "channelName": "TheOdd1sOut",
@@ -2524,7 +2330,6 @@ export const db = {
         },
         "20vUNgRdB4o": {
             "title": "Why Did The Mars Helicopter Disappear?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/20vUNgRdB4o/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2537,7 +2342,6 @@ export const db = {
         },
         "qJZ1Ez28C-A": {
             "title": "Something Strange Happens When You Trust Quantum Mechanics",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/qJZ1Ez28C-A/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2550,7 +2354,6 @@ export const db = {
         },
         "dFVrncgIvos": {
             "title": "The Google Interview Question Everyone Gets Wrong",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/dFVrncgIvos/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2563,7 +2366,6 @@ export const db = {
         },
         "P_fHJIYENdI": {
             "title": "The Most Useful Thing AI Has Ever Done",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/P_fHJIYENdI/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2576,7 +2378,6 @@ export const db = {
         },
         "88bMVbx1dzM": {
             "title": "What if you just keep zooming in?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/88bMVbx1dzM/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2589,7 +2390,6 @@ export const db = {
         },
         "Ni82f1-cAXg": {
             "title": "Why Super Glue Is Perfect For Gluing Skin",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Ni82f1-cAXg/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2602,7 +2402,6 @@ export const db = {
         },
         "H6q6pYZ9Fho": {
             "title": "Why Is MIT Making Robot Insects?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/H6q6pYZ9Fho/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2615,7 +2414,6 @@ export const db = {
         },
         "Rdj5-6t6QI8": {
             "title": "Why Don\u2019t Railroads Need Expansion Joints?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Rdj5-6t6QI8/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2628,7 +2426,6 @@ export const db = {
         },
         "zaXKQ70q4KQ": {
             "title": "The Man Who Took LSD and Changed The World",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/zaXKQ70q4KQ/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2641,7 +2438,6 @@ export const db = {
         },
         "rjXZzB5bUAo": {
             "title": "This Is the Oldest, Weirdest Instrument On Earth",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/rjXZzB5bUAo/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2654,7 +2450,6 @@ export const db = {
         },
         "IFaAjR_RRJs": {
             "title": "34 Years Of Strandbeest Evolution",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/IFaAjR_RRJs/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2667,7 +2462,6 @@ export const db = {
         },
         "24GfgNtnjXc": {
             "title": "Why no two people see the same rainbow",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/24GfgNtnjXc/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2680,7 +2474,6 @@ export const db = {
         },
         "zTDFhWWPZ4Q": {
             "title": "What Actually Happened To Amelia Earhart?",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/zTDFhWWPZ4Q/sddefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2693,7 +2486,6 @@ export const db = {
         },
         "2oDXbFcHliM": {
             "title": "The Most Important Material Ever Made",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/2oDXbFcHliM/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2706,7 +2498,6 @@ export const db = {
         },
         "zB_OApdxcno": {
             "title": "On These Questions, Smarter People Do Worse",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/zB_OApdxcno/sddefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -2719,7 +2510,6 @@ export const db = {
         },
         "Q10_srZ-pbs": {
             "title": "The Closest We\u2019ve Come to a Theory of Everything",
-            "url": "",
             "thumbnail": "https://i.ytimg.com/vi/Q10_srZ-pbs/maxresdefault.jpg",
             "channelId": "veritasium",
             "channelName": "Veritasium",
@@ -3486,7 +3276,7 @@ export const db = {
     "users": {
         "helloworld": {
             "name": "Hello World",
-            "subscriptions": ["3blue1brown", "Jazza", "mkbhd", "Mrwhosetheboss", "theodd1sout", "veritasium"]
+            "subscribedChannels": ["3blue1brown", "Jazza", "mkbhd", "Mrwhosetheboss", "theodd1sout", "veritasium"]
         }
     }
 }

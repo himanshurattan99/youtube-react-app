@@ -17,10 +17,10 @@ const Home = ({ sidebarExpanded = true }) => {
         // Subscription feed: Get videos from user's subscribed channels
         if (location.pathname === '/subscriptions') {
             // Get array of channel IDs that the user is subscribed to
-            const userSubscriptions = db.users["helloworld"].subscriptions
+            const userSubscribedChannels = db.users["helloworld"].subscribedChannels
 
             // Get video IDs from all subscribed channels, then create and sort a videos object by upload date
-            const videoIds = userSubscriptions.flatMap((element) => {
+            const videoIds = userSubscribedChannels.flatMap((element) => {
                 return db.channels[element].videos
             })
             const sortedSubscriptionVideos = Object.fromEntries(

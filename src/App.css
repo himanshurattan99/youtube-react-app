@@ -16,4 +16,8 @@
             scrollbar-width: none;
         }
     }
+
+    .scrollbar-hidden {
+        scrollbar-width: none;
+    }
 }

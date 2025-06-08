@@ -29,11 +29,11 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
   // Load user subscriptions from database on component mount
   useEffect(() => {
     // Get user's subscription list
-    const userSubscriptions = db.users["helloworld"].subscriptions
+    const userSubscribedChannels = db.users["helloworld"].subscribedChannels
 
     // Filter to include only user's subscribed channels
     const filteredChannels = {}
-    userSubscriptions.forEach((channelId) => {
+    userSubscribedChannels.forEach((channelId) => {
       if (db.channels[channelId]) {
         filteredChannels[channelId] = db.channels[channelId]
       }
@@ -121,8 +121,8 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
             )
           })}
 
-          <button onClick={toggleShowAllChannels} className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
-            <img src={(showAllChannels) ? collapse_icon : expand_icon} className="w-6 rounded-full" alt="" />
+          <button onClick={toggleShowAllChannels} className="group w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
+            <img src={(showAllChannels) ? collapse_icon : expand_icon} className="w-6 rounded-full transition-transform duration-300 ease-in-out group-hover:rotate-360" alt="" />
             {(isLabelVisible) && <span className="truncate">{(showAllChannels) ? 'Show Less' : 'Show More'}</span>}
           </button>
         </div>

@@ -12,7 +12,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // Get channel ID from URL params
     const { channelId } = useParams()
     // Get array of channel IDs that the user is subscribed to
-    const userSubscriptions = db.users["helloworld"].subscriptions
+    const userSubscribedChannels = db.users["helloworld"].subscribedChannels
     // Check if current device is mobile
     const isMobileDevice = (deviceType === 'mobile')
 
@@ -85,8 +85,8 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                             </div>
 
                             {/* Subscribe button - shows different states based on subscription status */}
-                            <button type="button" className={`py-1 md:py-2 px-3 md:px-4 ${userSubscriptions.includes(channelId) ? 'bg-[#2e2e2e] hover:bg-[#3c3c3c]' : 'bg-slate-100 text-[#181818]'} rounded-3xl font-medium self-start cursor-pointer`}>
-                                {userSubscriptions.includes(channelId) ?
+                            <button type="button" className={`py-1 md:py-2 px-3 md:px-4 ${userSubscribedChannels.includes(channelId) ? 'bg-[#2e2e2e] hover:bg-[#3c3c3c]' : 'bg-slate-100 text-[#181818]'} rounded-3xl font-medium self-start cursor-pointer`}>
+                                {userSubscribedChannels.includes(channelId) ?
                                     'Subscribed' : 'Subscribe'
                                 }
                             </button>

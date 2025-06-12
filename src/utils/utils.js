@@ -55,9 +55,25 @@ const removeDuplicateWords = (text) => {
     return uniqueWords.join(' ')
 }
 
-// Clean search input by removing duplicates and stop words, returns lowercase string
-export const normalizeQuery = (searchInput) => {
-    return removeStopWords(removeDuplicateWords(searchInput))
+// Clean search input by removing punctuations, duplicates and stop words, returns lowercase string
+export const normalizeText = (text) => {
+    if (!text) return ''
+
+    let normalizedText = text
+        .toLowerCase()
+        // Handle contractions by removing apostrophes and following letters
+        .replace(/'\w*/g, '')
+        // Convert underscores to spaces
+        .replace(/_/g, ' ')
+        // Remove all punctuation and special characters, keep only letters, numbers, spaces
+        .replace(/[^\w\s]/g, ' ')
+        // Replace multiple spaces with single space
+        .replace(/\s+/g, ' ')
+        .trim()
+
+    normalizedText = removeStopWords(removeDuplicateWords(normalizedText))
+
+    return normalizedText
 }
 
 // Convert ISO duration format to HH:MM:SS format
@@ -180,7 +196,7 @@ export const getRandomVideos = (videos, count = 12) => {
 // Calculate relevance score for a video based on search input
 export const getRelevanceScore = (video, searchInput) => {
     // Normalize search input and split it into individual words
-    const normalizedQuery = normalizeQuery(searchInput)
+    const normalizedQuery = normalizeText(searchInput)
     const normalizedQueryWords = normalizedQuery.split(/\s+/)
 
     const { title, channelName, description, category } = video
@@ -196,10 +212,10 @@ export const getRelevanceScore = (video, searchInput) => {
     let score = 0
     // Add score for each word found in video properties
     normalizedQueryWords.forEach((word) => {
-        score += containsWord(title.toLowerCase(), word) * relevanceWeights.titleMatch +
-            containsWord(channelName.toLowerCase(), word) * relevanceWeights.channelNameMatch +
-            containsWord(category.toLowerCase(), word) * relevanceWeights.categoryMatch +
-            containsWord(description.toLowerCase(), word) * relevanceWeights.descriptionMatch
+        score += containsWord(normalizeText(title), word) * relevanceWeights.titleMatch +
+            containsWord(normalizeText(channelName), word) * relevanceWeights.channelNameMatch +
+            containsWord(normalizeText(category), word) * relevanceWeights.categoryMatch +
+            containsWord(normalizeText(description), word) * relevanceWeights.descriptionMatch
     })
     // Bonus score if the entire search input is found in the title
     if (title.toLowerCase().includes(searchInput.trim().toLowerCase())) {
@@ -212,19 +228,19 @@ export const getRelevanceScore = (video, searchInput) => {
 // Filter videos that match the normalized search query in title, description, category or channel name
 export const filterVideos = (videos, searchInput) => {
     // Normalize search input and split it into individual words
-    const normalizedQuery = normalizeQuery(searchInput)
+    const normalizedQuery = normalizeText(searchInput)
     const normalizedQueryWords = normalizedQuery.split(/\s+/)
 
     const filteredVideos = Object.fromEntries(
         Object.entries(videos)
             .filter(([_, videoData]) => {
                 const { title, description, category, channelName } = videoData
-                // Convert all searchable fields to lowercase
+                // Normalize all searchable fields
                 const videoFields = [
-                    title.toLowerCase(),
-                    description.toLowerCase(),
-                    category.toLowerCase(),
-                    channelName.toLowerCase()
+                    normalizeText(title),
+                    normalizeText(description),
+                    normalizeText(category),
+                    normalizeText(channelName)
                 ]
 
                 // Check if any normalized query word is found in at least one of the fields

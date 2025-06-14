@@ -4,9 +4,17 @@ const truncateDecimal = (value, decimalPlaces) => {
     return (Math.floor(value * factor) / factor).toString()
 }
 
-// Check if a word exists in the given text (returns 1 if found, else 0)
+// Checks if text contains the specified word as a whole word (case-insensitive)
 const containsWord = (text, word) => {
-    return (text.includes(word)) ? 1 : 0
+    const textWords = text.toLowerCase().split(/\s+/)
+
+    for (const w of textWords) {
+        if (w === word.trim().toLowerCase()) {
+            return true
+        }
+    }
+
+    return false
 }
 
 // Capitalize the first letter of a given string
@@ -245,7 +253,7 @@ export const filterVideos = (videos, searchInput) => {
 
                 // Check if any normalized query word is found in at least one of the fields
                 return normalizedQueryWords.some((word) =>
-                    videoFields.some((field) => field.includes(word))
+                    videoFields.some((field) => containsWord(field, word))
                 )
             })
     )

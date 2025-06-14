@@ -3,7 +3,7 @@ import { db } from '../data/db.js'
 import { useParams, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 
-const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
+const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // State for search results videos, channel data, sorting option and sort direction
     const [videos, setVideos] = useState({})
     const [channels, setChannels] = useState("")
@@ -45,35 +45,42 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                 <div className="p-3 lg:p-6 flex flex-col gap-4">
                     {/* Show message when no videos match the search */}
                     {(Object.entries(videos).length === 0) &&
-                        <div className="text-lg font-medium">No videos found !!!</div>
+                        <div className="text-lg font-medium">
+                            {(videoUtils.normalizeText(searchInput) === '') ?
+                                'Oops! That was too vague - try keywords like video titles, topics, or creator names'
+                                : 'Oops! No videos found - try different keywords!'
+                            }
+                        </div>
                     }
 
                     {/* Videos sorting controls */}
-                    <div className="flex gap-3 overflow-x-auto scrollbar-hidden">
-                        <button onClick={() => setVideoSort("relevance")} type="button" className={`py-1 px-3 ${(videoSort === "relevance") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
-                            Relevance
-                        </button>
+                    {(Object.entries(videos).length !== 0) &&
+                        <div className="flex gap-3 overflow-x-auto scrollbar-hidden">
+                            <button onClick={() => setVideoSort("relevance")} type="button" className={`py-1 px-3 ${(videoSort === "relevance") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                                Relevance
+                            </button>
 
-                        <button onClick={() => setVideoSort("views")} type="button" className={`py-1 px-3 ${(videoSort === "views") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
-                            Views
-                        </button>
+                            <button onClick={() => setVideoSort("views")} type="button" className={`py-1 px-3 ${(videoSort === "views") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                                Views
+                            </button>
 
-                        <button onClick={() => setVideoSort("duration")} type="button" className={`py-1 px-3 ${(videoSort === "duration") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
-                            Duration
-                        </button>
+                            <button onClick={() => setVideoSort("duration")} type="button" className={`py-1 px-3 ${(videoSort === "duration") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                                Duration
+                            </button>
 
-                        <button onClick={() => setVideoSort("likes")} type="button" className={`py-1 px-3 ${(videoSort === "likes") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
-                            Likes
-                        </button>
+                            <button onClick={() => setVideoSort("likes")} type="button" className={`py-1 px-3 ${(videoSort === "likes") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                                Likes
+                            </button>
 
-                        <button onClick={() => setVideoSort("uploadDate")} type="button" className={`py-1 px-3 ${(videoSort === "uploadDate") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium whitespace-nowrap cursor-pointer`}>
-                            Upload Date
-                        </button>
+                            <button onClick={() => setVideoSort("uploadDate")} type="button" className={`py-1 px-3 ${(videoSort === "uploadDate") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium whitespace-nowrap cursor-pointer`}>
+                                Upload Date
+                            </button>
 
-                        <button onClick={() => toggleSortDirection()} type="button" className="py-1 px-3 bg-slate-100 hover:bg-[#2e2e2e] text-[#181818] hover:text-white rounded-md font-medium cursor-pointer">
-                            {sortDirection === "desc" ? 'Descending' : 'Ascending'}
-                        </button>
-                    </div>
+                            <button onClick={() => toggleSortDirection()} type="button" className="py-1 px-3 bg-slate-100 hover:bg-[#2e2e2e] text-[#181818] hover:text-white rounded-md font-medium cursor-pointer">
+                                {sortDirection === "desc" ? 'Descending' : 'Ascending'}
+                            </button>
+                        </div>
+                    }
 
                     {/* Display each video that matches the search criteria */}
                     {Object.entries(videos).map(([key, value]) => {
@@ -116,4 +123,4 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     )
 }
 
-export default Channel
+export default Search

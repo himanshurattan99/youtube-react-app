@@ -51,14 +51,23 @@ const Home = ({ sidebarExpanded = true }) => {
 
     return (
         <div className="h-[92.5vh] p-3 lg:p-6 bg-[#181818] text-slate-100 flex-1 overflow-y-auto scrollbar-thin-gray">
-            {/* Dynamic page title based on current route */}
-            <h2 className="mb-6 text-xl font-bold">
-                {(!(category) && location.pathname !== '/subscriptions') ?
-                    'Recommended'
-                    : (category) ?
-                        videoUtils.capitalize(category) : 'Subscriptions'
-                }
-            </h2>
+            {/* Show error message for empty categories or dynamic section heading based on current route */}
+            {(Object.entries(videos).length === 0 && category) ?
+                (
+                    <div className="text-lg font-medium">
+                        Oops! No videos found - try different categories!
+                    </div>
+                )
+                : (
+                    <h2 className="mb-6 text-xl font-bold">
+                        {(!(category) && location.pathname !== '/subscriptions') ?
+                            'Recommended'
+                            : (category) ?
+                                videoUtils.capitalize(category) : 'Subscriptions'
+                        }
+                    </h2>
+                )
+            }
 
             {/* Responsive video grid */}
             <div className={`grid grid-cols-1 sm:grid-cols-2 ${(sidebarExpanded) ? 'md:grid-cols-2' : 'md:grid-cols-3'} lg:grid-cols-4 gap-y-2 lg:gap-y-5 md:gap-x-3`}>
@@ -75,7 +84,7 @@ const Home = ({ sidebarExpanded = true }) => {
 
                             <div className="py-3 flex">
                                 {/* Channel avatar with link to channel page */}
-                                <Link to={`/${value.channelId}`}>
+                                <Link to={`/channel/${value.channelId}`}>
                                     <div className="w-7 shrink-0 transition-transform duration-300 ease-in-out hover:rotate-360">
                                         <img src={channels[value.channelId].avatar} className="rounded-full" alt="" />
                                     </div>
@@ -84,7 +93,7 @@ const Home = ({ sidebarExpanded = true }) => {
                                 {/* Video metadata with channel name link */}
                                 <div className="px-3 text-[#aaa] overflow-hidden">
                                     <h3 className="text-slate-100 font-medium leading-5 line-clamp-2">{value.title}</h3>
-                                    <Link to={`/${value.channelId}`}>
+                                    <Link to={`/channel/${value.channelId}`}>
                                         <div className="mt-1 text-sm hover:text-slate-100">{value.channelName}</div>
                                     </Link>
                                     <div className="mt-1 text-xs">{videoUtils.formatViewsCount(value.views)} views • {videoUtils.getRelativeUploadTime(value.uploadDate)}</div>

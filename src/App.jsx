@@ -6,6 +6,7 @@ import Sidebar from './Components/Sidebar'
 import Home from './Pages/Home.jsx'
 import Channel from './Pages/Channel.jsx'
 import Search from './Pages/Search.jsx'
+import Error from './Pages/Error.jsx'
 
 function App() {
   // State for sidebar expansion (expanded/collapsed), display mode (contract or slide) and tracking current device type
@@ -73,10 +74,14 @@ function App() {
 
         <Routes>
           <Route path='/' element={<Home sidebarExpanded={sidebarExpanded} />} />
-          <Route path='/explore/:category' element={<Home sidebarExpanded={sidebarExpanded} />} />
           <Route path='/subscriptions' element={<Home sidebarExpanded={sidebarExpanded} />} />
-          <Route path='/:channelId' element={<Channel sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
+          <Route path='/explore' element={<Error errorCode='400' errorMessage='Oops! Which category do you want to explore?' />} />
+          <Route path='/channel' element={<Error errorCode='400' errorMessage='Hey! Tell us which channel you want to visit!' />} />
+          <Route path='/search' element={<Error errorCode='400' errorMessage='Hey! You forgot to tell us what to search for!' />} />
+          <Route path='/explore/:category' element={<Home sidebarExpanded={sidebarExpanded} />} />
+          <Route path='/channel/:channelId' element={<Channel sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
           <Route path='/search/:searchInput' element={<Search sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
+          <Route path='*' element={<Error errorCode='404' errorMessage="Hmm, this page doesn't exist. Looks like you took a wrong turn!" />} />
         </Routes>
 
         {/* Semi-transparent overlay when sidebar is expanded in slide mode */}

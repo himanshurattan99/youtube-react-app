@@ -112,7 +112,7 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
 
           {Object.entries(channelsToDisplay).map(([key, value]) => {
             return (
-              <Link key={key} to={`/${key}`}>
+              <Link key={key} to={`/channel/${key}`}>
                 <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
                   <img src={value.avatar} className="w-6 rounded-full" alt="" />
                   {(isLabelVisible) && <span className="truncate">{value.name}</span>}

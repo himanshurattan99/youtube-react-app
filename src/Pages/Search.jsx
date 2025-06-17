@@ -102,7 +102,7 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                                             {(isMobileDevice) ? `${value.channelName} •` : ''} {videoUtils.formatViewsCount(value.views)} views • {videoUtils.getRelativeUploadTime(value.uploadDate)}
                                         </div>
                                     </div>
-                                    <Link className="flex" to={`/${value.channelId}`}>
+                                    <Link className="flex" to={`/channel/${value.channelId}`}>
                                         <div className="group flex items-center gap-2">
                                             <img src={channels[value.channelId].avatar} className="max-w-10 sm:w-7 rounded-full transition-transform duration-300 ease-in-out group-hover:rotate-360" alt="" />
                                             {(!isMobileDevice) &&

@@ -9,10 +9,13 @@ import Search from './Pages/Search.jsx'
 import Error from './Pages/Error.jsx'
 
 function App() {
-  // State for sidebar expansion (expanded/collapsed), display mode (contract or slide) and tracking current device type
+  // State for sidebar expansion (expanded/collapsed) and display mode (contract or slide)
   const [sidebarExpanded, setSidebarExpanded] = useState(true)
   const [sidebarMode, setSidebarMode] = useState('contract')
+  // State for tracking current device type
   const [deviceType, setDeviceType] = useState('')
+  // State to store random videos for Home page to persist across navigation
+  const [homeVideos, setHomeVideos] = useState({})
 
   // Toggle sidebar expanded/collapsed state
   const toggleSidebar = () => {
@@ -73,7 +76,7 @@ function App() {
         <Sidebar isExpanded={sidebarExpanded} sidebarMode={sidebarMode} deviceType={deviceType} />
 
         <Routes>
-          <Route path='/' element={<Home sidebarExpanded={sidebarExpanded} />} />
+          <Route path='/' element={<Home homeVideos={homeVideos} setHomeVideos={setHomeVideos} sidebarExpanded={sidebarExpanded} />} />
           <Route path='/subscriptions' element={<Home sidebarExpanded={sidebarExpanded} />} />
           <Route path='/explore' element={<Error errorCode='400' errorMessage='Oops! Which category do you want to explore?' />} />
           <Route path='/channel' element={<Error errorCode='400' errorMessage='Hey! Tell us which channel you want to visit!' />} />

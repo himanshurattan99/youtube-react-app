@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { db } from '../data/db.js'
 import { useParams } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
+import Error from './Error.jsx'
 
 const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // State for channel videos, channel info, and sorting option
@@ -18,6 +19,9 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
 
     // Load channel data and videos on component mount or when 'channelId' changes
     useEffect(() => {
+        // Exit early if channel doesn't exist
+        if (!db.channels[channelId]) return
+
         // Set initial channel data from database and default sort order to 'latest'
         setChannel(db.channels[channelId])
         setVideoSort("latest")
@@ -54,6 +58,13 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         )
         setVideos(sortedVideos)
     }, [videoSort])
+
+    // Show Error page when channel doesn't exist
+    if (!db.channels[channelId]) {
+        return (
+            <Error errorCode='404' errorMessage="Oops! This channel doesn't exist or went missing!"></Error>
+        )
+    }
 
     return (
         <>

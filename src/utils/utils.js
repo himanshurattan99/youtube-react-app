@@ -201,6 +201,36 @@ export const getRandomVideos = (videos, count = 12) => {
     return randomVideos
 }
 
+// Get subscription feed videos sorted by upload date
+export const getSubscriptionVideos = (videos, channels, users, user) => {
+    // Get array of channel IDs that the user is subscribed to
+    const userSubscribedChannels = users[user].subscribedChannels
+
+    // Get video IDs from all subscribed channels, then create and sort a videos object by upload date
+    const videoIds = userSubscribedChannels.flatMap((element) => {
+        return channels[element].videos
+    })
+    const sortedSubscriptionVideos = Object.fromEntries(
+        videoIds.map((videoId) => [videoId, videos[videoId]])
+            .sort(([, valueA], [, valueB]) =>
+                new Date(valueB.uploadDate) - new Date(valueA.uploadDate)
+            )
+    )
+
+    return sortedSubscriptionVideos
+}
+
+// Get random videos from a specific category
+export const getCategoryVideos = (videos, category) => {
+    const filteredVideos = Object.fromEntries(
+        Object.entries(videos).filter(([_, video]) => {
+            return video.category.toLowerCase() === category
+        })
+    )
+
+    return getRandomVideos(filteredVideos)
+}
+
 // Calculate relevance score for a video based on search input
 export const getRelevanceScore = (video, searchInput) => {
     // Normalize search input and split it into individual words

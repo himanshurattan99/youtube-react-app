@@ -3,7 +3,7 @@ import { db } from '../data/db.js'
 import { useParams, useLocation, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 
-const Home = ({ sidebarExpanded = true }) => {
+const Home = ({ homeVideos = {}, setHomeVideos, sidebarExpanded = true }) => {
     // State for videos and channels data
     const [videos, setVideos] = useState({})
     const [channels, setChannels] = useState({})
@@ -16,33 +16,25 @@ const Home = ({ sidebarExpanded = true }) => {
     useEffect(() => {
         // Subscription feed: Get videos from user's subscribed channels
         if (location.pathname === '/subscriptions') {
-            // Get array of channel IDs that the user is subscribed to
-            const userSubscribedChannels = db.users["helloworld"].subscribedChannels
-
-            // Get video IDs from all subscribed channels, then create and sort a videos object by upload date
-            const videoIds = userSubscribedChannels.flatMap((element) => {
-                return db.channels[element].videos
-            })
-            const sortedSubscriptionVideos = Object.fromEntries(
-                videoIds.map((videoId) => [videoId, db.videos[videoId]])
-                    .sort(([, valueA], [, valueB]) =>
-                        new Date(valueB.uploadDate) - new Date(valueA.uploadDate)
-                    )
-            )
+            const sortedSubscriptionVideos = videoUtils.getSubscriptionVideos(db.videos, db.channels, db.users, "helloworld")
             setVideos(sortedSubscriptionVideos)
         }
         // Home page: Display random video recommendations
         else if (!(category)) {
-            setVideos(videoUtils.getRandomVideos(db.videos))
+            // Generate new random videos or use cached ones
+            if (Object.entries(homeVideos).length === 0) {
+                const randomVideos = videoUtils.getRandomVideos(db.videos)
+                setVideos(randomVideos)
+                setHomeVideos(randomVideos)
+            }
+            else {
+                setVideos(homeVideos)
+            }
         }
         // Category page: Filter videos by selected category
         else {
-            const filteredVideos = Object.fromEntries(
-                Object.entries(db.videos).filter(([_, video]) => {
-                    return video.category.toLowerCase() === category
-                })
-            )
-            setVideos(videoUtils.getRandomVideos(filteredVideos))
+            const categoryVideos = videoUtils.getCategoryVideos(db.videos, category)
+            setVideos(categoryVideos)
         }
 
         // Load all channel data for displaying channel information with videos

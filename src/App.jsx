@@ -14,8 +14,9 @@ function App() {
   const [sidebarMode, setSidebarMode] = useState('contract')
   // State for tracking current device type
   const [deviceType, setDeviceType] = useState('')
-  // State to store random videos for Home page to persist across navigation
+  // States to store videos to persist across navigation (random home feed and categorized videos)
   const [homeVideos, setHomeVideos] = useState({})
+  const [categoryVideosCache, setCategoryVideosCache] = useState({})
 
   // Toggle sidebar expanded/collapsed state
   const toggleSidebar = () => {
@@ -81,7 +82,7 @@ function App() {
           <Route path='/explore' element={<Error errorCode='400' errorMessage='Oops! Which category do you want to explore?' />} />
           <Route path='/channel' element={<Error errorCode='400' errorMessage='Hey! Tell us which channel you want to visit!' />} />
           <Route path='/search' element={<Error errorCode='400' errorMessage='Hey! You forgot to tell us what to search for!' />} />
-          <Route path='/explore/:category' element={<Home sidebarExpanded={sidebarExpanded} />} />
+          <Route path='/explore/:category' element={<Home categoryVideosCache={categoryVideosCache} setCategoryVideosCache={setCategoryVideosCache} sidebarExpanded={sidebarExpanded} />} />
           <Route path='/channel/:channelId' element={<Channel sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
           <Route path='/search/:searchInput' element={<Search sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
           <Route path='*' element={<Error errorCode='404' errorMessage="Hmm, this page doesn't exist. Looks like you took a wrong turn!" />} />

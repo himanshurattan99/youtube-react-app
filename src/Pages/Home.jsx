@@ -3,7 +3,7 @@ import { db } from '../data/db.js'
 import { useParams, useLocation, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 
-const Home = ({ homeVideos = {}, setHomeVideos, sidebarExpanded = true }) => {
+const Home = ({ homeVideos = {}, setHomeVideos, categoryVideosCache = {}, setCategoryVideosCache, sidebarExpanded = true }) => {
     // State for videos and channels data
     const [videos, setVideos] = useState({})
     const [channels, setChannels] = useState({})
@@ -33,8 +33,18 @@ const Home = ({ homeVideos = {}, setHomeVideos, sidebarExpanded = true }) => {
         }
         // Category page: Filter videos by selected category
         else {
-            const categoryVideos = videoUtils.getCategoryVideos(db.videos, category)
-            setVideos(categoryVideos)
+            // Fetch new category videos or use cached ones
+            if (!categoryVideosCache[category] || Object.entries(categoryVideosCache[category]).length === 0) {
+                const categoryVideos = videoUtils.getCategoryVideos(db.videos, category)
+                setVideos(categoryVideos)
+                setCategoryVideosCache((prev) => ({
+                    ...prev,
+                    [category]: categoryVideos
+                }))
+            }
+            else {
+                setVideos(categoryVideosCache[category])
+            }
         }
 
         // Load all channel data for displaying channel information with videos

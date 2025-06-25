@@ -202,12 +202,9 @@ export const getRandomVideos = (videos, count = 12) => {
 }
 
 // Get subscription feed videos sorted by upload date
-export const getSubscriptionVideos = (videos, channels, users, user) => {
-    // Get array of channel IDs that the user is subscribed to
-    const userSubscribedChannels = users[user].subscribedChannels
-
+export const getSubscriptionVideos = (videos, channels, userSubscribedChannelIds) => {
     // Get video IDs from all subscribed channels, then create and sort a videos object by upload date
-    const videoIds = userSubscribedChannels.flatMap((element) => {
+    const videoIds = userSubscribedChannelIds.flatMap((element) => {
         return channels[element].videos
     })
     const sortedSubscriptionVideos = Object.fromEntries(
@@ -232,11 +229,7 @@ export const getCategoryVideos = (videos, category) => {
 }
 
 // Calculate relevance score for a video based on search input
-export const getRelevanceScore = (video, searchInput) => {
-    // Normalize search input and split it into individual words
-    const normalizedQuery = normalizeText(searchInput)
-    const normalizedQueryWords = normalizedQuery.split(/\s+/)
-
+export const getRelevanceScore = (video, searchInput, normalizedQueryWords) => {
     const { title, channelName, description, category } = video
     // Weights for different match types
     const relevanceWeights = {
@@ -297,13 +290,17 @@ export const sortVideos = (videos, videoSort, sortDirection = 'desc', searchInpu
         return videos
     }
 
+    // Normalize search input and split it into individual words
+    const normalizedQuery = normalizeText(searchInput)
+    const normalizedQueryWords = normalizedQuery.split(/\s+/)
+
     // Create a multiplier based on sort direction
     const sortFactor = (sortDirection === "desc") ? 1 : -1
 
     // Define different sorting functions
     const sortFunctions = {
         "relevance": ([, a], [, b]) => {
-            return sortFactor * (getRelevanceScore(b, searchInput) - getRelevanceScore(a, searchInput))
+            return sortFactor * (getRelevanceScore(b, searchInput, normalizedQueryWords) - getRelevanceScore(a, searchInput, normalizedQueryWords))
         },
         "views": ([, a], [, b]) => {
             return sortFactor * (b.views - a.views)

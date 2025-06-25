@@ -16,7 +16,10 @@ const Home = ({ homeVideos = {}, setHomeVideos, categoryVideosCache = {}, setCat
     useEffect(() => {
         // Subscription feed: Get videos from user's subscribed channels
         if (location.pathname === '/subscriptions') {
-            const sortedSubscriptionVideos = videoUtils.getSubscriptionVideos(db.videos, db.channels, db.users, "helloworld")
+            // Get array of channel IDs that the user is subscribed to
+            const userSubscribedChannelIds = db.users["helloworld"].subscribedChannels
+
+            const sortedSubscriptionVideos = videoUtils.getSubscriptionVideos(db.videos, db.channels, userSubscribedChannelIds)
             setVideos(sortedSubscriptionVideos)
         }
         // Home page: Display random video recommendations

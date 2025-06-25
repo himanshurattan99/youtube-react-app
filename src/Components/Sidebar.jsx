@@ -28,12 +28,12 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
 
   // Load user subscriptions from database on component mount
   useEffect(() => {
-    // Get user's subscription list
-    const userSubscribedChannels = db.users["helloworld"].subscribedChannels
+    // Get array of channel IDs that the user is subscribed to
+    const userSubscribedChannelIds = db.users["helloworld"].subscribedChannels
 
     // Filter to include only user's subscribed channels
     const filteredChannels = {}
-    userSubscribedChannels.forEach((channelId) => {
+    userSubscribedChannelIds.forEach((channelId) => {
       if (db.channels[channelId]) {
         filteredChannels[channelId] = db.channels[channelId]
       }

@@ -8,7 +8,7 @@ import Channel from './Pages/Channel.jsx'
 import Search from './Pages/Search.jsx'
 import Error from './Pages/Error.jsx'
 
-function App() {
+const App = () => {
   // State for sidebar expansion (expanded/collapsed) and display mode (contract or slide)
   const [sidebarExpanded, setSidebarExpanded] = useState(true)
   const [sidebarMode, setSidebarMode] = useState('contract')

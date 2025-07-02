@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { db } from '../data/db.js'
-import { Link } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import home_icon from '../assets/icons/home-icon.png'
 import subscriptions_icon from '../assets/icons/subscriptions-icon.png'
 import expand_icon from '../assets/icons/expand-icon.png'
@@ -20,6 +20,13 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
   const [showAllChannels, setShowAllChannels] = useState(false)
   // State to store subscribed channels currently displayed in sidebar
   const [channelsToDisplay, setChannelsToDisplay] = useState({})
+
+  // Extract current location from router state
+  const location = useLocation()
+  // Parse pathname to extract route parameters
+  const pathSegments = location.pathname.split('/').filter(Boolean)
+  const category = (pathSegments[0] === 'explore') ? pathSegments[1] : undefined
+  const channelId = (pathSegments[0] === 'channel') ? pathSegments[1] : undefined
 
   // Toggle between showing all subscribed channels or just the first 5
   const toggleShowAllChannels = () => {
@@ -76,14 +83,14 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
         {/* Home and Subscriptions section */}
         <div className="py-3 border-b border-b-[#3d3d3d]">
           <Link to={`/`}>
-            <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
+            <button className={`w-full p-2 ${(location.pathname === '/') ? 'bg-[#3c3c3c]' : 'hover:bg-[#3c3c3c]'} rounded-md flex gap-6 cursor-pointer`}>
               <img src={home_icon} className="w-6" alt="" />
               {(isLabelVisible) && <span className="truncate">Home</span>}
             </button>
           </Link>
 
           <Link to={`/subscriptions`}>
-            <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
+            <button className={`w-full p-2 ${(location.pathname === '/subscriptions') ? 'bg-[#3c3c3c]' : 'hover:bg-[#3c3c3c]'} rounded-md flex gap-6 cursor-pointer`}>
               <img src={subscriptions_icon} className="w-6" alt="" />
               {(isLabelVisible) && <span className="truncate">Subscriptions</span>}
             </button>
@@ -94,10 +101,10 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
         <div className="py-3 border-b border-b-[#3d3d3d]">
           {(isLabelVisible) && <h2 className={`p-2 text-lg font-medium`}>Explore</h2>}
 
-          {exploreItems.map(({ label, icon }, index) => {
+          {exploreItems.map(({ label, icon }) => {
             return (
               <Link key={label.toLowerCase()} to={`/explore/${label.toLowerCase()}`}>
-                <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
+                <button className={`w-full p-2 ${(category === label.toLowerCase()) ? 'bg-[#3c3c3c]' : 'hover:bg-[#3c3c3c]'} rounded-md flex gap-6 cursor-pointer`}>
                   <img src={icon} className="w-6" alt="" />
                   {(isLabelVisible) && <span className="truncate">{label}</span>}
                 </button>
@@ -113,7 +120,7 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
           {Object.entries(channelsToDisplay).map(([key, value]) => {
             return (
               <Link key={key} to={`/channel/${key}`}>
-                <button className="w-full p-2 hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer">
+                <button className={`w-full p-2 ${(channelId === key) ? 'bg-[#3c3c3c]' : 'hover:bg-[#3c3c3c]'} hover:bg-[#3c3c3c] rounded-md flex gap-6 cursor-pointer`}>
                   <img src={value.avatar} className="w-6 rounded-full" alt="" />
                   {(isLabelVisible) && <span className="truncate">{value.name}</span>}
                 </button>

@@ -326,3 +326,76 @@ export const sortVideos = (videos, videoSort, sortDirection = 'desc', searchInpu
 
     return sortedVideos
 }
+
+// Filter videos based on upload date
+export const filterByUploadDate = (videos, uploadDateFilter) => {
+    if (uploadDateFilter === "any") return videos
+
+    const now = new Date()
+
+    const filteredVideos = Object.fromEntries(
+        Object.entries(videos).filter(([_, video]) => {
+            // Calculate days since upload
+            const uploadDate = new Date(video.uploadDate)
+            const diffTime = now - uploadDate
+            const diffDays = diffTime / (1000 * 60 * 60 * 24)
+
+            // Define filter thresholds in days
+            const filterThresholds = {
+                lastHour: 1 / 24,
+                today: 1,
+                thisWeek: 7,
+                thisMonth: 30,
+                thisYear: 365
+            }
+
+            // Check if video falls within filter range
+            const maxDays = filterThresholds[uploadDateFilter]
+            return diffDays < maxDays
+        })
+    )
+
+    return filteredVideos
+}
+
+// Filter videos based on duration
+export const filterByDuration = (videos, durationFilter) => {
+    if (durationFilter === "any") return videos
+
+    const filteredVideos = Object.fromEntries(
+        Object.entries(videos).filter(([_, video]) => {
+            // Convert duration in ISO format to seconds
+            const duration = formatDurationToSeconds(video.duration)
+
+            // Define filter thresholds in seconds
+            const filterThresholds = {
+                short: { min: 0, max: 240 },        // under 4 minutes
+                medium: { min: 240, max: 1200 },    // 4-20 minutes
+                long: { min: 1200, max: Infinity }  // over 20 minutes
+            }
+
+            // Check if video falls within filter range
+            const range = filterThresholds[durationFilter]
+            return (duration >= range.min) && (duration < range.max)
+        })
+    )
+
+    return filteredVideos
+}
+
+// Apply all active filters to videos
+export const applyFilters = (videos, filters) => {
+    let filteredVideos = { ...videos }
+
+    // Apply upload date filter
+    if (filters.uploadDate !== 'any') {
+        filteredVideos = filterByUploadDate(filteredVideos, filters.uploadDate)
+    }
+
+    // Apply duration filter
+    if (filters.duration !== 'any') {
+        filteredVideos = filterByDuration(filteredVideos, filters.duration)
+    }
+
+    return filteredVideos
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { db } from '../data/db.js'
 import { useParams, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
+import cross_icon from '../assets/icons/cross-icon.png'
 
 const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // State for search results videos, channel data, sorting option and sort direction
@@ -9,6 +10,14 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     const [channels, setChannels] = useState("")
     const [videoSort, setVideoSort] = useState("relevance")
     const [sortDirection, setSortDirection] = useState("desc")
+
+    // Filter states: current selections, modal visibility, and original unfiltered videos
+    const [filters, setFilters] = useState({
+        uploadDate: 'any',
+        duration: 'any'
+    })
+    const [showFilters, setShowFilters] = useState(false)
+    const [originalVideos, setOriginalVideos] = useState({})
 
     // Extract search input from URL params
     const { searchInput } = useParams()
@@ -20,6 +29,22 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         setSortDirection((sortDirection === 'desc') ? 'asc' : 'desc')
     }
 
+    // Updates a specific filter value
+    const updateFilter = (filterType, value) => {
+        setFilters((prev) => ({
+            ...prev,
+            [filterType]: value
+        }))
+    }
+
+    // Resets all filters to default values
+    const clearAllFilters = () => {
+        setFilters({
+            uploadDate: 'any',
+            duration: 'any'
+        })
+    }
+
     // Filter videos based on search input when component mounts or search input changes
     useEffect(() => {
         // Filter videos that match the search input in title, description, category or channel name
@@ -27,6 +52,8 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         // Sort 'videos' based on selected option
         const sortedVideos = videoUtils.sortVideos(filteredVideos, videoSort, sortDirection, searchInput)
         setVideos(sortedVideos)
+
+        setOriginalVideos(sortedVideos)
         setChannels(db.channels)
     }, [searchInput])
 
@@ -38,6 +65,18 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         const sortedVideos = videoUtils.sortVideos(videos, videoSort, sortDirection, searchInput)
         setVideos(sortedVideos)
     }, [videoSort, sortDirection])
+
+    // Apply filters when filters or original videos change
+    useEffect(() => {
+        if (Object.keys(originalVideos).length === 0) return
+
+        let filteredVideos = { ...originalVideos }
+
+        // Apply all filters
+        filteredVideos = videoUtils.applyFilters(filteredVideos, filters)
+
+        setVideos(filteredVideos)
+    }, [filters, originalVideos])
 
     return (
         <>
@@ -79,6 +118,10 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                             <button onClick={() => toggleSortDirection()} type="button" className="py-1 px-3 bg-slate-100 hover:bg-[#2e2e2e] text-[#181818] hover:text-white rounded-md font-medium cursor-pointer">
                                 {sortDirection === "desc" ? 'Descending' : 'Ascending'}
                             </button>
+
+                            <button onClick={() => setShowFilters(true)} type="button" className="py-1 px-3 bg-slate-100 hover:bg-[#2e2e2e] text-[#181818] hover:text-white rounded-md font-medium cursor-pointer">
+                                Filters
+                            </button>
                         </div>
                     }
 
@@ -118,6 +161,71 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                         )
                     })}
                 </div>
+
+                {/* Filters Modal */}
+                {(showFilters) &&
+                    <div className="bg-black/70 flex justify-center items-center absolute inset-0">
+                        <div className="pt-3 pb-4 px-4 bg-[#2e2e2e] rounded-lg -translate-y-27">
+                            <div className="mb-2 flex justify-between">
+                                <div className="flex items-center gap-2">
+                                    <h3 className="text-lg text-slate-100 font-medium">Filters</h3>
+
+                                    <button onClick={clearAllFilters} className="text-xs text-blue-400 hover:text-blue-300 cursor-pointer" >
+                                        Clear all
+                                    </button>
+                                </div>
+
+                                <button onClick={() => setShowFilters(false)} className="hover:bg-[#3c3c3c] rounded-full cursor-pointer">
+                                    <img src={cross_icon} className="size-7" alt="" />
+                                </button>
+                            </div>
+
+                            <div className="flex gap-7">
+                                {/* Upload Date Filter */}
+                                <div className="text-sm text-[#aaa] flex flex-col gap-1">
+                                    <h3 className="text-base text-slate-100 font-medium">Upload Date</h3>
+
+                                    <button onClick={() => updateFilter('uploadDate', 'any')} className={`hover:text-slate-100 ${(filters['uploadDate'] === 'any') ? 'text-slate-100' : ''} text-left cursor-pointer`}>
+                                        Any Time
+                                    </button>
+                                    <button onClick={() => updateFilter('uploadDate', 'lastHour')} className={`hover:text-slate-100 ${(filters['uploadDate'] === 'lastHour') ? 'text-slate-100' : ''} text-left cursor-pointer`}>
+                                        Last Hour
+                                    </button>
+                                    <button onClick={() => updateFilter('uploadDate', 'today')} className={`hover:text-slate-100 ${(filters['uploadDate'] === 'today') ? 'text-slate-100' : ''} text-left cursor-pointer`}>
+                                        Today
+                                    </button>
+                                    <button onClick={() => updateFilter('uploadDate', 'thisWeek')} className={`hover:text-slate-100 ${(filters['uploadDate'] === 'thisWeek') ? 'text-slate-100' : ''} text-left cursor-pointer`}>
+                                        This Week
+                                    </button>
+                                    <button onClick={() => updateFilter('uploadDate', 'thisMonth')} className={`hover:text-slate-100 ${(filters['uploadDate'] === 'thisMonth') ? 'text-slate-100' : ''} text-left cursor-pointer`}>
+                                        This Month
+                                    </button>
+                                    <button onClick={() => updateFilter('uploadDate', 'thisYear')} className={`hover:text-slate-100 ${(filters['uploadDate'] === 'thisYear') ? 'text-slate-100' : ''} text-left cursor-pointer`}>
+                                        This Year
+                                    </button>
+                                </div>
+
+                                {/* Duration Filter */}
+                                <div className="text-sm text-[#aaa] flex flex-col gap-1">
+                                    <h3 className="text-base text-slate-100 font-medium">Duration</h3>
+
+                                    <button onClick={() => updateFilter('duration', 'any')} className={`hover:text-slate-100 ${(filters['duration'] === 'any') ? 'text-slate-100' : ''} text-left cursor-pointer`}>
+                                        Any Duration
+                                    </button>
+                                    <button onClick={() => updateFilter('duration', 'short')} className={`hover:text-slate-100 ${(filters['duration'] === 'short') ? 'text-slate-100' : ''} text-left cursor-pointer`}>
+                                        Under 4 minutes
+                                    </button>
+                                    <button onClick={() => updateFilter('duration', 'medium')} className={`hover:text-slate-100 ${(filters['duration'] === 'medium') ? 'text-slate-100' : ''} text-left cursor-pointer`}>
+                                        4 - 20 minutes
+                                    </button>
+                                    <button onClick={() => updateFilter('duration', 'long')} className={`hover:text-slate-100 ${(filters['duration'] === 'long') ? 'text-slate-100' : ''} text-left cursor-pointer`}>
+                                        Over 20 minutes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </>
     )

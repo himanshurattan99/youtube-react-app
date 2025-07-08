@@ -22,6 +22,25 @@ export const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
+// Remove punctuation and formatting from text, keeping only letters, numbers, and spaces
+const removePunctuationAndFormatting = (text) => {
+    if (!text) return ''
+
+    let normalizedText = text
+        .toLowerCase()
+        // Handle contractions by removing apostrophes and following letters
+        .replace(/'\w*/g, '')
+        // Convert underscores to spaces
+        .replace(/_/g, ' ')
+        // Remove all punctuation and special characters, keep only letters, numbers, spaces
+        .replace(/[^\w\s]/g, ' ')
+        // Replace multiple spaces with single space
+        .replace(/\s+/g, ' ')
+        .trim()
+
+    return normalizedText
+}
+
 // Removes stop words from the input text
 const removeStopWords = (text) => {
     const stopWords = [
@@ -67,17 +86,7 @@ const removeDuplicateWords = (text) => {
 export const normalizeText = (text) => {
     if (!text) return ''
 
-    let normalizedText = text
-        .toLowerCase()
-        // Handle contractions by removing apostrophes and following letters
-        .replace(/'\w*/g, '')
-        // Convert underscores to spaces
-        .replace(/_/g, ' ')
-        // Remove all punctuation and special characters, keep only letters, numbers, spaces
-        .replace(/[^\w\s]/g, ' ')
-        // Replace multiple spaces with single space
-        .replace(/\s+/g, ' ')
-        .trim()
+    let normalizedText = removePunctuationAndFormatting(text)
 
     normalizedText = removeStopWords(removeDuplicateWords(normalizedText))
 
@@ -282,6 +291,43 @@ export const filterVideos = (videos, searchInput) => {
     )
 
     return filteredVideos
+}
+
+// Filters channel videos based on search input
+export const filterChannelVideos = (channelVideos, searchInput) => {
+    if (Object.entries(channelVideos).length === 0) {
+        return {}
+    }
+
+    // Normalize search input and split it into individual words
+    const normalizedQuery = removeDuplicateWords(removePunctuationAndFormatting(searchInput))
+    const normalizedQueryWords = normalizedQuery.split(/\s+/)
+
+    if (normalizedQuery === '') {
+        return channelVideos
+    } else {
+        const filteredVideos = Object.fromEntries(
+            Object.entries(channelVideos)
+                .filter(([_, videoData]) => {
+                    const { title, description, category, channelName } = videoData
+
+                    /// Convert all searchable fields to lowercase
+                    const videoFields = [
+                        title.toLowerCase(),
+                        description.toLowerCase(),
+                        category.toLowerCase(),
+                        channelName.toLowerCase()
+                    ]
+
+                    // Check if any normalized query word is found in at least one of the fields
+                    return normalizedQueryWords.some((word) =>
+                        videoFields.some((field) => field.includes(word))
+                    )
+                })
+        )
+
+        return filteredVideos
+    }
 }
 
 // Sort videos by specified criteria in ascending or descending order

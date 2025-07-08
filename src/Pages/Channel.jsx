@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { db } from '../data/db.js'
 import { useParams } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
+import search_icon from '../assets/icons/search-icon.png'
 import Error from './Error.jsx'
 
 const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
@@ -10,12 +11,22 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     const [channel, setChannel] = useState("")
     const [videoSort, setVideoSort] = useState("")
 
+    // State for search input, search bar visibility, and original unfiltered channel videos
+    const [searchInput, setSearchInput] = useState("")
+    const [searchBarExpanded, setSearchBarExpanded] = useState(false)
+    const [originalVideos, setOriginalVideos] = useState({})
+
     // Get channel ID from URL params
     const { channelId } = useParams()
     // Get array of channel IDs that the user is subscribed to
     const userSubscribedChannelIds = db.users["helloworld"].subscribedChannels
     // Check if current device is mobile
     const isMobileDevice = (deviceType === 'mobile')
+
+    // Toggle search bar visibility
+    const toggleSearchBar = () => {
+        setSearchBarExpanded(!searchBarExpanded)
+    }
 
     // Load channel data and videos on component mount or when 'channelId' changes
     useEffect(() => {
@@ -36,6 +47,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
             })
         )
         setVideos(channelVideos)
+        setOriginalVideos(channelVideos)
     }, [channelId])
 
     // Re-sort videos when sort option changes
@@ -58,6 +70,15 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         )
         setVideos(sortedVideos)
     }, [videoSort])
+
+    // Filter channel videos based on search input
+    useEffect(() => {
+        if (Object.entries(originalVideos).length === 0) return
+
+        const filteredVideos = videoUtils.filterChannelVideos(originalVideos, searchInput)
+
+        setVideos(filteredVideos)
+    }, [searchInput])
 
     // Show Error page when channel doesn't exist
     if (!db.channels[channelId]) {
@@ -106,7 +127,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                 </div>
 
                 <div className="py-2 px-3 lg:px-27">
-                    {/* Videos sorting controls */}
+                    {/* Videos sorting and search controls */}
                     <div className="flex gap-3">
                         <button onClick={() => setVideoSort("latest")} type="button" className={`py-1 px-3 ${(videoSort === "latest") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
                             Latest
@@ -119,6 +140,17 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                         <button onClick={() => setVideoSort("oldest")} type="button" className={`py-1 px-3 ${(videoSort === "oldest") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
                             Oldest
                         </button>
+
+                        {/* Search bar toggle button and corresponding search input field */}
+                        <div className="flex items-center gap-2">
+                            <button onClick={toggleSearchBar} className="p-1 hover:bg-[#3c3c3c] rounded-full shrink-0 cursor-pointer">
+                                <img src={search_icon} className="size-5" alt="" />
+                            </button>
+
+                            {(searchBarExpanded) &&
+                                <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} autoFocus placeholder="Search" type="text" className="px-1 border-b border-b-[#065fd4] outline-none text-slate-100" />
+                            }
+                        </div>
                     </div>
 
                     {/* Responsive video grid - displays channel videos */}

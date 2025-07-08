@@ -5,9 +5,11 @@ import * as videoUtils from '../utils/utils.js'
 import cross_icon from '../assets/icons/cross-icon.png'
 
 const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
-    // State for search results videos, channel data, sorting option and sort direction
+    // State for search results videos and channel data
     const [videos, setVideos] = useState({})
     const [channels, setChannels] = useState("")
+
+    // Sorting states: current sort option and direction
     const [videoSort, setVideoSort] = useState("relevance")
     const [sortDirection, setSortDirection] = useState("desc")
 
@@ -82,46 +84,44 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         <>
             <div className="h-[92.5vh] text-slate-100 overflow-y-auto scrollbar-thin-gray">
                 <div className="p-3 lg:p-6 flex flex-col gap-4">
-                    {/* Show message when no videos match the search */}
+                    {/* Videos sorting controls and filters button */}
+                    <div className="flex gap-3 overflow-x-auto scrollbar-hidden">
+                        <button onClick={() => setVideoSort("relevance")} type="button" className={`py-1 px-3 ${(videoSort === "relevance") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                            Relevance
+                        </button>
+
+                        <button onClick={() => setVideoSort("views")} type="button" className={`py-1 px-3 ${(videoSort === "views") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                            Views
+                        </button>
+
+                        <button onClick={() => setVideoSort("duration")} type="button" className={`py-1 px-3 ${(videoSort === "duration") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                            Duration
+                        </button>
+
+                        <button onClick={() => setVideoSort("likes")} type="button" className={`py-1 px-3 ${(videoSort === "likes") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
+                            Likes
+                        </button>
+
+                        <button onClick={() => setVideoSort("uploadDate")} type="button" className={`py-1 px-3 ${(videoSort === "uploadDate") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium whitespace-nowrap cursor-pointer`}>
+                            Upload Date
+                        </button>
+
+                        <button onClick={() => toggleSortDirection()} type="button" className="py-1 px-3 bg-slate-100 hover:bg-[#2e2e2e] text-[#181818] hover:text-white rounded-md font-medium cursor-pointer">
+                            {sortDirection === "desc" ? 'Descending' : 'Ascending'}
+                        </button>
+
+                        <button onClick={() => setShowFilters(true)} type="button" className="py-1 px-3 bg-slate-100 hover:bg-[#2e2e2e] text-[#181818] hover:text-white rounded-md font-medium cursor-pointer">
+                            Filters
+                        </button>
+                    </div>
+
+                    {/* Show message when no videos match the search or filters */}
                     {(Object.entries(videos).length === 0) &&
                         <div className="text-lg font-medium">
                             {(videoUtils.normalizeText(searchInput) === '') ?
                                 'Oops! That was too vague - try keywords like video titles, topics, or creator names'
                                 : 'Oops! No videos found - try different keywords!'
                             }
-                        </div>
-                    }
-
-                    {/* Videos sorting controls */}
-                    {(Object.entries(videos).length !== 0) &&
-                        <div className="flex gap-3 overflow-x-auto scrollbar-hidden">
-                            <button onClick={() => setVideoSort("relevance")} type="button" className={`py-1 px-3 ${(videoSort === "relevance") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
-                                Relevance
-                            </button>
-
-                            <button onClick={() => setVideoSort("views")} type="button" className={`py-1 px-3 ${(videoSort === "views") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
-                                Views
-                            </button>
-
-                            <button onClick={() => setVideoSort("duration")} type="button" className={`py-1 px-3 ${(videoSort === "duration") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
-                                Duration
-                            </button>
-
-                            <button onClick={() => setVideoSort("likes")} type="button" className={`py-1 px-3 ${(videoSort === "likes") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
-                                Likes
-                            </button>
-
-                            <button onClick={() => setVideoSort("uploadDate")} type="button" className={`py-1 px-3 ${(videoSort === "uploadDate") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium whitespace-nowrap cursor-pointer`}>
-                                Upload Date
-                            </button>
-
-                            <button onClick={() => toggleSortDirection()} type="button" className="py-1 px-3 bg-slate-100 hover:bg-[#2e2e2e] text-[#181818] hover:text-white rounded-md font-medium cursor-pointer">
-                                {sortDirection === "desc" ? 'Descending' : 'Ascending'}
-                            </button>
-
-                            <button onClick={() => setShowFilters(true)} type="button" className="py-1 px-3 bg-slate-100 hover:bg-[#2e2e2e] text-[#181818] hover:text-white rounded-md font-medium cursor-pointer">
-                                Filters
-                            </button>
                         </div>
                     }
 

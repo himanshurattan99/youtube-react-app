@@ -48,6 +48,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         )
         setVideos(channelVideos)
         setOriginalVideos(channelVideos)
+        setSearchInput("")
     }, [channelId])
 
     // Re-sort videos when sort option changes
@@ -128,7 +129,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
 
                 <div className="py-2 px-3 lg:px-27">
                     {/* Videos sorting and search controls */}
-                    <div className="flex gap-3">
+                    <div className="flex flex-wrap gap-3">
                         <button onClick={() => setVideoSort("latest")} type="button" className={`py-1 px-3 ${(videoSort === "latest") ? 'bg-slate-100 text-[#181818]' : 'bg-[#2e2e2e] hover:bg-[#3c3c3c]'} rounded-md font-medium cursor-pointer`}>
                             Latest
                         </button>

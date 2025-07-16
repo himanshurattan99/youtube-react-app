@@ -6,6 +6,7 @@ import Sidebar from './Components/Sidebar'
 import Home from './Pages/Home.jsx'
 import Channel from './Pages/Channel.jsx'
 import Search from './Pages/Search.jsx'
+import Video from './Pages/Video.jsx'
 import Error from './Pages/Error.jsx'
 
 const App = () => {
@@ -85,6 +86,7 @@ const App = () => {
           <Route path='/explore/:category' element={<Home categoryVideosCache={categoryVideosCache} setCategoryVideosCache={setCategoryVideosCache} sidebarExpanded={sidebarExpanded} />} />
           <Route path='/channel/:channelId' element={<Channel sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
           <Route path='/search/:searchInput' element={<Search sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
+          <Route path='/watch/:videoId' element={<Video />} />
           <Route path='*' element={<Error errorCode='404' errorMessage="Hmm, this page doesn't exist. Looks like you took a wrong turn!" />} />
         </Routes>
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Sidebar from './Components/Sidebar'
 import Home from './Pages/Home.jsx'
@@ -18,6 +18,11 @@ const App = () => {
   // States to store videos to persist across navigation (random home feed and categorized videos)
   const [homeVideos, setHomeVideos] = useState({})
   const [categoryVideosCache, setCategoryVideosCache] = useState({})
+
+  // Get current location to detect route changes
+  const location = useLocation()
+  // Check if current route is a video watch page
+  const isVideoPage = location.pathname.startsWith('/watch/')
 
   // Toggle sidebar expanded/collapsed state
   const toggleSidebar = () => {
@@ -43,6 +48,9 @@ const App = () => {
   const handleResize = () => {
     const newDeviceType = getDeviceType()
     setDeviceType(newDeviceType)
+
+    // Don't update sidebar on resize if we're on a video page
+    if (isVideoPage) return
 
     if (newDeviceType === 'desktop') {
       setSidebarExpanded(true)
@@ -70,6 +78,19 @@ const App = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  // Handle route changes to update sidebar state
+  useEffect(() => {
+    // Always use slide mode and collapse sidebar on video pages
+    if (isVideoPage) {
+      setSidebarExpanded(false)
+      setSidebarMode('slide')
+    }
+    // Reset sidebar state based on device type for other pages
+    else {
+      handleResize()
+    }
+  }, [location.pathname])
+
   return (
     <>
       <Navbar onMenuClick={toggleSidebar} />
@@ -86,7 +107,7 @@ const App = () => {
           <Route path='/explore/:category' element={<Home categoryVideosCache={categoryVideosCache} setCategoryVideosCache={setCategoryVideosCache} sidebarExpanded={sidebarExpanded} />} />
           <Route path='/channel/:channelId' element={<Channel sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
           <Route path='/search/:searchInput' element={<Search sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
-          <Route path='/watch/:videoId' element={<Video />} />
+          <Route path='/watch/:videoId' element={<Video deviceType={deviceType} />} />
           <Route path='*' element={<Error errorCode='404' errorMessage="Hmm, this page doesn't exist. Looks like you took a wrong turn!" />} />
         </Routes>
 

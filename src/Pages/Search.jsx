@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react'
-import { db } from '../data/db.js'
 import { useParams, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 import cross_icon from '../assets/icons/cross-icon.png'
 
 const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
-    // State for search results videos and channel data
+    // State for search results videos
     const [videos, setVideos] = useState({})
-    const [channels, setChannels] = useState("")
 
     // Sorting states: current sort option and direction
     const [videoSort, setVideoSort] = useState("relevance")
@@ -50,13 +48,12 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // Filter videos based on search input when component mounts or search input changes
     useEffect(() => {
         // Filter videos that match the search input in title, description, category or channel name
-        const filteredVideos = videoUtils.filterVideos(db.videos, searchInput)
+        const filteredVideos = videoUtils.filterVideos({ searchInput })
         // Sort 'videos' based on selected option
-        const sortedVideos = videoUtils.sortVideos(filteredVideos, videoSort, sortDirection, searchInput)
+        const sortedVideos = videoUtils.sortVideos({ videosData: filteredVideos, videoSort, sortDirection, searchInput })
         setVideos(sortedVideos)
 
         setOriginalVideos(sortedVideos)
-        setChannels(db.channels)
     }, [searchInput])
 
     // Re-sort videos when sort option or sort direction changes
@@ -64,7 +61,7 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         if (Object.keys(videos).length === 0) return
 
         // Sort 'videos' based on selected option
-        const sortedVideos = videoUtils.sortVideos(videos, videoSort, sortDirection, searchInput)
+        const sortedVideos = videoUtils.sortVideos({ videosData: videos, videoSort, sortDirection, searchInput })
         setVideos(sortedVideos)
     }, [videoSort, sortDirection])
 
@@ -75,7 +72,7 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         let filteredVideos = { ...originalVideos }
 
         // Apply all filters
-        filteredVideos = videoUtils.applyFilters(filteredVideos, filters)
+        filteredVideos = videoUtils.applyFilters({ videosData: filteredVideos, filters })
 
         setVideos(filteredVideos)
     }, [filters, originalVideos])
@@ -131,23 +128,27 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                             <div key={key} className="hover:bg-[#1e1e1e] rounded-lg flex flex-col sm:flex-row gap-2 sm:gap-3 cursor-pointer">
                                 {/* Video thumbnail with duration overlay */}
                                 <div className={`${(sidebarExpanded) ? 'md:w-1/2' : 'md:w-2/5'} lg:w-1/3 aspect-16/9 shrink-0 relative transition-transform hover:scale-105`}>
-                                    <img src={value.thumbnail} className="aspect-video object-cover rounded-lg" alt="" />
-                                    <span className="px-1 bg-black opacity-75 rounded text-xs text-white absolute bottom-1 right-1">
-                                        {videoUtils.formatDuration(value.duration)}
-                                    </span>
+                                    <Link to={`/watch/${key}`}>
+                                        <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
+                                        <span className="px-1 bg-black opacity-75 rounded text-xs text-white absolute bottom-1 right-1">
+                                            {videoUtils.formatDuration(value.duration)}
+                                        </span>
+                                    </Link>
                                 </div>
 
                                 {/* Video metadata */}
                                 <div className="flex-1 flex flex-row-reverse sm:flex-col gap-2 lg:gap-4">
                                     <div>
-                                        <h3 className="mb-1 text-lg line-clamp-2">{value.title}</h3>
+                                        <Link to={`/watch/${key}`}>
+                                            <h3 className="mb-1 text-lg line-clamp-2">{value.title}</h3>
+                                        </Link>
                                         <div className="text-xs text-[#aaa]">
                                             {(isMobileDevice) ? `${value.channelName} •` : ''} {videoUtils.formatViewsCount(value.views)} views • {videoUtils.getRelativeUploadTime(value.uploadDate)}
                                         </div>
                                     </div>
                                     <Link className="flex" to={`/channel/${value.channelId}`}>
                                         <div className="group flex items-center gap-2">
-                                            <img src={channels[value.channelId].avatar} className="max-w-10 sm:w-7 rounded-full transition-transform duration-300 ease-in-out group-hover:rotate-360" alt="" />
+                                            <img src={videoUtils.getChannelAvatar(value.channelId)} className="max-w-10 sm:w-7 rounded-full transition-transform duration-300 ease-in-out group-hover:rotate-360" alt="" />
                                             {(!isMobileDevice) &&
                                                 <div className="text-xs text-[#aaa] group-hover:text-slate-100">{value.channelName}</div>
                                             }

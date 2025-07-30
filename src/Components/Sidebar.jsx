@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { db } from '../data/db.js'
 import { useLocation, Link } from 'react-router-dom'
 import home_icon from '../assets/icons/home-icon.png'
 import subscriptions_icon from '../assets/icons/subscriptions-icon.png'
@@ -12,6 +11,7 @@ import sports_icon from '../assets/icons/sports-icon.png'
 import science_icon from '../assets/icons/science-icon.png'
 import tech_icon from '../assets/icons/tech-icon.png'
 import settings_icon from '../assets/icons/settings-icon.png'
+import * as videoUtils from '../utils/utils.js'
 
 const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'desktop' }) => {
   // State to store user's subscribed channels data
@@ -35,18 +35,10 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
 
   // Load user subscriptions from database on component mount
   useEffect(() => {
-    // Get array of channel IDs that the user is subscribed to
-    const userSubscribedChannelIds = db.users["helloworld"].subscribedChannels
-
-    // Filter to include only user's subscribed channels
-    const filteredChannels = {}
-    userSubscribedChannelIds.forEach((channelId) => {
-      if (db.channels[channelId]) {
-        filteredChannels[channelId] = db.channels[channelId]
-      }
-    })
-    setSubscribedChannels(filteredChannels)
-    setChannelsToDisplay(Object.fromEntries(Object.entries(filteredChannels).slice(0, 5)))
+    // Get user's subscribed channels data
+    const userSubscribedChannels = videoUtils.getUserSubscribedChannelsData()
+    setSubscribedChannels(userSubscribedChannels)
+    setChannelsToDisplay(Object.fromEntries(Object.entries(userSubscribedChannels).slice(0, 5)))
   }, [])
 
   // Update displayed channels when showAllChannels state changes

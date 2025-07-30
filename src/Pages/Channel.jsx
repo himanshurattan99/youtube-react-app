@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { db } from '../data/db.js'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 import search_icon from '../assets/icons/search-icon.png'
 import Error from './Error.jsx'
@@ -14,12 +13,12 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // State for search input, search bar visibility, and original unfiltered channel videos
     const [searchInput, setSearchInput] = useState("")
     const [searchBarExpanded, setSearchBarExpanded] = useState(false)
-    const [originalVideos, setOriginalVideos] = useState({})
+    const [channelVideos, setChannelVideos] = useState({})
 
     // Get channel ID from URL params
     const { channelId } = useParams()
     // Get array of channel IDs that the user is subscribed to
-    const userSubscribedChannelIds = db.users["helloworld"].subscribedChannels
+    const userSubscribedChannelIds = videoUtils.getUserSubscribedChannelIds()
     // Check if current device is mobile
     const isMobileDevice = (deviceType === 'mobile')
 
@@ -31,24 +30,17 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // Load channel data and videos on component mount or when 'channelId' changes
     useEffect(() => {
         // Exit early if channel doesn't exist
-        if (!db.channels[channelId]) return
+        if (!(videoUtils.getChannelData(channelId))) return
 
-        // Set initial channel data from database and default sort order to 'latest'
-        setChannel(db.channels[channelId])
+        // Initialize channel data, sort order, and search input
+        setChannel(videoUtils.getChannelData(channelId))
         setVideoSort("latest")
-
-        // Get all video ids for this channel
-        const videoIds = db.channels[channelId].videos
-
-        // Create object of videos data for this channel
-        const channelVideos = Object.fromEntries(
-            videoIds.map((videoId) => {
-                return [videoId, db.videos[videoId]]
-            })
-        )
-        setVideos(channelVideos)
-        setOriginalVideos(channelVideos)
         setSearchInput("")
+
+        // Get all channel videos data
+        const channelVideos = videoUtils.getChannelVideos(channelId)
+        setVideos(channelVideos)
+        setChannelVideos(channelVideos)
     }, [channelId])
 
     // Re-sort videos when sort option changes
@@ -74,15 +66,15 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
 
     // Filter channel videos based on search input
     useEffect(() => {
-        if (Object.entries(originalVideos).length === 0) return
+        if (Object.entries(channelVideos).length === 0) return
 
-        const filteredVideos = videoUtils.filterChannelVideos(originalVideos, searchInput)
+        const filteredVideos = videoUtils.filterChannelVideos({ channelVideosData: channelVideos, searchInput })
 
         setVideos(filteredVideos)
     }, [searchInput])
 
     // Show Error page when channel doesn't exist
-    if (!db.channels[channelId]) {
+    if (!(videoUtils.getChannelData(channelId))) {
         return (
             <Error errorCode='404' errorMessage="Oops! This channel doesn't exist or went missing!"></Error>
         )
@@ -158,23 +150,25 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                     <div className={`mt-3 grid grid-cols-1 sm:grid-cols-2 ${(sidebarExpanded) ? 'md:grid-cols-2' : 'md:grid-cols-3'} lg:grid-cols-4 gap-y-2 lg:gap-y-5 md:gap-x-3`}>
                         {Object.entries(videos).map(([key, value]) => {
                             return (
-                                <div key={key} className="hover:bg-[#1e1e1e] rounded-lg cursor-pointer overflow-hidden transition-all hover:scale-105">
-                                    {/* Video thumbnail with duration overlay */}
-                                    <div className="relative">
-                                        <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
-                                        <span className="px-1 bg-black opacity-75 rounded text-xs text-white absolute bottom-1 right-1">
-                                            {videoUtils.formatDuration(value.duration)}
-                                        </span>
-                                    </div>
+                                <Link key={key} to={`/watch/${key}`}>
+                                    <div className="hover:bg-[#1e1e1e] rounded-lg cursor-pointer overflow-hidden transition-all hover:scale-105">
+                                        {/* Video thumbnail with duration overlay */}
+                                        <div className="relative">
+                                            <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
+                                            <span className="px-1 bg-black opacity-75 rounded text-xs text-white absolute bottom-1 right-1">
+                                                {videoUtils.formatDuration(value.duration)}
+                                            </span>
+                                        </div>
 
-                                    {/* Video metadata: title, views count, relative upload time */}
-                                    <div className="py-3 flex">
-                                        <div className="px-3 text-[#aaa] overflow-hidden">
-                                            <h3 className="text-slate-100 font-medium leading-5 line-clamp-2">{value.title}</h3>
-                                            <div className="mt-1 text-xs">{videoUtils.formatViewsCount(value.views)} views • {videoUtils.getRelativeUploadTime(value.uploadDate)}</div>
+                                        {/* Video metadata: title, views count, relative upload time */}
+                                        <div className="py-3 flex">
+                                            <div className="px-3 text-[#aaa] overflow-hidden">
+                                                <h3 className="text-slate-100 font-medium leading-5 line-clamp-2">{value.title}</h3>
+                                                <div className="mt-1 text-xs">{videoUtils.formatViewsCount(value.views)} views • {videoUtils.getRelativeUploadTime(value.uploadDate)}</div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             )
                         })}
                     </div>

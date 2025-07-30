@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
-import { db } from '../data/db.js'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 import youtube_logo from '../assets/logos/youtube-logo.svg'
 import like_icon from '../assets/icons/like-icon.png'
@@ -23,15 +22,15 @@ const Video = ({ deviceType = 'desktop' }) => {
     // Load video and channel data when component mounts or videoId changes
     useEffect(() => {
         // Get video data by ID
-        const videoData = db.videos[videoId]
+        const videoData = videoUtils.getVideoData(videoId)
         setVideo(videoData)
 
         // Get channel data using the video's channel ID
-        const channelData = db.channels[videoData.channelId]
+        const channelData = videoUtils.getChannelData(videoData.channelId)
         setChannel(channelData)
 
         // Generate random recommended videos
-        const randomVideos = videoUtils.getRandomVideos(db.videos)
+        const randomVideos = videoUtils.getRandomVideos()
         setRecommendedVideos(randomVideos)
     }, [videoId])
 
@@ -125,19 +124,25 @@ const Video = ({ deviceType = 'desktop' }) => {
                         <div key={key} className="hover:bg-[#1e1e1e] rounded-lg flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3 cursor-pointer">
                             {/* Video thumbnail with duration overlay */}
                             <div className="sm:w-[35%] lg:w-[45%] aspect-video relative transition-transform hover:scale-105">
-                                <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
-                                <span className="px-1 bg-black opacity-75 rounded text-sm lg:text-xs text-white absolute bottom-1 right-1">
-                                    {videoUtils.formatDuration(value.duration)}
-                                </span>
+                                <Link key={key} to={`/watch/${key}`}>
+                                    <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
+                                    <span className="px-1 bg-black opacity-75 rounded text-sm lg:text-xs text-white absolute bottom-1 right-1">
+                                        {videoUtils.formatDuration(value.duration)}
+                                    </span>
+                                </Link>
                             </div>
 
                             {/* Video metadata */}
                             <div className="flex-1">
-                                <h3 className="sm:w-[90%] mb-0.5 sm:mb-2 lg:mb-1 lg:text-sm font-medium line-clamp-2">{value.title}</h3>
+                                <Link to={`/watch/${key}`}>
+                                    <h3 className="sm:w-[90%] mb-0.5 sm:mb-2 lg:mb-1 lg:text-sm font-medium line-clamp-2">{value.title}</h3>
+                                </Link>
                                 {!(isMobileDevice) &&
-                                    <div className="sm:w-[90%] mb-1 lg:mb-0.5 text-sm lg:text-xs text-[#aaa] hover:text-slate-100 line-clamp-1">
-                                        {value.channelName}
-                                    </div>
+                                    <Link to={`/channel/${value.channelId}`}>
+                                        <div className="sm:w-[90%] mb-1 lg:mb-0.5 text-sm lg:text-xs text-[#aaa] hover:text-slate-100 line-clamp-1">
+                                            {value.channelName}
+                                        </div>
+                                    </Link>
                                 }
                                 <div className="text-sm lg:text-xs text-[#aaa] line-clamp-1">
                                     {(isMobileDevice) ? `${value.channelName} •` : ''} {videoUtils.formatViewsCount(value.views)} views • {videoUtils.getRelativeUploadTime(value.uploadDate)}

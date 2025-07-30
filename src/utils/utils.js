@@ -1,3 +1,5 @@
+import { videos, channels, users } from '../data/db.js'
+
 // Helper function to format decimal numbers with specified precision
 const truncateDecimal = (value, decimalPlaces) => {
     const factor = Math.pow(10, decimalPlaces)
@@ -199,9 +201,46 @@ export const getRelativeUploadTime = (uploadDate) => {
     return "just now"
 }
 
+// Get video data by video ID, returns undefined if video doesn't exist
+export const getVideoData = (videoId) => {
+    return videos[videoId]
+}
+
+// Get channel data by channel ID, returns undefined if channel doesn't exist
+export const getChannelData = (channelId) => {
+    return channels[channelId]
+}
+
+// Get channel avatar URL by channel ID
+export const getChannelAvatar = (channelId) => {
+    const channelData = getChannelData(channelId)
+    return channelData?.avatar
+}
+
+// Get array of channel IDs that the current user is subscribed to
+export const getUserSubscribedChannelIds = () => {
+    return users["helloworld"].subscribedChannels
+}
+
+// Get channel data for all channels the current user is subscribed to
+export const getUserSubscribedChannelsData = () => {
+    // Get array of channel IDs that the user is subscribed to
+    const userSubscribedChannelIds = getUserSubscribedChannelIds()
+
+    // Filter to include only user's subscribed channels
+    const filteredChannels = {}
+    userSubscribedChannelIds.forEach((channelId) => {
+        if (getChannelData(channelId)) {
+            filteredChannels[channelId] = getChannelData(channelId)
+        }
+    })
+
+    return filteredChannels
+}
+
 // Get random videos from the video collection
-export const getRandomVideos = (videos, count = 12) => {
-    const videoEntries = Object.entries(videos)
+export const getRandomVideos = ({ videosData = videos, count = 12 } = {}) => {
+    const videoEntries = Object.entries(videosData)
 
     // Shuffle videos using random sorting and take the first 'count' videos
     const shuffledVideos = videoEntries.sort(() => (0.5 - Math.random()))
@@ -210,14 +249,56 @@ export const getRandomVideos = (videos, count = 12) => {
     return randomVideos
 }
 
+// Get random videos from a specific category
+export const getCategoryVideos = ({ videosData = videos, category }) => {
+    const filteredVideos = Object.fromEntries(
+        Object.entries(videosData).filter(([_, video]) => {
+            return video.category.toLowerCase() === category
+        })
+    )
+
+    return getRandomVideos({ videosData: filteredVideos })
+}
+
+// Get all videos for a specific channel
+export const getChannelVideos = (channelId) => {
+    const channelData = getChannelData(channelId)
+
+    if (!(channelData)) {
+        return {}
+    }
+
+    // Get all video ids for this channel
+    const videoIds = channelData.videos
+
+    // Create object of videos data for this channel
+    const channelVideos = Object.fromEntries(
+        videoIds.map((videoId) => {
+            return [videoId, getVideoData(videoId)]
+        })
+    )
+
+    return channelVideos
+}
+
 // Get subscription feed videos sorted by upload date
-export const getSubscriptionVideos = (videos, channels, userSubscribedChannelIds) => {
-    // Get video IDs from all subscribed channels, then create and sort a videos object by upload date
-    const videoIds = userSubscribedChannelIds.flatMap((element) => {
-        return channels[element].videos
+export const getSubscriptionVideos = () => {
+    // Get array of channel IDs that the user is subscribed to
+    const userSubscribedChannelIds = getUserSubscribedChannelIds("helloworld")
+    if (userSubscribedChannelIds.length === 0) {
+        return {}
+    }
+
+    // Get videos from all subscribed channels
+    const userSubscriptionVideos = {}
+    userSubscribedChannelIds.forEach((channelId) => {
+        const channelVideos = getChannelVideos(channelId)
+        Object.assign(userSubscriptionVideos, channelVideos)
     })
+
+    // Sort videos by upload date (newest first)
     const sortedSubscriptionVideos = Object.fromEntries(
-        videoIds.map((videoId) => [videoId, videos[videoId]])
+        Object.entries(userSubscriptionVideos)
             .sort(([, valueA], [, valueB]) =>
                 new Date(valueB.uploadDate) - new Date(valueA.uploadDate)
             )
@@ -226,20 +307,9 @@ export const getSubscriptionVideos = (videos, channels, userSubscribedChannelIds
     return sortedSubscriptionVideos
 }
 
-// Get random videos from a specific category
-export const getCategoryVideos = (videos, category) => {
-    const filteredVideos = Object.fromEntries(
-        Object.entries(videos).filter(([_, video]) => {
-            return video.category.toLowerCase() === category
-        })
-    )
-
-    return getRandomVideos(filteredVideos)
-}
-
 // Calculate relevance score for a video based on search input
-export const getRelevanceScore = (video, searchInput, normalizedQueryWords) => {
-    const { title, channelName, description, category } = video
+export const getRelevanceScore = (videoData, searchInput, normalizedQueryWords) => {
+    const { title, channelName, description, category } = videoData
     // Weights for different match types
     const relevanceWeights = {
         titleMatch: 5,
@@ -266,13 +336,13 @@ export const getRelevanceScore = (video, searchInput, normalizedQueryWords) => {
 }
 
 // Filter videos that match the normalized search query in title, description, category or channel name
-export const filterVideos = (videos, searchInput) => {
+export const filterVideos = ({ videosData = videos, searchInput } = {}) => {
     // Normalize search input and split it into individual words
     const normalizedQuery = normalizeText(searchInput)
     const normalizedQueryWords = normalizedQuery.split(/\s+/)
 
     const filteredVideos = Object.fromEntries(
-        Object.entries(videos)
+        Object.entries(videosData)
             .filter(([_, videoData]) => {
                 const { title, description, category, channelName } = videoData
                 // Normalize all searchable fields
@@ -294,8 +364,8 @@ export const filterVideos = (videos, searchInput) => {
 }
 
 // Filters channel videos based on search input
-export const filterChannelVideos = (channelVideos, searchInput) => {
-    if (Object.entries(channelVideos).length === 0) {
+export const filterChannelVideos = ({ channelVideosData = {}, searchInput } = {}) => {
+    if (Object.entries(channelVideosData).length === 0) {
         return {}
     }
 
@@ -304,10 +374,10 @@ export const filterChannelVideos = (channelVideos, searchInput) => {
     const normalizedQueryWords = normalizedQuery.split(/\s+/)
 
     if (normalizedQuery === '') {
-        return channelVideos
+        return channelVideosData
     } else {
         const filteredVideos = Object.fromEntries(
-            Object.entries(channelVideos)
+            Object.entries(channelVideosData)
                 .filter(([_, videoData]) => {
                     const { title, description, category, channelName } = videoData
 
@@ -331,9 +401,9 @@ export const filterChannelVideos = (channelVideos, searchInput) => {
 }
 
 // Sort videos by specified criteria in ascending or descending order
-export const sortVideos = (videos, videoSort, sortDirection = 'desc', searchInput = '') => {
-    if (!videoSort || Object.keys(videos).length === 0) {
-        return videos
+export const sortVideos = ({ videosData, videoSort, sortDirection = 'desc', searchInput = '' }) => {
+    if (!videoSort || Object.keys(videosData).length === 0) {
+        return videosData
     }
 
     // Normalize search input and split it into individual words
@@ -363,26 +433,26 @@ export const sortVideos = (videos, videoSort, sortDirection = 'desc', searchInpu
     }
 
     const sortFunction = sortFunctions[videoSort]
-    if (!sortFunction) return videos
+    if (!sortFunction) return videosData
 
-    // Sort 'videos' based on selected option
+    // Sort 'videosData' based on selected option
     const sortedVideos = Object.fromEntries(
-        Object.entries(videos).sort(sortFunction)
+        Object.entries(videosData).sort(sortFunction)
     )
 
     return sortedVideos
 }
 
 // Filter videos based on upload date
-export const filterByUploadDate = (videos, uploadDateFilter) => {
-    if (uploadDateFilter === "any") return videos
+export const filterByUploadDate = ({ videosData = {}, uploadDateFilter = 'any' } = {}) => {
+    if (uploadDateFilter === "any") return videosData
 
     const now = new Date()
 
     const filteredVideos = Object.fromEntries(
-        Object.entries(videos).filter(([_, video]) => {
+        Object.entries(videosData).filter(([_, videoData]) => {
             // Calculate days since upload
-            const uploadDate = new Date(video.uploadDate)
+            const uploadDate = new Date(videoData.uploadDate)
             const diffTime = now - uploadDate
             const diffDays = diffTime / (1000 * 60 * 60 * 24)
 
@@ -405,13 +475,13 @@ export const filterByUploadDate = (videos, uploadDateFilter) => {
 }
 
 // Filter videos based on duration
-export const filterByDuration = (videos, durationFilter) => {
-    if (durationFilter === "any") return videos
+export const filterByDuration = ({ videosData = {}, durationFilter = 'any' } = {}) => {
+    if (durationFilter === "any") return videosData
 
     const filteredVideos = Object.fromEntries(
-        Object.entries(videos).filter(([_, video]) => {
+        Object.entries(videosData).filter(([_, videoData]) => {
             // Convert duration in ISO format to seconds
-            const duration = formatDurationToSeconds(video.duration)
+            const duration = formatDurationToSeconds(videoData.duration)
 
             // Define filter thresholds in seconds
             const filterThresholds = {
@@ -430,17 +500,17 @@ export const filterByDuration = (videos, durationFilter) => {
 }
 
 // Apply all active filters to videos
-export const applyFilters = (videos, filters) => {
-    let filteredVideos = { ...videos }
+export const applyFilters = ({ videosData = {}, filters } = {}) => {
+    let filteredVideos = { ...videosData }
 
     // Apply upload date filter
     if (filters.uploadDate !== 'any') {
-        filteredVideos = filterByUploadDate(filteredVideos, filters.uploadDate)
+        filteredVideos = filterByUploadDate({ videosData: filteredVideos, uploadDateFilter: filters.uploadDate })
     }
 
     // Apply duration filter
     if (filters.duration !== 'any') {
-        filteredVideos = filterByDuration(filteredVideos, filters.duration)
+        filteredVideos = filterByDuration({ videosData: filteredVideos, durationFilter: filters.duration })
     }
 
     return filteredVideos

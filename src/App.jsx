@@ -22,7 +22,7 @@ const App = () => {
   // Get current location to detect route changes
   const location = useLocation()
   // Check if current route is a video watch page
-  const isVideoPage = location.pathname.startsWith('/watch/')
+  const isVideoPage = location.pathname.startsWith('/watch')
 
   // Toggle sidebar expanded/collapsed state
   const toggleSidebar = () => {
@@ -101,19 +101,17 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home homeVideos={homeVideos} setHomeVideos={setHomeVideos} sidebarExpanded={sidebarExpanded} />} />
           <Route path='/subscriptions' element={<Home sidebarExpanded={sidebarExpanded} />} />
-          <Route path='/explore' element={<Error errorCode='400' errorMessage='Oops! Which category do you want to explore?' />} />
+          <Route path='/explore' element={<Home categoryVideosCache={categoryVideosCache} setCategoryVideosCache={setCategoryVideosCache} sidebarExpanded={sidebarExpanded} />} />
           <Route path='/channel' element={<Error errorCode='400' errorMessage='Hey! Tell us which channel you want to visit!' />} />
-          <Route path='/search' element={<Error errorCode='400' errorMessage='Hey! You forgot to tell us what to search for!' />} />
-          <Route path='/explore/:category' element={<Home categoryVideosCache={categoryVideosCache} setCategoryVideosCache={setCategoryVideosCache} sidebarExpanded={sidebarExpanded} />} />
           <Route path='/channel/:channelId' element={<Channel sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
-          <Route path='/search/:searchInput' element={<Search sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
-          <Route path='/watch/:videoId' element={<Video deviceType={deviceType} />} />
+          <Route path='/search' element={<Search sidebarExpanded={sidebarExpanded} deviceType={deviceType} />} />
+          <Route path='/watch' element={<Video deviceType={deviceType} />} />
           <Route path='*' element={<Error errorCode='404' errorMessage="Hmm, this page doesn't exist. Looks like you took a wrong turn!" />} />
         </Routes>
 
         {/* Semi-transparent overlay when sidebar is expanded in slide mode */}
         {((sidebarExpanded) && (sidebarMode === 'slide')) &&
-          <div className="bg-black opacity-30 absolute inset-0"></div>
+          <div onClick={() => setSidebarExpanded(false)} className="bg-black opacity-30 absolute inset-0"></div>
         }
       </main>
     </>

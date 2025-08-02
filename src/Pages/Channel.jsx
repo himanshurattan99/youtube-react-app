@@ -22,6 +22,13 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // Check if current device is mobile
     const isMobileDevice = (deviceType === 'mobile')
 
+    // Show Error page when channel doesn't exist
+    if (!(videoUtils.getChannelData(channelId))) {
+        return (
+            <Error errorCode='404' errorMessage="Oops! This channel doesn't exist or went missing!" />
+        )
+    }
+
     // Toggle search bar visibility
     const toggleSearchBar = () => {
         setSearchBarExpanded(!searchBarExpanded)
@@ -47,20 +54,8 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     useEffect(() => {
         if (!videoSort || Object.keys(videos).length === 0) return
 
-        // Define different sorting functions
-        const sortFunctions = {
-            "latest": ([, a], [, b]) => new Date(b.uploadDate) - new Date(a.uploadDate),
-            "popular": ([, a], [, b]) => b.views - a.views,
-            "oldest": ([, a], [, b]) => new Date(a.uploadDate) - new Date(b.uploadDate)
-        }
-
-        const sortFunction = sortFunctions[videoSort]
-        if (!sortFunction) return
-
         // Sort 'videos' based on selected option
-        const sortedVideos = Object.fromEntries(
-            Object.entries(videos).sort(sortFunction)
-        )
+        const sortedVideos = videoUtils.sortChannelVideos({ channelVideosData: videos, videoSort })
         setVideos(sortedVideos)
     }, [videoSort])
 
@@ -69,16 +64,8 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         if (Object.entries(channelVideos).length === 0) return
 
         const filteredVideos = videoUtils.filterChannelVideos({ channelVideosData: channelVideos, searchInput })
-
         setVideos(filteredVideos)
     }, [searchInput])
-
-    // Show Error page when channel doesn't exist
-    if (!(videoUtils.getChannelData(channelId))) {
-        return (
-            <Error errorCode='404' errorMessage="Oops! This channel doesn't exist or went missing!"></Error>
-        )
-    }
 
     return (
         <>
@@ -150,7 +137,7 @@ const Channel = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                     <div className={`mt-3 grid grid-cols-1 sm:grid-cols-2 ${(sidebarExpanded) ? 'md:grid-cols-2' : 'md:grid-cols-3'} lg:grid-cols-4 gap-y-2 lg:gap-y-5 md:gap-x-3`}>
                         {Object.entries(videos).map(([key, value]) => {
                             return (
-                                <Link key={key} to={`/watch/${key}`}>
+                                <Link key={key} to={`/watch?v=${key}`}>
                                     <div className="hover:bg-[#1e1e1e] rounded-lg cursor-pointer overflow-hidden transition-all hover:scale-105">
                                         {/* Video thumbnail with duration overlay */}
                                         <div className="relative">

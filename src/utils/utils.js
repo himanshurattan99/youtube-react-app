@@ -443,6 +443,30 @@ export const sortVideos = ({ videosData, videoSort, sortDirection = 'desc', sear
     return sortedVideos
 }
 
+// Sort channel videos by specified criteria
+export const sortChannelVideos = ({ channelVideosData, videoSort }) => {
+    if (!videoSort || Object.keys(channelVideosData).length === 0) {
+        return channelVideosData
+    }
+
+    // Define different sorting functions
+    const sortFunctions = {
+        "latest": ([, a], [, b]) => new Date(b.uploadDate) - new Date(a.uploadDate),
+        "popular": ([, a], [, b]) => b.views - a.views,
+        "oldest": ([, a], [, b]) => new Date(a.uploadDate) - new Date(b.uploadDate)
+    }
+
+    const sortFunction = sortFunctions[videoSort]
+    if (!sortFunction) return channelVideosData
+
+    // Sort 'channelVideosData' based on selected option
+    const sortedVideos = Object.fromEntries(
+        Object.entries(channelVideosData).sort(sortFunction)
+    )
+
+    return sortedVideos
+}
+
 // Filter videos based on upload date
 export const filterByUploadDate = ({ videosData = {}, uploadDateFilter = 'any' } = {}) => {
     if (uploadDateFilter === "any") return videosData

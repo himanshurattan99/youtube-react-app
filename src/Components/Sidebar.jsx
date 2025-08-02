@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import { useSearchParams, useLocation, Link } from 'react-router-dom'
 import home_icon from '../assets/icons/home-icon.png'
 import subscriptions_icon from '../assets/icons/subscriptions-icon.png'
 import expand_icon from '../assets/icons/expand-icon.png'
@@ -21,11 +21,12 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
   // State to store subscribed channels currently displayed in sidebar
   const [channelsToDisplay, setChannelsToDisplay] = useState({})
 
-  // Extract current location from router state
+  // Extract category from URL query parameters (returns null if not present)
+  const [searchParams] = useSearchParams()
+  const category = searchParams.get('category')
+  // Extract channel ID from current route pathname (undefined when not on channel route)
   const location = useLocation()
-  // Parse pathname to extract route parameters
   const pathSegments = location.pathname.split('/').filter(Boolean)
-  const category = (pathSegments[0] === 'explore') ? pathSegments[1] : undefined
   const channelId = (pathSegments[0] === 'channel') ? pathSegments[1] : undefined
 
   // Toggle between showing all subscribed channels or just the first 5
@@ -95,7 +96,7 @@ const Sidebar = ({ isExpanded = true, sidebarMode = 'contract', deviceType = 'de
 
           {exploreItems.map(({ label, icon }) => {
             return (
-              <Link key={label.toLowerCase()} to={`/explore/${label.toLowerCase()}`}>
+              <Link key={label.toLowerCase()} to={`/explore?category=${label.toLowerCase()}`}>
                 <button className={`w-full p-2 ${(category === label.toLowerCase()) ? 'bg-[#3c3c3c]' : 'hover:bg-[#3c3c3c]'} rounded-md flex gap-6 cursor-pointer`}>
                   <img src={icon} className="w-6" alt="" />
                   {(isLabelVisible) && <span className="truncate">{label}</span>}

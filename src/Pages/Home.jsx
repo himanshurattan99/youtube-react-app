@@ -1,24 +1,28 @@
 import { useState, useEffect } from 'react'
-import { useParams, useLocation, Link } from 'react-router-dom'
+import { useSearchParams, useLocation, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
+import Error from './Error.jsx'
 
 const Home = ({ homeVideos = {}, setHomeVideos, categoryVideosCache = {}, setCategoryVideosCache, sidebarExpanded = true }) => {
     // State for videos
     const [videos, setVideos] = useState({})
 
-    // Extract category from URL params and current location from router state
-    const { category } = useParams()
+    // Extract category from URL query parameters and current location from router state
+    const [searchParams] = useSearchParams()
+    const category = searchParams.get('category')
     const location = useLocation()
+
+    // Show Error page when explore route has no category parameter
+    if ((location.pathname === '/explore') && !(category)) {
+        return (
+            <Error errorCode='400' errorMessage='Oops! Which category do you want to explore?' />
+        )
+    }
 
     // Load videos based on current route
     useEffect(() => {
-        // Subscription feed: Get videos from user's subscribed channels
-        if (location.pathname === '/subscriptions') {
-            const sortedSubscriptionVideos = videoUtils.getSubscriptionVideos()
-            setVideos(sortedSubscriptionVideos)
-        }
         // Home page: Display random video recommendations
-        else if (!(category)) {
+        if (location.pathname === '/') {
             // Generate new random videos or use cached ones
             if (Object.entries(homeVideos).length === 0) {
                 const randomVideos = videoUtils.getRandomVideos()
@@ -29,8 +33,13 @@ const Home = ({ homeVideos = {}, setHomeVideos, categoryVideosCache = {}, setCat
                 setVideos(homeVideos)
             }
         }
+        // Subscription feed: Get videos from user's subscribed channels
+        else if (location.pathname === '/subscriptions') {
+            const sortedSubscriptionVideos = videoUtils.getSubscriptionVideos()
+            setVideos(sortedSubscriptionVideos)
+        }
         // Category page: Filter videos by selected category
-        else {
+        else if (category) {
             // Fetch new category videos or use cached ones
             if (!categoryVideosCache[category] || Object.entries(categoryVideosCache[category]).length === 0) {
                 const categoryVideos = videoUtils.getCategoryVideos({ category })
@@ -73,7 +82,7 @@ const Home = ({ homeVideos = {}, setHomeVideos, categoryVideosCache = {}, setCat
                         <div key={key} className="hover:bg-[#1e1e1e] rounded-lg cursor-pointer overflow-hidden transition-all hover:scale-105">
                             {/* Video thumbnail with duration overlay */}
                             <div className="relative">
-                                <Link to={`/watch/${key}`}>
+                                <Link to={`/watch?v=${key}`}>
                                     <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
                                     <span className="px-1 bg-black opacity-75 rounded text-xs text-white absolute bottom-1 right-1">
                                         {videoUtils.formatDuration(value.duration)}
@@ -82,16 +91,16 @@ const Home = ({ homeVideos = {}, setHomeVideos, categoryVideosCache = {}, setCat
                             </div>
 
                             <div className="py-3 flex">
-                                {/* Channel avatar with link to channel page */}
+                                {/* Channel avatar */}
                                 <Link to={`/channel/${value.channelId}`}>
                                     <div className="w-7 shrink-0 transition-transform duration-300 ease-in-out hover:rotate-360">
                                         <img src={videoUtils.getChannelAvatar(value.channelId)} className="rounded-full" alt="" />
                                     </div>
                                 </Link>
 
-                                {/* Video metadata with channel name link */}
+                                {/* Video metadata */}
                                 <div className="px-3 text-[#aaa] overflow-hidden">
-                                    <Link to={`/watch/${key}`}>
+                                    <Link to={`/watch?v=${key}`}>
                                         <h3 className="text-slate-100 font-medium leading-5 line-clamp-2">{value.title}</h3>
                                     </Link>
                                     <Link to={`/channel/${value.channelId}`}>

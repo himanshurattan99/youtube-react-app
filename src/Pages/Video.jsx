@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 import youtube_logo from '../assets/logos/youtube-logo.svg'
 import like_icon from '../assets/icons/like-icon.png'
 import dislike_icon from '../assets/icons/dislike-icon.png'
 import share_icon from '../assets/icons/share-icon.png'
 import save_icon from '../assets/icons/save-icon.png'
+import Error from './Error.jsx'
 
 const Video = ({ deviceType = 'desktop' }) => {
     // State for video and channel data
@@ -14,10 +15,24 @@ const Video = ({ deviceType = 'desktop' }) => {
     // State for recommended videos
     const [recommendedVideos, setRecommendedVideos] = useState({})
 
-    // Get video ID from URL params
-    const { videoId } = useParams()
+    // Extract video ID from URL query parameters
+    const [searchParams] = useSearchParams()
+    const videoId = searchParams.get('v')
     // Check if current device is mobile
     const isMobileDevice = (deviceType === 'mobile')
+
+    // Show Error page when video ID parameter is missing
+    if (!(videoId)) {
+        return (
+            <Error errorCode='400' errorMessage='Hey! Tell us which video you want to watch!' />
+        )
+    }
+    // Show error page when video doesn't exist or is not found
+    if (!(videoUtils.getVideoData(videoId))) {
+        return (
+            <Error errorCode='400' errorMessage="Oops! This video doesn't exist or went missing!" />
+        )
+    }
 
     // Load video and channel data when component mounts or videoId changes
     useEffect(() => {
@@ -124,7 +139,7 @@ const Video = ({ deviceType = 'desktop' }) => {
                         <div key={key} className="hover:bg-[#1e1e1e] rounded-lg flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3 cursor-pointer">
                             {/* Video thumbnail with duration overlay */}
                             <div className="sm:w-[35%] lg:w-[45%] aspect-video relative transition-transform hover:scale-105">
-                                <Link key={key} to={`/watch/${key}`}>
+                                <Link key={key} to={`/watch?v=${key}`}>
                                     <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
                                     <span className="px-1 bg-black opacity-75 rounded text-sm lg:text-xs text-white absolute bottom-1 right-1">
                                         {videoUtils.formatDuration(value.duration)}
@@ -134,7 +149,7 @@ const Video = ({ deviceType = 'desktop' }) => {
 
                             {/* Video metadata */}
                             <div className="flex-1">
-                                <Link to={`/watch/${key}`}>
+                                <Link to={`/watch?v=${key}`}>
                                     <h3 className="sm:w-[90%] mb-0.5 sm:mb-2 lg:mb-1 lg:text-sm font-medium line-clamp-2">{value.title}</h3>
                                 </Link>
                                 {!(isMobileDevice) &&

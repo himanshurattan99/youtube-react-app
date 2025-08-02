@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useSearchParams, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
 import cross_icon from '../assets/icons/cross-icon.png'
+import Error from './Error.jsx'
 
 const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     // State for search results videos
@@ -19,10 +20,18 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
     const [showFilters, setShowFilters] = useState(false)
     const [originalVideos, setOriginalVideos] = useState({})
 
-    // Extract search input from URL params
-    const { searchInput } = useParams()
+    // Extract search input from URL query parameters
+    const [searchParams] = useSearchParams()
+    const searchInput = searchParams.get('q')
     // Check if current device is mobile
     const isMobileDevice = (deviceType === 'mobile')
+
+    // Show Error page when search input parameter is missing
+    if (!(searchInput)) {
+        return (
+            <Error errorCode='400' errorMessage='Hey! You forgot to tell us what to search for!' />
+        )
+    }
 
     // Toggle sort direction
     const toggleSortDirection = () => {
@@ -52,7 +61,6 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
         // Sort 'videos' based on selected option
         const sortedVideos = videoUtils.sortVideos({ videosData: filteredVideos, videoSort, sortDirection, searchInput })
         setVideos(sortedVideos)
-
         setOriginalVideos(sortedVideos)
     }, [searchInput])
 
@@ -73,7 +81,6 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
 
         // Apply all filters
         filteredVideos = videoUtils.applyFilters({ videosData: filteredVideos, filters })
-
         setVideos(filteredVideos)
     }, [filters, originalVideos])
 
@@ -128,7 +135,7 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                             <div key={key} className="hover:bg-[#1e1e1e] rounded-lg flex flex-col sm:flex-row gap-2 sm:gap-3 cursor-pointer">
                                 {/* Video thumbnail with duration overlay */}
                                 <div className={`${(sidebarExpanded) ? 'md:w-1/2' : 'md:w-2/5'} lg:w-1/3 aspect-16/9 shrink-0 relative transition-transform hover:scale-105`}>
-                                    <Link to={`/watch/${key}`}>
+                                    <Link to={`/watch?v=${key}`}>
                                         <img src={value.thumbnail} className="w-full aspect-video object-cover rounded-lg" alt="" />
                                         <span className="px-1 bg-black opacity-75 rounded text-xs text-white absolute bottom-1 right-1">
                                             {videoUtils.formatDuration(value.duration)}
@@ -139,7 +146,7 @@ const Search = ({ sidebarExpanded = true, deviceType = 'desktop' }) => {
                                 {/* Video metadata */}
                                 <div className="flex-1 flex flex-row-reverse sm:flex-col gap-2 lg:gap-4">
                                     <div>
-                                        <Link to={`/watch/${key}`}>
+                                        <Link to={`/watch?v=${key}`}>
                                             <h3 className="mb-1 text-lg line-clamp-2">{value.title}</h3>
                                         </Link>
                                         <div className="text-xs text-[#aaa]">

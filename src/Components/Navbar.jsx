@@ -36,7 +36,7 @@ const Navbar = ({ onMenuClick }) => {
                     <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} placeholder="Search" type="text" className="w-full outline-none text-slate-100" />
                     {(searchInput.trim()) ?
                         (
-                            <Link to={`/search/${searchInput}`}>
+                            <Link to={`/search?q=${searchInput}`}>
                                 <img src={search_icon} className="size-5" alt="" />
                             </Link>
                         )
@@ -65,7 +65,7 @@ const Navbar = ({ onMenuClick }) => {
                                 <input value={searchInput} onChange={(e) => setSearchInput(e.target.value)} autoFocus placeholder="Search" type="text" className="w-full outline-none text-slate-100" />
                                 {(searchInput.trim()) ?
                                     (
-                                        <Link to={`/search/${searchInput}`}>
+                                        <Link to={`/search?q=${searchInput}`}>
                                             <img src={search_icon} className="size-5" alt="" />
                                         </Link>
                                     )

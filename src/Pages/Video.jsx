@@ -6,14 +6,19 @@ import like_icon from '../assets/icons/like-icon.png'
 import dislike_icon from '../assets/icons/dislike-icon.png'
 import share_icon from '../assets/icons/share-icon.png'
 import save_icon from '../assets/icons/save-icon.png'
+import VideoPlayer from '../Components/VideoPlayer.jsx'
 import Error from './Error.jsx'
 
 const Video = ({ deviceType = 'desktop' }) => {
     // State for video and channel data
     const [video, setVideo] = useState({})
     const [channel, setChannel] = useState({})
+    // State to control video description expansion
+    const [readMore, setReadMore] = useState(false)
     // State for recommended videos
     const [recommendedVideos, setRecommendedVideos] = useState({})
+    // State to control video player visibility
+    const [isStarted, setIsStarted] = useState(false)
 
     // Extract video ID from URL query parameters
     const [searchParams] = useSearchParams()
@@ -32,6 +37,11 @@ const Video = ({ deviceType = 'desktop' }) => {
         return (
             <Error errorCode='400' errorMessage="Oops! This video doesn't exist or went missing!" />
         )
+    }
+
+    // Toggle video description visibility
+    const toggleReadMore = () => {
+        setReadMore(!(readMore))
     }
 
     // Load video and channel data when component mounts or videoId changes
@@ -55,10 +65,18 @@ const Video = ({ deviceType = 'desktop' }) => {
             <div className="lg:w-[64%] flex flex-col gap-2 sm:gap-3">
                 {/* Video thumbnail with play button overlay */}
                 <div className="-mx-3 lg:mx-0 aspect-video relative">
-                    <img src={video.thumbnail} className="w-full aspect-video lg:rounded-xl" alt="" />
-                    <div className="bg-black/50 lg:rounded-xl absolute inset-0">
-                        <img src={youtube_logo} className="w-1/10 sm:w-1/12 lg:w-1/16 cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform hover:scale-125 hover:rotate-360" alt="" />
-                    </div>
+                    {(isStarted) ?
+                        (
+                            <VideoPlayer />
+                        ) :
+                        (
+                            <>
+                                <img src={video.thumbnail} className="w-full aspect-video lg:rounded-xl" alt="" />
+                                <div className="bg-black/50 lg:rounded-xl absolute inset-0">
+                                    <img onClick={() => setIsStarted(true)} src={youtube_logo} className="w-1/10 sm:w-1/12 lg:w-1/16 cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform hover:scale-125 hover:rotate-360" alt="" />
+                                </div>
+                            </>
+                        )}
                 </div>
 
                 {/* Video title */}
@@ -69,13 +87,17 @@ const Video = ({ deviceType = 'desktop' }) => {
                     {/* Channel info and subscribe button */}
                     <div className="flex items-center gap-2">
                         {/* Channel avatar */}
-                        <div className="w-7 sm:w-10 shrink-0 cursor-pointer transition-transform duration-300 ease-in-out hover:rotate-360">
-                            <img src={channel.avatar} className="rounded-full" alt="" />
-                        </div>
+                        <Link to={`/channel/${video.channelId}`}>
+                            <div className="w-7 sm:w-10 shrink-0 cursor-pointer transition-transform duration-300 ease-in-out hover:rotate-360">
+                                <img src={channel.avatar} className="rounded-full" alt="" />
+                            </div>
+                        </Link>
 
                         {/* Channel name and subscriber count */}
                         <div className="me-3 flex sm:block items-center gap-2">
-                            <div className="sm:text-base font-medium">{channel.name}</div>
+                            <Link to={`/channel/${video.channelId}`}>
+                                <div className="sm:text-base font-medium">{channel.name}</div>
+                            </Link>
                             <div className="sm:text-sm lg:text-xs text-[#aaa]">
                                 {videoUtils.formatSubscribersCount(channel.subscribers)} {(isMobileDevice) ? '' : 'subscribers'}
                             </div>
@@ -125,10 +147,15 @@ const Video = ({ deviceType = 'desktop' }) => {
                         <div>Premiered {video.uploadDate}</div>
                     </div>
 
-                    {/* Video description */}
-                    <div className="text-justify">
+                    {/* Video description with read more/less functionality */}
+                    <div className={`text-justify ${(readMore) ? '' : 'line-clamp-2'}`}>
                         {video.description}
                     </div>
+
+                    {/* Toggle button for expanding/collapsing description */}
+                    <button onClick={toggleReadMore} className="font-bold cursor-pointer">
+                        {(readMore) ? '...less' : '...more'}
+                    </button>
                 </div>
             </div>
 
@@ -152,13 +179,18 @@ const Video = ({ deviceType = 'desktop' }) => {
                                 <Link to={`/watch?v=${key}`}>
                                     <h3 className="sm:w-[90%] mb-0.5 sm:mb-2 lg:mb-1 lg:text-sm font-medium line-clamp-2">{value.title}</h3>
                                 </Link>
-                                {!(isMobileDevice) &&
-                                    <Link to={`/channel/${value.channelId}`}>
-                                        <div className="sm:w-[90%] mb-1 lg:mb-0.5 text-sm lg:text-xs text-[#aaa] hover:text-slate-100 line-clamp-1">
-                                            {value.channelName}
+                                <Link to={`/channel/${value.channelId}`}>
+                                    <div className="group sm:w-[90%] mb-1 lg:mb-0.5 flex items-center gap-1">
+                                        <div className="w-5 shrink-0 transition-transform duration-300 ease-in-out group-hover:rotate-360">
+                                            <img src={videoUtils.getChannelAvatar(value.channelId)} className="rounded-full" alt="" />
                                         </div>
-                                    </Link>
-                                }
+                                        {!(isMobileDevice) &&
+                                            <div className="text-sm lg:text-xs text-[#aaa] group-hover:text-slate-100 line-clamp-1">
+                                                {value.channelName}
+                                            </div>
+                                        }
+                                    </div>
+                                </Link>
                                 <div className="text-sm lg:text-xs text-[#aaa] line-clamp-1">
                                     {(isMobileDevice) ? `${value.channelName} •` : ''} {videoUtils.formatViewsCount(value.views)} views • {videoUtils.getRelativeUploadTime(value.uploadDate)}
                                 </div>

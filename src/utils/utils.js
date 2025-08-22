@@ -95,6 +95,28 @@ export const normalizeText = (text) => {
     return normalizedText
 }
 
+// Convert duration in seconds to HH:MM:SS format
+export const formatTime = (seconds) => {
+    if (isNaN(seconds) || seconds < 0) {
+        return "00:00"
+    }
+
+    const hours = Math.floor(seconds / 3600)
+    const minutes = Math.floor((seconds % 3600) / 60)
+    const remainingSeconds = Math.floor(seconds % 60)
+
+    const formattedMinutes = minutes.toString().padStart(2, '0')
+    const formattedSeconds = remainingSeconds.toString().padStart(2, '0')
+
+    // Only show hours if video is 1 hour or longer
+    if (hours > 0) {
+        const formattedHours = hours.toString().padStart(2, '0')
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`
+    } else {
+        return `${formattedMinutes}:${formattedSeconds}`
+    }
+}
+
 // Convert ISO duration format to HH:MM:SS format
 export const formatDuration = (duration) => {
     const match = duration.match(/PT(\d+H)?(\d+M)?(\d+S)?/)

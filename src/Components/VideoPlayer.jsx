@@ -1,35 +1,49 @@
 import { useState, useRef, useEffect } from 'react'
 import * as videoUtils from '../utils/utils.js'
+import youtube_logo from '../assets/logos/youtube-logo.svg'
 import play_icon from '../assets/icons/play-icon.png'
 import pause_icon from '../assets/icons/pause-icon.png'
 import replay_icon from '../assets/icons/replay-icon.png'
 import volume_icon from '../assets/icons/volume-icon.png'
 import mute_icon from '../assets/icons/mute-icon.png'
+import settings_icon from '../assets/icons/settings-icon.png'
 import fullscreen_icon from '../assets/icons/fullscreen-icon.png'
 import exit_fullscreen_icon from '../assets/icons/exit-fullscreen-icon.png'
+import sampleVideo from '../assets/videos/sample-video.mp4'
 
-const VideoPlayer = () => {
-  // Reference to video element
+const VideoPlayer = ({ thumbnail, videoSource = sampleVideo }) => {
+  // References to video and container DOM elements
   const videoRef = useRef(null)
-  // State for play/pause functionality
-  const [isPlaying, setIsPlaying] = useState(true)
-  // State to track if video has ended
+  const containerRef = useRef(null)
+
+  // Core video playback state
+  const [isPlaying, setIsPlaying] = useState(false)
   const [hasEnded, setHasEnded] = useState(false)
-  // State for video duration and current playback time
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
-  // State for volume control
+
+  // Volume and audio controls
   const [volume, setVolume] = useState(1)
   const [isMuted, setIsMuted] = useState(false)
-  // State for UI visibility
-  const [showControls, setShowControls] = useState(false)
-  // State for brief icon display when clicking video
-  const [showClickIcon, setShowClickIcon] = useState(false)
 
-  // Reference to container for fullscreen functionality
-  const containerRef = useRef(null)
-  // State to track fullscreen mode
+  // Playback speed control
+  const [playbackSpeed, setPlaybackSpeed] = useState(1)
+  const playbackSpeeds = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
+
+  // UI visibility and interaction states
+  const [showThumbnail, setShowThumbnail] = useState(true)
+  const [showControls, setShowControls] = useState(false)
+  const [showClickIcon, setShowClickIcon] = useState(false)
+  const [showPlaybackSpeedMenu, setShowPlaybackSpeedMenu] = useState(false)
+
+  // Fullscreen mode state
   const [isFullscreen, setIsFullscreen] = useState(false)
+
+  // Handle thumbnail click - start playing video
+  const handleThumbnailClick = () => {
+    setShowThumbnail(false)
+    setIsPlaying(true)
+  }
 
   // Toggle play/pause state
   const togglePlay = () => {
@@ -55,11 +69,6 @@ const VideoPlayer = () => {
     setTimeout(() => setShowClickIcon(false), 500)
   }
 
-  // Toggle mute/unmute state
-  const toggleIsMuted = () => {
-    setIsMuted(!(isMuted))
-  }
-
   // Handle progress bar changes (seeking)
   const handleProgressChange = (e) => {
     const video = videoRef.current
@@ -80,6 +89,11 @@ const VideoPlayer = () => {
     }
   }
 
+  // Toggle mute/unmute state
+  const toggleIsMuted = () => {
+    setIsMuted(!(isMuted))
+  }
+
   // Handle volume slider changes
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value)
@@ -94,6 +108,39 @@ const VideoPlayer = () => {
     if (newVolume > 0 && isMuted) {
       setIsMuted(false)
     }
+  }
+
+  // Toggle playback speed menu visibility
+  const toggleShowPlaybackMenu = () => {
+    setShowPlaybackSpeedMenu(!(showPlaybackSpeedMenu))
+  }
+
+  // Set video playback speed and close menu
+  const handlePlaybackSpeed = (speed) => {
+    const video = videoRef.current
+    if (!video) return
+
+    const newPlaybackSpeed = parseFloat(speed)
+    video.playbackRate = newPlaybackSpeed
+    setPlaybackSpeed(newPlaybackSpeed)
+
+    setShowPlaybackSpeedMenu(false)
+  }
+
+  // Toggle fullscreen mode
+  const toggleFullscreen = () => {
+    const container = containerRef.current
+
+    // Enter fullscreen if not already in fullscreen mode
+    if (!(document.fullscreenElement)) {
+      container.requestFullscreen()
+    }
+    // Exit fullscreen if already in fullscreen mode
+    else {
+      document.exitFullscreen()
+    }
+
+    setIsFullscreen(!(isFullscreen))
   }
 
   // Handle keyboard shortcuts for video playback controls
@@ -118,6 +165,22 @@ const VideoPlayer = () => {
       }
     }
 
+    // Adjust volume within bounds (0 to 1)
+    const adjustVolume = (offset) => {
+      const newVolume = Math.min(1, Math.max(0, volume + offset))
+      setVolume(newVolume)
+
+      // Auto-unmute when increasing volume
+      if (offset > 0 && isMuted) {
+        setIsMuted(false)
+      }
+
+      // Auto-mute when volume reaches 0
+      if (newVolume === 0 && !(isMuted)) {
+        setIsMuted(true)
+      }
+    }
+
     switch (e.key) {
       case 'ArrowLeft':
         e.preventDefault() // Prevent page scroll
@@ -129,8 +192,17 @@ const VideoPlayer = () => {
         seek(10) // Seek forward 10 seconds
         break
 
-      case ' ': // Space bar for play/pause
+      case 'ArrowUp':
+        e.preventDefault() // Prevent page scroll
+        adjustVolume(0.1) // Increase volume by 10%
+        break
+
+      case 'ArrowDown':
         e.preventDefault()
+        adjustVolume(-0.1) // Decrease volume by 10%
+        break
+
+      case ' ': // Space bar for play/pause
         e.preventDefault()
         if (hasEnded) {
           replayVideo()
@@ -138,23 +210,13 @@ const VideoPlayer = () => {
           togglePlay()
         }
         break
-    }
-  }
 
-  // Toggle fullscreen mode
-  const toggleFullscreen = () => {
-    const container = containerRef.current
-
-    // Enter fullscreen if not already in fullscreen mode
-    if (!(document.fullscreenElement)) {
-      container.requestFullscreen()
+      case 'm': // 'M' key for mute/unmute
+      case 'M':
+        e.preventDefault()
+        toggleIsMuted()
+        break
     }
-    // Exit fullscreen if already in fullscreen mode
-    else {
-      document.exitFullscreen()
-    }
-
-    setIsFullscreen(!(isFullscreen))
   }
 
   // Set up video event listeners for duration and time updates
@@ -193,12 +255,12 @@ const VideoPlayer = () => {
     const video = videoRef.current
     if (!video) return
 
-    if (isPlaying) {
+    if (isPlaying && !(showThumbnail)) {
       video.play()
     } else {
       video.pause()
     }
-  }, [isPlaying])
+  }, [isPlaying, showThumbnail])
 
   // Update video volume based on volume and mute state
   useEffect(() => {
@@ -215,11 +277,25 @@ const VideoPlayer = () => {
       tabIndex={0}
       className="outline-none relative"
     >
-      {/* Video element */}
-      <video onClick={(hasEnded) ? replayVideo : togglePlay} src="" ref={videoRef} className="w-full aspect-video" />
+      {/* Video element - always render but control visibility */}
+      <video onClick={(hasEnded) ? replayVideo : togglePlay}
+        src={videoSource} ref={videoRef}
+        preload="metadata"
+        className={`w-full aspect-video ${(showThumbnail) ? 'hidden' : 'block'}`}
+      />
+
+      {/* Thumbnail overlay - conditionally rendered */}
+      {(showThumbnail) && (
+        <div className="">
+          <img src={thumbnail} className="w-full aspect-video lg:rounded-xl" alt="" />
+          <div className="bg-black/50 lg:rounded-xl absolute inset-0">
+            <img onClick={handleThumbnailClick} src={youtube_logo} className="w-1/10 sm:w-1/12 lg:w-1/16 cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform hover:scale-125 hover:rotate-360" alt="" />
+          </div>
+        </div>
+      )}
 
       {/* Brief play/pause icon display on video click */}
-      {(showClickIcon) && (
+      {(showClickIcon && !(showThumbnail)) && (
         <div className="p-3 bg-black/50 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-ping">
           <img src={(isPlaying) ? play_icon : pause_icon}
             className="size-6 animate-pulse" alt="" />
@@ -227,7 +303,7 @@ const VideoPlayer = () => {
       )}
 
       {/* Video controls overlay */}
-      {(showControls) &&
+      {(showControls && !(showThumbnail)) &&
         (
           <div className="absolute right-0 bottom-2 left-0">
             {/* Progress bar */}
@@ -268,8 +344,32 @@ const VideoPlayer = () => {
                 {videoUtils.formatTime(Math.floor(currentTime))} / {videoUtils.formatTime(Math.floor(duration))}
               </div>
 
+              {/* Playback speed control button */}
+              <button className="ml-auto relative">
+                <img onClick={toggleShowPlaybackMenu}
+                  src={settings_icon}
+                  className="w-6 transition-transform duration-250 hover:rotate-360 cursor-pointer" alt=""
+                />
+
+                {(showPlaybackSpeedMenu && !(showThumbnail)) &&
+                  (
+                    <div className="bg-black/20 rounded-md overflow-hidden absolute -top-[100%] left-[50%] -translate-x-[50%] -translate-y-[100%]">
+                      {playbackSpeeds.map((speed) => {
+                        return (
+                          <div onClick={() => handlePlaybackSpeed(speed)}
+                            key={speed}
+                            className={`py-1 px-6 ${(playbackSpeed === speed) ? 'bg-black/50' : ''} hover:bg-black/50 cursor-pointer`}
+                          >
+                            {speed}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  )}
+              </button>
+
               {/* Toggle fullscreen button */}
-              <button onClick={toggleFullscreen} className="ml-auto cursor-pointer">
+              <button onClick={toggleFullscreen} className="cursor-pointer">
                 <img src={(isFullscreen) ? exit_fullscreen_icon : fullscreen_icon} className="w-6 transition-transform duration-250 hover:scale-105" alt="" />
               </button>
             </div>

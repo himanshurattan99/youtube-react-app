@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import * as videoUtils from '../utils/utils.js'
-import youtube_logo from '../assets/logos/youtube-logo.svg'
 import like_icon from '../assets/icons/like-icon.png'
 import dislike_icon from '../assets/icons/dislike-icon.png'
 import share_icon from '../assets/icons/share-icon.png'
@@ -17,8 +16,6 @@ const Video = ({ deviceType = 'desktop' }) => {
     const [readMore, setReadMore] = useState(false)
     // State for recommended videos
     const [recommendedVideos, setRecommendedVideos] = useState({})
-    // State to control video player visibility
-    const [isStarted, setIsStarted] = useState(false)
 
     // Extract video ID from URL query parameters
     const [searchParams] = useSearchParams()
@@ -65,18 +62,7 @@ const Video = ({ deviceType = 'desktop' }) => {
             <div className="lg:w-[64%] flex flex-col gap-2 sm:gap-3">
                 {/* Video thumbnail with play button overlay */}
                 <div className="-mx-3 lg:mx-0 aspect-video relative">
-                    {(isStarted) ?
-                        (
-                            <VideoPlayer />
-                        ) :
-                        (
-                            <>
-                                <img src={video.thumbnail} className="w-full aspect-video lg:rounded-xl" alt="" />
-                                <div className="bg-black/50 lg:rounded-xl absolute inset-0">
-                                    <img onClick={() => setIsStarted(true)} src={youtube_logo} className="w-1/10 sm:w-1/12 lg:w-1/16 cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform hover:scale-125 hover:rotate-360" alt="" />
-                                </div>
-                            </>
-                        )}
+                    <VideoPlayer key={videoId} thumbnail={video.thumbnail} />
                 </div>
 
                 {/* Video title */}

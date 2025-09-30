@@ -9,9 +9,8 @@ import mute_icon from '../assets/icons/mute-icon.png'
 import settings_icon from '../assets/icons/settings-icon.png'
 import fullscreen_icon from '../assets/icons/fullscreen-icon.png'
 import exit_fullscreen_icon from '../assets/icons/exit-fullscreen-icon.png'
-import sampleVideo from '../assets/videos/sample-video.mp4'
 
-const VideoPlayer = ({ thumbnail, videoSource = sampleVideo }) => {
+const VideoPlayer = ({ thumbnail, videoSource = 'https://cdn.pixabay.com/video/2021/09/29/90154-620258531_large.mp4' }) => {
   // References to video and container DOM elements
   const videoRef = useRef(null)
   const containerRef = useRef(null)
@@ -123,8 +122,6 @@ const VideoPlayer = ({ thumbnail, videoSource = sampleVideo }) => {
     const newPlaybackSpeed = parseFloat(speed)
     video.playbackRate = newPlaybackSpeed
     setPlaybackSpeed(newPlaybackSpeed)
-
-    setShowPlaybackSpeedMenu(false)
   }
 
   // Toggle fullscreen mode
@@ -353,12 +350,25 @@ const VideoPlayer = ({ thumbnail, videoSource = sampleVideo }) => {
 
                 {(showPlaybackSpeedMenu && !(showThumbnail)) &&
                   (
-                    <div className="bg-black/20 rounded-md overflow-hidden absolute -top-[100%] left-[50%] -translate-x-[50%] -translate-y-[100%]">
+                    <div className="bg-black/50 rounded-md overflow-hidden absolute -top-[100%] left-[50%] -translate-x-[50%] -translate-y-[100%]">
+                      {/* Playback speed slider */}
+                      <div className="py-1 px-2">
+                        <div className="">{playbackSpeed}x</div>
+
+                        <input onChange={(e) => handlePlaybackSpeed(e.target.value)} type="range"
+                          value={playbackSpeed} min="0.05" max="2" step="0.05"
+                          className="w-21 cursor-pointer media-slider media-slider-white"
+                          style={{
+                            background: `linear-gradient(to right, #ffffff 0%, #ffffff ${((playbackSpeed) / 2) * 100}%, rgba(255, 255, 255, 0.2) ${((playbackSpeed) / 2) * 100}%, rgba(255, 255, 255, 0.2) 100%)`
+                          }}
+                        />
+                      </div>
+
                       {playbackSpeeds.map((speed) => {
                         return (
                           <div onClick={() => handlePlaybackSpeed(speed)}
                             key={speed}
-                            className={`py-1 px-6 ${(playbackSpeed === speed) ? 'bg-black/50' : ''} hover:bg-black/50 cursor-pointer`}
+                            className={`py-1 px-6 ${(playbackSpeed === speed) ? 'bg-black/50' : ''} hover:bg-black/50 text-sm cursor-pointer`}
                           >
                             {speed}
                           </div>
